@@ -1,0 +1,199 @@
+fileFormatVersion: 2
+guid: 5f56521451aac0f42ae2461b637ab0d0
+timeCreated: 1499973851
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: R_Shoulder
+    21300002: Head
+    21300004: L_Shoulder
+    21300006: R_Upper_Hand
+    21300008: Chest
+    21300010: L_Upper_Hand
+    21300012: Sword
+    21300014: R_Lower_Hand
+    21300016: L_Upper_Leg
+    21300018: L_Lower_Hand
+    21300020: R_Upper_Leg
+    21300022: R_Lower_Leg
+    21300024: L_Lower_Leg
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: R_Shoulder
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 402
+        width: 35
+        height: 35
+      alignment: 9
+      pivot: {x: .787710547, y: .175131664}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Head
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 397
+        width: 45
+        height: 40
+      alignment: 9
+      pivot: {x: .441394031, y: .116020203}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L_Shoulder
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 377
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: .309499115, y: .192739874}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: R_Upper_Hand
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 337
+        width: 30
+        height: 35
+      alignment: 9
+      pivot: {x: .789672315, y: .853597581}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chest
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 322
+        width: 50
+        height: 65
+      alignment: 9
+      pivot: {x: .623001993, y: .0920978263}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L_Upper_Hand
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 322
+        width: 25
+        height: 35
+      alignment: 9
+      pivot: {x: .250437617, y: .845676124}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sword
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 157
+        width: 60
+        height: 245
+      alignment: 9
+      pivot: {x: .50130868, y: .166747853}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: R_Lower_Hand
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 277
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: .227980301, y: .818856835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L_Upper_Leg
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 237
+        width: 35
+        height: 45
+      alignment: 9
+      pivot: {x: .162631229, y: .848297775}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L_Lower_Hand
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 272
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: .17613627, y: .816690087}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: R_Upper_Leg
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 212
+        width: 30
+        height: 50
+      alignment: 9
+      pivot: {x: .757297754, y: .895247221}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: R_Lower_Leg
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 142
+        width: 35
+        height: 55
+      alignment: 9
+      pivot: {x: .709668636, y: .879082143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L_Lower_Leg
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 152
+        width: 35
+        height: 55
+      alignment: 9
+      pivot: {x: .720540941, y: .898629785}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
