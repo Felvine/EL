@@ -1,22 +1,21 @@
 fileFormatVersion: 2
-guid: 5f56521451aac0f42ae2461b637ab0d0
-timeCreated: 1501522043
+guid: ed6072d1f30cd1e4ea23eeccc2845e34
+timeCreated: 1501524101
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: R_Shoulder
-    21300002: Head
-    21300004: L_Shoulder
-    21300006: R_Upper_Hand
-    21300008: Chest
-    21300010: L_Upper_Hand
-    21300012: Basic_greatsword
-    21300014: R_Lower_Hand
-    21300016: L_Upper_Leg
-    21300018: L_Lower_Hand
-    21300020: R_Upper_Leg
-    21300022: R_Lower_Leg
-    21300024: L_Lower_Leg
+    21300000: Red_Armor_R_Shoulder
+    21300002: Red_Armor_Head
+    21300004: Red_Armor_L_Shoulder
+    21300006: Red_Armor_R_Upper_Hand
+    21300008: Red_Armor_Chest
+    21300010: Red_Armor_L_Upper_Hand
+    21300012: Red_Armor_R_Lower_Hand
+    21300014: Red_Armor_L_Upper_Leg
+    21300016: Red_Armor_L_Lower_Hand
+    21300018: Red_Armor_R_Upper_Leg
+    21300020: Red_Armor_R_Lower_Leg
+    21300022: Red_Armor_L_Lower_Leg
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,7 +38,7 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
@@ -76,191 +75,185 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: R_Shoulder
+      name: Red_Armor_R_Shoulder
       rect:
         serializedVersion: 2
-        x: 112
-        y: 402
-        width: 35
-        height: 35
+        x: 77
+        y: 268
+        width: 40
+        height: 40
       alignment: 9
-      pivot: {x: 0.78771055, y: 0.17513166}
+      pivot: {x: 0.783333, y: 0.2666672}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Head
+      name: Red_Armor_Head
       rect:
         serializedVersion: 2
-        x: 163
-        y: 397
+        x: 127
+        y: 263
         width: 45
         height: 40
       alignment: 9
-      pivot: {x: 0.44139403, y: 0.1160202}
+      pivot: {x: 0.55925906, y: 0.1333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: L_Shoulder
+      name: Red_Armor_L_Shoulder
       rect:
         serializedVersion: 2
-        x: 232
-        y: 377
-        width: 30
-        height: 30
+        x: 202
+        y: 243
+        width: 35
+        height: 40
       alignment: 9
-      pivot: {x: 0.3094991, y: 0.19273987}
+      pivot: {x: 0.23333348, y: 0.3666664}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: R_Upper_Hand
+      name: Red_Armor_R_Upper_Hand
       rect:
         serializedVersion: 2
-        x: 97
-        y: 337
+        x: 67
+        y: 203
         width: 30
         height: 35
       alignment: 9
-      pivot: {x: 0.7896723, y: 0.8535976}
+      pivot: {x: 0.7222224, y: 0.8238094}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Chest
+      name: Red_Armor_Chest
       rect:
         serializedVersion: 2
-        x: 162
-        y: 322
+        x: 132
+        y: 188
         width: 50
         height: 65
       alignment: 9
-      pivot: {x: 0.623002, y: 0.09209783}
+      pivot: {x: 0.5266666, y: 0.2743589}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: L_Upper_Hand
+      name: Red_Armor_L_Upper_Hand
       rect:
         serializedVersion: 2
-        x: 237
-        y: 322
+        x: 207
+        y: 188
         width: 25
         height: 35
       alignment: 9
-      pivot: {x: 0.25043762, y: 0.8456761}
+      pivot: {x: 0.20666687, y: 0.8238094}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Basic_greatsword
+      name: Red_Armor_R_Lower_Hand
       rect:
         serializedVersion: 2
-        x: 287
-        y: 157
-        width: 60
-        height: 245
-      alignment: 9
-      pivot: {x: 0.5013087, y: 0.16674785}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: R_Lower_Hand
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 277
+        x: 72
+        y: 143
         width: 30
         height: 30
       alignment: 9
-      pivot: {x: 0.2279803, y: 0.81885684}
+      pivot: {x: 0.2111112, y: 0.7666662}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: L_Upper_Leg
+      name: Red_Armor_L_Upper_Leg
       rect:
         serializedVersion: 2
-        x: 167
-        y: 237
+        x: 137
+        y: 103
         width: 35
         height: 45
       alignment: 9
-      pivot: {x: 0.16263123, y: 0.8482978}
+      pivot: {x: 0.23333304, y: 0.8555559}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: L_Lower_Hand
+      name: Red_Armor_L_Lower_Hand
       rect:
         serializedVersion: 2
-        x: 247
-        y: 272
+        x: 217
+        y: 138
         width: 30
         height: 30
       alignment: 9
-      pivot: {x: 0.17613627, y: 0.8166901}
+      pivot: {x: 0.2777776, y: 0.7666662}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: R_Upper_Leg
+      name: Red_Armor_R_Upper_Leg
       rect:
         serializedVersion: 2
-        x: 107
-        y: 212
+        x: 77
+        y: 78
         width: 30
         height: 50
       alignment: 9
-      pivot: {x: 0.75729775, y: 0.8952472}
+      pivot: {x: 0.6999995, y: 0.8466667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: R_Lower_Leg
+      name: Red_Armor_R_Lower_Leg
       rect:
         serializedVersion: 2
-        x: 97
-        y: 142
+        x: 67
+        y: 8
         width: 35
         height: 55
       alignment: 9
-      pivot: {x: 0.70966864, y: 0.87908214}
+      pivot: {x: 0.74761856, y: 0.8878788}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: L_Lower_Leg
+      name: Red_Armor_L_Lower_Leg
       rect:
         serializedVersion: 2
-        x: 162
-        y: 152
+        x: 132
+        y: 18
         width: 35
         height: 55
       alignment: 9
-      pivot: {x: 0.72054094, y: 0.8986298}
+      pivot: {x: 0.67142814, y: 0.8636364}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
