@@ -6,8 +6,24 @@ public class PlayerMove : MonoBehaviour {
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
+
+    public bool IsMoving {
+        get {
+            return moveDirection.Equals (Vector3.zero);
+        }
+    }
+
+    public bool IsRunning {
+        get {
+            return false;   //TODO
+        }
+    }
     void Update () {
-        CharacterController controller = GetComponent<CharacterController> ();
+        ControlPlayer (GetComponent<CharacterController> ());
+        SetAnimatorVariables (GetComponent<Animator> ());
+
+    }
+    void ControlPlayer (CharacterController controller) {
         if (controller.isGrounded) {
             moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
             moveDirection = transform.TransformDirection (moveDirection);
@@ -18,5 +34,9 @@ public class PlayerMove : MonoBehaviour {
         }
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move (moveDirection * Time.deltaTime);
+    }
+
+    void SetAnimatorVariables (Animator animator) {
+        animator.SetBool ("IsMoving", IsMoving);
     }
 }
