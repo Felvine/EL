@@ -75,10 +75,10 @@ public class CharacterWalk : MonoBehaviour {
 			
 		
 		
-		if (Input.GetButton ("Fire1")) 
-			{
-			animator.SetTrigger ("PlayerAttack");
-			}
+		//if (Input.GetButton ("Fire1")) 
+			//{
+			//animator.SetTrigger ("PlayerAttack");
+			//}
 
 
 
