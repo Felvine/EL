@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour {
     }
     void Update () {
         ControlPlayer (GetComponent<CharacterController> ());
-        SetAnimatorVariables (GetComponent<Animator> ());
+        SetAnimatorVariables (GetComponentInChildren<Animator> ());
 
     }
     void ControlPlayer (CharacterController controller) {
