@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour {
 
     public bool IsMoving {
         get {
-            return moveDirection.Equals (Vector3.zero);
+            return !(new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).Equals (Vector2.zero));
         }
     }
 
@@ -37,6 +37,7 @@ public class PlayerMove : MonoBehaviour {
     }
 
     void SetAnimatorVariables (Animator animator) {
-        animator.SetBool ("IsMoving", IsMoving);
+        Debug.Log (IsMoving);
+        //animator.SetBool ("IsMoving", IsMoving);
     }
 }
