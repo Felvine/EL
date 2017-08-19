@@ -25,7 +25,7 @@ namespace Actions {
             }
         }
 
-        public Character Character {
+        public Character User {
             get {
                 return user;
             }

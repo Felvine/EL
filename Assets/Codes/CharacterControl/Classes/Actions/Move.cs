@@ -11,9 +11,9 @@ namespace Actions {
             this.speed = speedIn;
         }
         protected override void PerformAction () {
-            Vector3 moveDirection = this.Character.Transform.TransformDirection (this.Character.Direction);
+            Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);
             moveDirection *= this.speed;
-            this.Character.Controller.Move (moveDirection * Time.deltaTime);
+            this.User.Controller.Move (moveDirection * Time.deltaTime);
         }
         public override bool IsPrimitive () {
             return true;

@@ -11,7 +11,7 @@ class BetaController : MonoBehaviour {
         player = new Character (GetComponentInChildren<CharacterController> (), transform);
         player.AddAction ("Walk", new Move (player, 0.001f, 6f));
         player.AddAction ("Run", new Move (player, 0.001f, 10f));
-        player.AddAction ("Roll", new Roll (player, 0.5f, 10));
+        player.AddAction ("Roll", new ActionSequence (new Roll (player, 0.2f, 2, false), new Roll (player, 0.1f, 1, true), new Roll (player, 0.2f, 2, false)));
         this.currentAction = null;
     }
 
