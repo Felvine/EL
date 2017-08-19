@@ -8,7 +8,6 @@ namespace Actions {
             this.invincibility = invicibilityIn;
         }
         protected override void PreActions () {
-            Debug.Log ("lol");
             base.PreActions ();
             if (invincibility) {
                 SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
