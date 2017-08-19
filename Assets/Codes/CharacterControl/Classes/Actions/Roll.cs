@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 namespace Actions {
-    class Roll : Move {
+    class Roll : CharacterAction {
         private bool invincibility;
-        public Roll (Character characterIn, float durationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn, distanceIn / durationIn) {
+        private float speed;
+        public Roll (Character characterIn, float durationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn) {
             this.invincibility = invicibilityIn;
+            this.speed = distanceIn / durationIn;
         }
+
         protected override void PreActions () {
             base.PreActions ();
+            User.Animations.SetTrigger ("PlayerRoll");
+            Debug.Log ("Rolling");
             if (invincibility) {
                 SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
                 foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
@@ -28,11 +33,9 @@ namespace Actions {
         }
 
         protected override void PerformAction () {
-            base.PerformAction ();
-        }
-
-        public override bool IsPrimitive () {
-            return false;
+            Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);
+            moveDirection *= this.speed;
+            this.User.Controller.Move (moveDirection * Time.deltaTime);
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
 namespace Actions {
-    public abstract class Action : IAction {
+    public abstract class CharacterAction : ICharacterAction {
+        private const float almostDone = 0.95f;
         private float startTime;
         private Phase actionPhase;
         private float duration;
         private Character user;
 
-        public Action (Character characterIn, float durationIn) {
+        public CharacterAction (Character characterIn, float durationIn) {
             this.actionPhase = Phase.NotActing;
             this.user = characterIn;
             this.duration = durationIn;
@@ -56,6 +57,10 @@ namespace Actions {
         }
         public virtual bool IsPrimitive () {
             return false;
+        }
+        
+        public virtual bool AlmostDone () {
+            return (startTime + (duration * almostDone) < Time.time);
         }
     }
 }   

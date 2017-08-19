@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
 namespace Actions {
-    class ActionSequence : IAction {
-        private List<IAction> actions;
+    class CharacterActionSequence : ICharacterAction {
+        private List<ICharacterAction> actions;
         private int step = 0;
 
-        public ActionSequence(params IAction[] actionsIn) {
-            this.actions = new List<IAction> ();
+        public CharacterActionSequence(params ICharacterAction[] actionsIn) {
+            this.actions = new List<ICharacterAction> ();
             step = 0;
             for (int i = 0; i< actionsIn.Length; i++) {
                 this.actions.Add (actionsIn[i]);
@@ -27,6 +27,9 @@ namespace Actions {
             }
         }
         public virtual bool IsPrimitive () {
+            return false;
+        }
+        public bool AlmostDone () {
             return false;
         }
     }

@@ -1,9 +1,10 @@
 ﻿namespace Actions {
     public enum Phase { NotActing, Acting };
 
-    public interface IAction {
+    public interface ICharacterAction {
         Phase Execute ();
         bool IsPrimitive ();
+        bool AlmostDone ();
     }
 }
 
