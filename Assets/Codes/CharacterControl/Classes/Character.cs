@@ -13,14 +13,13 @@ public class Character {
 
     private CharacterController controller;
     private Transform transform;
-    private Animator animations;
+    private Animator animator;
 
     public Vector3 Direction {
         get {
             return direction;
         }
         set {
-            Debug.Log ("Dir");
             direction = value;
             SetHorizontalDirection ();
         }
@@ -47,9 +46,9 @@ public class Character {
         }
     }
 
-    public Animator Animations {
+    public Animator Animator {
         get {
-            return animations;
+            return animator;
         }
     }
 
@@ -76,7 +75,8 @@ public class Character {
     public Character (CharacterController characterController, Transform characterTransform, Animator animatorIn){
         this.controller = characterController;
         this.transform = characterTransform;
-        this.animations = animatorIn;
+        this.animator = animatorIn;
+        this.properties = new CharacterProperties ();
     }
 
     public void AddAction (string actionNameIn, Actions.ICharacterAction actionIn) {

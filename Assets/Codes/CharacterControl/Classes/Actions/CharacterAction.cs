@@ -2,7 +2,6 @@
 
 namespace Actions {
     public abstract class CharacterAction : ICharacterAction {
-        private const float almostDone = 0.95f;
         private float startTime;
         private Phase actionPhase;
         private float duration;
@@ -32,35 +31,34 @@ namespace Actions {
             }
         }
 
-        protected virtual void PreActions () {
+        protected float StartTime {
+            get {
+                return startTime;
+            }
+        }
+
+        protected virtual void PreActions (ICharacterAction previousAction) {
             startTime = Time.time;
         }
 
-        protected virtual void PostActions () {
+        protected virtual void PostActions (ICharacterAction nextAction) {
         }
 
         protected abstract void PerformAction ();
 
-        public Phase Execute () {    //Returns whether or not the action finished    
+        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction) {    //Returns whether or not the action finished    
             if (actionPhase == Phase.NotActing) {
-                PreActions ();
+                PreActions (previousAction);
                 actionPhase = Phase.Acting;
             }
             if (actionPhase == Phase.Acting) {
                 PerformAction ();
                 if (startTime + duration < Time.time) {
-                    PostActions ();
+                    PostActions (nextAction);
                     actionPhase = Phase.NotActing;
                 }
             }
             return actionPhase;            
-        }
-        public virtual bool IsPrimitive () {
-            return false;
-        }
-        
-        public virtual bool AlmostDone () {
-            return (startTime + (duration * almostDone) < Time.time);
         }
     }
 }   

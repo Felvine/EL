@@ -7,35 +7,48 @@ class BetaController : MonoBehaviour {
     ICharacterAction currentAction;
     ICharacterAction nextAction;
 
+    public ICharacterAction NextAction {
+        get {
+            return nextAction;
+        }
+
+        set {
+            if (nextAction == null) {
+                nextAction = value;
+            } else if (value is TriggeredAction && ((TriggeredAction)value).AlmostDone ()) {
+                nextAction = value;
+            }
+        }
+    }
+
     void Start () {
-        player = new Character (GetComponentInChildren<CharacterController> (), transform, GetComponentInChildren<Animator> ());
+        Animator playerAnimator = GetComponentInChildren<Animator> ();
+        if (playerAnimator == null)
+            throw new System.MissingFieldException ("Player need an animator");
+
+        player = new Character (GetComponentInChildren<CharacterController> (), transform, playerAnimator);
         player.AddAction ("Walk", new Move (player, 0.001f, 6f, "PlayerWalking"));
         player.AddAction ("Run", new Move (player, 0.001f, 10f, "PlayerRunning"));
-        player.AddAction ("Roll", new Roll (player, 1.35f, 10, false));
-        player.AddAction ("RollSequence", new CharacterActionSequence (new Roll (player, 0.2f, 2, false), new Roll (player, 0.1f, 1, true), new Roll (player, 0.2f, 2, false)));
+        player.AddAction ("Roll", new Roll (player, 1.35f, 10, "PlayerRoll", false));
         this.currentAction = null;
     }
 
     void Update () {
         if (currentAction != null) {
-            ICharacterAction tempAction = DetermineActionFromInputs ();
-            if (tempAction != null && !tempAction.IsPrimitive () && currentAction.AlmostDone ())
-                nextAction = tempAction;
-            if (currentAction.Execute () == Phase.NotActing) { 
-                currentAction = nextAction;
+            NextAction = DetermineActionFromInputs ();
+            if (currentAction.Execute (null, NextAction) == Phase.NotActing) { 
+                currentAction = NextAction;
                 nextAction = null;
             }
         } else {
             currentAction = DetermineActionFromInputs ();
-            if (currentAction == null)
-                RemovePrimitiveAnimatorBools ();
         }
     }
 
     private ICharacterAction DetermineActionFromInputs () {
         Vector3 moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
         moveDirection.Normalize ();
-        if (currentAction == null || currentAction.IsPrimitive())
+        if (currentAction == null || currentAction is ContinuousAction)
             player.Direction = moveDirection;
         if (moveDirection != Vector3.zero) {
             if (Input.GetKeyDown (KeyCode.Space))
@@ -46,11 +59,6 @@ class BetaController : MonoBehaviour {
                 return player.GetAction ("Walk");
         }
         return null;
-    }
-
-    private void RemovePrimitiveAnimatorBools () {
-        player.Animations.SetBool ("PlayerWalking", false);
-        player.Animations.SetBool ("PlayerRunning", false);
     }
 }
 

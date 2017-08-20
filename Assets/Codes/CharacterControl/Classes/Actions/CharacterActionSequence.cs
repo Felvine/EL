@@ -12,16 +12,16 @@ namespace Actions {
                 this.actions.Add (actionsIn[i]);
             }
         }
-        public Phase Execute () {
+        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction) {
             if (step == (actions.Count-1)) {
-                if (actions[step].Execute () == Phase.NotActing) {
+                if (actions[step].Execute (previousAction,nextAction) == Phase.NotActing) {
                     step = 0;
                     return Phase.NotActing;
                 } else {
                     return Phase.Acting;
                 }
             } else {
-                if (actions[step].Execute () == Phase.NotActing)
+                if (actions[step].Execute (previousAction,nextAction) == Phase.NotActing)
                     step++;
                 return Phase.Acting;
             }

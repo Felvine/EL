@@ -2,9 +2,7 @@
     public enum Phase { NotActing, Acting };
 
     public interface ICharacterAction {
-        Phase Execute ();
-        bool IsPrimitive ();
-        bool AlmostDone ();
+        Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction);
     }
 }
 

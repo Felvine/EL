@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 namespace Actions {
-    class Roll : CharacterAction {
+    class Roll : TriggeredAction {
         private bool invincibility;
         private float speed;
-        public Roll (Character characterIn, float durationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn) {
+        public Roll (Character characterIn, float durationIn, float distanceIn, string triggerIn, bool invicibilityIn) : base (characterIn, durationIn, triggerIn) {
             this.invincibility = invicibilityIn;
             this.speed = distanceIn / durationIn;
         }
 
-        protected override void PreActions () {
-            base.PreActions ();
-            User.Animations.SetTrigger ("PlayerRoll");
-            Debug.Log ("Rolling");
+        protected override void PreActions (ICharacterAction previousAction) {
+            base.PreActions (previousAction);
             if (invincibility) {
                 SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
                 foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
@@ -22,8 +20,8 @@ namespace Actions {
             }
         }
 
-        protected override void PostActions () {
-            base.PostActions ();
+        protected override void PostActions (ICharacterAction nextAction) {
+            base.PostActions (nextAction);
             if (invincibility) {
                 SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
                 foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
