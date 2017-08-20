@@ -9,7 +9,6 @@ namespace Actions {
         public override void PreActions (ICharacterAction previousAction) {
             base.PreActions (previousAction);
             ((AnimatedCharacter)User).Animaton.Play (animationClip.name);
-            Debug.Log (animationClip.name);
         }
     }
 }
