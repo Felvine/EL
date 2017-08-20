@@ -12,6 +12,12 @@ namespace Actions {
                 this.actions.Add (actionsIn[i]);
             }
         }
+        public virtual void PreActions (ICharacterAction previousAction) {
+
+        }
+
+        public virtual void PostActions (ICharacterAction nextAction) {
+        }
         public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction) {
             if (step == (actions.Count-1)) {
                 if (actions[step].Execute (previousAction,nextAction) == Phase.NotActing) {

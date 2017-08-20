@@ -4,6 +4,7 @@ using Actions;
 [RequireComponent(typeof(CharacterController))]
 class BetaController : MonoBehaviour {
     Character player;
+    ICharacterAction previousAction;
     ICharacterAction currentAction;
     ICharacterAction nextAction;
 
@@ -13,7 +14,7 @@ class BetaController : MonoBehaviour {
         }
 
         set {
-            if (nextAction == null) {
+            if (nextAction == null || nextAction is ContinuousAction) {
                 nextAction = value;
             } else if (value is TriggeredAction && ((TriggeredAction)value).AlmostDone ()) {
                 nextAction = value;
@@ -30,13 +31,13 @@ class BetaController : MonoBehaviour {
         player.AddAction ("Walk", new Move (player, 0.001f, 6f, "PlayerWalking"));
         player.AddAction ("Run", new Move (player, 0.001f, 10f, "PlayerRunning"));
         player.AddAction ("Roll", new Roll (player, 1.35f, 10, "PlayerRoll", false));
-        this.currentAction = null;
     }
 
     void Update () {
         if (currentAction != null) {
             NextAction = DetermineActionFromInputs ();
-            if (currentAction.Execute (null, NextAction) == Phase.NotActing) { 
+            if (currentAction.Execute (null, NextAction) == Phase.NotActing) {
+                previousAction = currentAction;
                 currentAction = NextAction;
                 nextAction = null;
             }

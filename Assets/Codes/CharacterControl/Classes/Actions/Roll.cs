@@ -20,7 +20,7 @@ namespace Actions {
             }
         }
 
-        protected override void PostActions (ICharacterAction nextAction) {
+        public override void PostActions (ICharacterAction nextAction) {
             base.PostActions (nextAction);
             if (invincibility) {
                 SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();

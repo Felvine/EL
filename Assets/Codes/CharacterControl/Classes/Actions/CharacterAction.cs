@@ -37,11 +37,12 @@ namespace Actions {
             }
         }
 
-        protected virtual void PreActions (ICharacterAction previousAction) {
+        public virtual void PreActions (ICharacterAction previousAction) {
+            if(previousAction != null)
             startTime = Time.time;
         }
 
-        protected virtual void PostActions (ICharacterAction nextAction) {
+        public virtual void PostActions (ICharacterAction nextAction) {
         }
 
         protected abstract void PerformAction ();

@@ -13,7 +13,7 @@ namespace Actions {
             this.animatorTriggerParameterName = triggerIn;
         }
 
-        protected override void PreActions (ICharacterAction previousAction) {
+        public override void PreActions (ICharacterAction previousAction) {
             base.PreActions (previousAction);
             User.Animator.SetTrigger (animatorTriggerParameterName);
         }
