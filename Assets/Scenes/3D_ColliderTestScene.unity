@@ -139,7 +139,7 @@ Transform:
   - {fileID: 1897600439}
   m_Father: {fileID: 488909011}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 93.64114}
+  m_LocalEulerAnglesHint: {x: 0.99494934, y: 0.10269165, z: 109.12482}
 --- !u!212 &80787651
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ Transform:
   - {fileID: 1402258778}
   m_Father: {fileID: 456641854}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.000076293945, y: 0.005783081, z: 0.3309784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -354.31708}
 --- !u!212 &193088998
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ Transform:
   - {fileID: 981432758}
   m_Father: {fileID: 456641854}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.11190796}
+  m_LocalEulerAnglesHint: {x: -0.41932678, y: -0.90722656, z: -345.02594}
 --- !u!212 &239514348
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -492,7 +492,7 @@ Transform:
   - {fileID: 239514347}
   m_Father: {fileID: 1685722826}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.0001373, y: 0, z: 0}
 --- !u!95 &456641855
 Animator:
   serializedVersion: 3
@@ -506,7 +506,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 354c60940d5945f49b4ab0b5fa92cf09, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -542,7 +542,7 @@ Transform:
   - {fileID: 80787650}
   m_Father: {fileID: 1486163315}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -0.00012207031, y: -0.0059814453, z: 9.431473}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.7078705}
 --- !u!212 &488909012
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -785,7 +785,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 239514347}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.00065612793, y: -0.0057373047, z: -0.33093262}
+  m_LocalEulerAnglesHint: {x: 1.3562775, y: -0.21669006, z: -25.316315}
 --- !u!212 &981432759
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -859,7 +859,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1486163315}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -0.000015258789, y: -0.0011901855, z: -0.06854248}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.73420715}
 --- !u!212 &1248931826
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -934,7 +934,7 @@ Transform:
   - {fileID: 1986079353}
   m_Father: {fileID: 1486163315}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.2205505}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.4306335}
 --- !u!212 &1254096608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1103,7 +1103,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 193088997}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.00010681152, y: -0.005859375, z: -0.33569336}
+  m_LocalEulerAnglesHint: {x: -0.604126, y: -0.7971802, z: -6.9275055}
 --- !u!212 &1402258779
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1180,7 +1180,7 @@ Transform:
   - {fileID: 1248931825}
   m_Father: {fileID: 456641854}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.00010681152, y: -0.005859375, z: -0.33569336}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -359.09546}
 --- !u!212 &1486163316
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1254,7 +1254,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2004255464}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -1.655716, y: 0.9979248, z: -68.87917}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 334.07104}
 --- !u!212 &1592367659
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1359,7 +1359,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 80787650}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.012039185, y: -0.0015258789, z: 13.196335}
+  m_LocalEulerAnglesHint: {x: 0.4741974, y: 0.5395813, z: -4.183182}
 --- !u!212 &1897600440
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1434,7 +1434,7 @@ Transform:
   - {fileID: 2004255464}
   m_Father: {fileID: 1254096607}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.000091552734, y: -0.0009765625, z: 16.700333}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 46.192474}
 --- !u!212 &1986079354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1509,7 +1509,7 @@ Transform:
   - {fileID: 1592367658}
   m_Father: {fileID: 1986079353}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.0005187988, y: 0.0012817383, z: 110.742096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 52.913254}
 --- !u!212 &2004255465
 SpriteRenderer:
   m_ObjectHideFlags: 0
