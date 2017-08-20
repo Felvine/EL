@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Character {
     enum HorizontalDirection { West, East}
-    Vector3 direction = Vector3.zero;
-    HorizontalDirection horizontalDir = HorizontalDirection.East;
-    CharacterProperties properties;
-    CharacterController controller;
-    Dictionary<string, Actions.ICharacterAction> availableActions = new Dictionary<string, Actions.ICharacterAction> ();
-    Transform transform;
-    Animator animations;
+
+    private Vector3 direction = Vector3.zero;
+    private HorizontalDirection horizontalDir = HorizontalDirection.East;
+
+    private CharacterProperties properties;
+    private Dictionary<string, Actions.ICharacterAction> availableActions = new Dictionary<string, Actions.ICharacterAction> ();
+
+    private CharacterController controller;
+    private Transform transform;
+    private Animator animations;
 
     public Vector3 Direction {
         get {
@@ -30,14 +33,6 @@ public class Character {
             HorizontalDir = HorizontalDirection.East;
         }
 
-    }
-
-    private void Flip () {
-        foreach(Transform child in transform){
-            if (child.tag == "Character") {
-                child.rotation = Quaternion.Euler (1,2,3);
-            }
-        }
     }
 
     public CharacterController Controller {
