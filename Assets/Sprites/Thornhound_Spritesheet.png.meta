@@ -1,54 +1,43 @@
 fileFormatVersion: 2
-guid: 35eb2bfec341e8b44b95877dfb89270d
-timeCreated: 1503163071
+guid: dc2677b5889209e49ba730e990fa60c9
+timeCreated: 1503231074
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: R_Ear
-    21300002: L_Ear
-    21300004: Body_1
-    21300006: Thornhound_Spritesheet_3
-    21300008: Body_2
-    21300010: Chest_1
-    21300012: Chest_2
-    21300014: Head
-    21300016: Nose
-    21300018: Thornhound_Spritesheet_9
-    21300020: Hip
-    21300022: Neck
-    21300024: Jaw
-    21300026: L_Back_Upper_Leg
-    21300028: R_Back_Upper_Leg
-    21300030: L_Front_Upper_Leg
-    21300032: Thornhound_Spritesheet_16
-    21300034: R_Front_Upper_Leg
-    21300036: Tail_1
-    21300038: L_Back_Middle_Leg
+    21300000: Hip
+    21300002: Body_1
+    21300004: Body_2
+    21300006: Chest_1
+    21300008: R_Ear
+    21300010: L_Ear
+    21300012: Tail_1
+    21300014: Chest_2
+    21300016: Neck
+    21300018: Jaw
+    21300020: Head
+    21300022: Nose
+    21300024: Tail_2
+    21300026: R_Front_Upper_Leg
+    21300028: Tail_3
+    21300030: R_Back_Upper_Leg
+    21300032: L_Front_Upper_Leg
+    21300034: Tail_4
+    21300036: Tail_5
+    21300038: L_Back_Upper_Leg
     21300040: R_Back_Middle_Leg
     21300042: L_Front_Lower_Leg
     21300044: R_Front_Lower_Leg
-    21300046: Tail_2
+    21300046: L_Back_Middle_Leg
     21300048: R_Back_Lower_Leg
-    21300050: Thornhound_Spritesheet_25
-    21300052: L_Back_Lower_Leg
-    21300054: L_Front_Paw
-    21300056: Thornhound_Spritesheet_28
-    21300058: Thornhound_Spritesheet_29
-    21300060: Thornhound_Spritesheet_30
-    21300062: Thornhound_Spritesheet_31
-    21300064: Tail_4
-    21300066: Thornhound_Spritesheet_33
-    21300068: R_Front_Paw
-    21300070: Tail_3
-    21300072: Tail_5
-    21300074: Thornhound_Spritesheet_37
-    21300076: L_Back_Paw
-    21300078: L_Front_Claws
-    21300080: Thornhound_Spritesheet_40
-    21300082: R_Back_Paw
-    21300084: R_Front_Claws
-    21300086: L_Back_Claws
-    21300088: R_Back_Claws
+    21300050: L_Front_Paw
+    21300052: R_Front_Paw
+    21300054: L_Back_Lower_Leg
+    21300056: L_Front_Claw
+    21300058: R_Front_Claw
+    21300060: R_Back_Paw
+    21300062: R_Back_Claw
+    21300064: L_Back_Paw
+    21300066: L_Back_Claw
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -120,29 +109,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: R_Ear
+      name: Hip
       rect:
         serializedVersion: 2
-        x: 2046
-        y: 1942
-        width: 77
-        height: 152
-      alignment: 9
-      pivot: {x: 0.5246265, y: 0.21307774}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: L_Ear
-      rect:
-        serializedVersion: 2
-        x: 2250
-        y: 1962
-        width: 53
-        height: 126
-      alignment: 9
-      pivot: {x: 0.5357781, y: 0.19901918}
+        x: 124
+        y: 1725
+        width: 197
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,12 +126,12 @@ TextureImporter:
       name: Body_1
       rect:
         serializedVersion: 2
-        x: 546
-        y: 1602
+        x: 395
+        y: 1797
         width: 212
-        height: 241
+        height: 242
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,12 +140,12 @@ TextureImporter:
       name: Body_2
       rect:
         serializedVersion: 2
-        x: 831
-        y: 1655
-        width: 223
-        height: 239
-      alignment: 9
-      pivot: {x: 0.5427813, y: 0.5}
+        x: 675
+        y: 1854
+        width: 220
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -179,152 +154,40 @@ TextureImporter:
       name: Chest_1
       rect:
         serializedVersion: 2
-        x: 1126
-        y: 1622
-        width: 252
-        height: 261
-      alignment: 9
-      pivot: {x: 0.34856692, y: 0.4878159}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Chest_2
-      rect:
-        serializedVersion: 2
-        x: 1452
-        y: 1548
-        width: 327
-        height: 352
-      alignment: 9
-      pivot: {x: 0.4999996, y: 0.49096575}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Head
-      rect:
-        serializedVersion: 2
-        x: 2066
-        y: 1635
-        width: 263
-        height: 203
-      alignment: 9
-      pivot: {x: 0.18276757, y: 0.4439553}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Nose
-      rect:
-        serializedVersion: 2
-        x: 2421
-        y: 1806
-        width: 32
-        height: 37
+        x: 989
+        y: 1864
+        width: 296
+        height: 283
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Hip
+      name: R_Ear
       rect:
         serializedVersion: 2
-        x: 286
-        y: 1542
-        width: 197
-        height: 216
-      alignment: 9
-      pivot: {x: 0.5807128, y: 0.51472247}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Neck
-      rect:
-        serializedVersion: 2
-        x: 1850
-        y: 1491
-        width: 133
-        height: 217
+        x: 1448
+        y: 1793
+        width: 77
+        height: 153
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Jaw
+      name: L_Ear
       rect:
         serializedVersion: 2
-        x: 2101
-        y: 1471
-        width: 217
-        height: 132
-      alignment: 9
-      pivot: {x: 0.20243421, y: 0.76788515}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: L_Back_Upper_Leg
-      rect:
-        serializedVersion: 2
-        x: 1641
-        y: 1191
-        width: 162
-        height: 197
-      alignment: 9
-      pivot: {x: 0.3891255, y: 0.69537634}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: R_Back_Upper_Leg
-      rect:
-        serializedVersion: 2
-        x: 1923
-        y: 1202
-        width: 162
-        height: 196
-      alignment: 9
-      pivot: {x: 0.33352172, y: 0.75018126}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: L_Front_Upper_Leg
-      rect:
-        serializedVersion: 2
-        x: 2361
-        y: 1162
-        width: 212
-        height: 216
-      alignment: 9
-      pivot: {x: 0.6850402, y: 0.73836714}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: R_Front_Upper_Leg
-      rect:
-        serializedVersion: 2
-        x: 2770
-        y: 1168
-        width: 163
-        height: 266
-      alignment: 9
-      pivot: {x: 0.5752088, y: 0.739647}
+        x: 1558
+        y: 1809
+        width: 52
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -333,68 +196,82 @@ TextureImporter:
       name: Tail_1
       rect:
         serializedVersion: 2
-        x: 795
-        y: 995
-        width: 66
-        height: 133
-      alignment: 9
-      pivot: {x: 0.5, y: 0.7222882}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: L_Back_Middle_Leg
-      rect:
-        serializedVersion: 2
-        x: 1606
-        y: 971
-        width: 187
+        x: 198
+        y: 1444
+        width: 61
         height: 132
-      alignment: 9
-      pivot: {x: 0.70582426, y: 0.6749508}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: R_Back_Middle_Leg
+      name: Chest_2
       rect:
         serializedVersion: 2
-        x: 1936
-        y: 975
-        width: 187
-        height: 133
-      alignment: 9
-      pivot: {x: 0.7622227, y: 0.70277804}
+        x: 444
+        y: 1262
+        width: 328
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: L_Front_Lower_Leg
+      name: Neck
       rect:
         serializedVersion: 2
-        x: 2381
-        y: 915
-        width: 117
-        height: 179
-      alignment: 9
-      pivot: {x: 0.60477597, y: 0.7465472}
+        x: 902
+        y: 1349
+        width: 132
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: R_Front_Lower_Leg
+      name: Jaw
       rect:
         serializedVersion: 2
-        x: 2765
-        y: 891
-        width: 188
-        height: 187
-      alignment: 9
-      pivot: {x: 0.3565453, y: 0.7884437}
+        x: 1188
+        y: 1347
+        width: 217
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Head
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 1461
+        width: 262
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Nose
+      rect:
+        serializedVersion: 2
+        x: 1897
+        y: 1427
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -403,82 +280,26 @@ TextureImporter:
       name: Tail_2
       rect:
         serializedVersion: 2
-        x: 771
-        y: 815
-        width: 107
-        height: 123
-      alignment: 9
-      pivot: {x: 0.36184892, y: 0.7403599}
+        x: 189
+        y: 1251
+        width: 106
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: R_Back_Lower_Leg
+      name: R_Front_Upper_Leg
       rect:
         serializedVersion: 2
-        x: 1921
-        y: 715
-        width: 108
-        height: 199
-      alignment: 9
-      pivot: {x: 0.34108818, y: 0.80801195}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: L_Back_Lower_Leg
-      rect:
-        serializedVersion: 2
-        x: 1606
-        y: 711
-        width: 107
-        height: 197
-      alignment: 9
-      pivot: {x: 0.3561156, y: 0.7735267}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: L_Front_Paw
-      rect:
-        serializedVersion: 2
-        x: 2390
-        y: 775
-        width: 112
-        height: 68
-      alignment: 9
-      pivot: {x: 0.31327167, y: 0.5683441}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Tail_4
-      rect:
-        serializedVersion: 2
-        x: 991
-        y: 606
-        width: 136
-        height: 148
-      alignment: 9
-      pivot: {x: 0.30073097, y: 0.5166465}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: R_Front_Paw
-      rect:
-        serializedVersion: 2
-        x: 2830
-        y: 742
-        width: 139
-        height: 56
-      alignment: 9
-      pivot: {x: 0.31610766, y: 0.6244834}
+        x: 2034
+        y: 1019
+        width: 161
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -487,12 +308,54 @@ TextureImporter:
       name: Tail_3
       rect:
         serializedVersion: 2
-        x: 795
-        y: 626
-        width: 119
-        height: 122
-      alignment: 9
-      pivot: {x: 0.35507688, y: 0.72213596}
+        x: 221
+        y: 1063
+        width: 117
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R_Back_Upper_Leg
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 1041
+        width: 162
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: L_Front_Upper_Leg
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 1009
+        width: 211
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tail_4
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 866
+        width: 137
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -501,40 +364,166 @@ TextureImporter:
       name: Tail_5
       rect:
         serializedVersion: 2
-        x: 1190
-        y: 566
+        x: 585
+        y: 838
         width: 173
-        height: 152
-      alignment: 9
-      pivot: {x: 0.24366222, y: 0.5324169}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: L_Back_Paw
-      rect:
-        serializedVersion: 2
-        x: 1650
-        y: 611
-        width: 93
-        height: 52
-      alignment: 9
-      pivot: {x: 0.36818376, y: 0.54714966}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: L_Front_Claws
-      rect:
-        serializedVersion: 2
-        x: 2461
-        y: 662
-        width: 37
-        height: 36
+        height: 153
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: L_Back_Upper_Leg
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 800
+        width: 162
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R_Back_Middle_Leg
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 775
+        width: 187
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: L_Front_Lower_Leg
+      rect:
+        serializedVersion: 2
+        x: 1657
+        y: 744
+        width: 117
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R_Front_Lower_Leg
+      rect:
+        serializedVersion: 2
+        x: 2014
+        y: 784
+        width: 187
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: L_Back_Middle_Leg
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 629
+        width: 197
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R_Back_Lower_Leg
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 436
+        width: 108
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: L_Front_Paw
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 595
+        width: 114
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R_Front_Paw
+      rect:
+        serializedVersion: 2
+        x: 2154
+        y: 613
+        width: 137
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: L_Back_Lower_Leg
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 385
+        width: 103
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: L_Front_Claw
+      rect:
+        serializedVersion: 2
+        x: 1899
+        y: 554
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R_Front_Claw
+      rect:
+        serializedVersion: 2
+        x: 2383
+        y: 536
+        width: 57
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -543,54 +532,54 @@ TextureImporter:
       name: R_Back_Paw
       rect:
         serializedVersion: 2
-        x: 1976
-        y: 591
-        width: 93
-        height: 57
-      alignment: 9
-      pivot: {x: 0.31545725, y: 0.5860264}
+        x: 1420
+        y: 343
+        width: 92
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: R_Front_Claws
+      name: R_Back_Claw
       rect:
         serializedVersion: 2
-        x: 2892
-        y: 606
-        width: 57
-        height: 42
+        x: 1595
+        y: 319
+        width: 38
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: L_Back_Claws
+      name: L_Back_Paw
       rect:
         serializedVersion: 2
-        x: 1701
-        y: 522
-        width: 37
-        height: 41
+        x: 1027
+        y: 275
+        width: 97
+        height: 62
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: R_Back_Claws
+      name: L_Back_Claw
       rect:
         serializedVersion: 2
-        x: 2021
-        y: 508
-        width: 37
-        height: 40
+        x: 1198
+        y: 261
+        width: 35
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
