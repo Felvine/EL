@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 namespace Actions {
-    class Roll : TriggeredAction {
+    class Roll : AnimatedAction {
         private bool invincibility;
         private float speed;
-        public Roll (Character characterIn, float durationIn, float distanceIn, string triggerIn, bool invicibilityIn) : base (characterIn, durationIn, triggerIn) {
+        public Roll (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn, animationIn) {
             this.invincibility = invicibilityIn;
             this.speed = distanceIn / durationIn;
+            this.priority = 1;
         }
 
-        protected override void PreActions (ICharacterAction previousAction) {
+        public override void PreActions (ICharacterAction previousAction) {
             base.PreActions (previousAction);
             if (invincibility) {
                 SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
@@ -33,7 +34,7 @@ namespace Actions {
         protected override void PerformAction () {
             Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);
             moveDirection *= this.speed;
-            this.User.Controller.Move (moveDirection * Time.deltaTime);
+            ((ControlledCharacter)this.User).Controller.Move (moveDirection * Time.deltaTime);
         }
     }
 }

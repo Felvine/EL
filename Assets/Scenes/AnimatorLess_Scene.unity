@@ -354,13 +354,12 @@ GameObject:
 --- !u!114 &250266772
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114938570973176520, guid: 7e37784df05eb57479c41abef7eb5fdd,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 250266771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdad17b3449b7f84cb499512713b19c6, type: 3}
+  m_Script: {fileID: 11500000, guid: c7afbf2ea58f7e845abd71f647e7ea9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!143 &250266774
@@ -493,24 +492,28 @@ Transform:
   m_Father: {fileID: 1685722826}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 1.0001373, y: 0, z: 0}
---- !u!95 &456641855
-Animator:
-  serializedVersion: 3
+--- !u!111 &456641855
+Animation:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 95583363296395890, guid: 7e37784df05eb57479c41abef7eb5fdd,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 456641853}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 354c60940d5945f49b4ab0b5fa92cf09, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 7a4f7bc0c86a8c542b3a0aa5bacf3f67, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 7a4f7bc0c86a8c542b3a0aa5bacf3f67, type: 2}
+  - {fileID: 7400000, guid: 4cd27829427281a45b901259eb43df7b, type: 2}
+  - {fileID: 7400000, guid: cc34ab0fe33909847890c39c79fd8840, type: 2}
+  - {fileID: 7400000, guid: 3167b5c15b3a7f1408233e56231788f0, type: 2}
+  - {fileID: 7400000, guid: 36ed6e4376add174594e583ae1945496, type: 2}
+  - {fileID: 7400000, guid: 987d3464f373edb478e3d4419248f90d, type: 2}
+  - {fileID: 7400000, guid: e1ddba1c69568714cb28e081e81d7b72, type: 2}
+  - {fileID: 7400000, guid: f8660c7d42f7f674aabba771fe73915c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &488909010
 GameObject:
   m_ObjectHideFlags: 0

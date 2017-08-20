@@ -2,6 +2,8 @@
 
 namespace Actions {
     public abstract class CharacterAction : ICharacterAction {
+        private const float finishingPercent = 0.9f;
+        protected int priority = 0;
         private float startTime;
         private Phase actionPhase;
         private float duration;
@@ -37,6 +39,12 @@ namespace Actions {
             }
         }
 
+        public int Priority {
+            get {
+                return priority;
+            }
+        }
+
         public virtual void PreActions (ICharacterAction previousAction) {
             if(previousAction != null)
             startTime = Time.time;
@@ -60,6 +68,13 @@ namespace Actions {
                 }
             }
             return actionPhase;            
+        }
+
+        public bool IsFinishing () {
+            if (priority == 0)
+                return true;
+            else
+                return startTime + duration * finishingPercent > Time.time;
         }
     }
 }   

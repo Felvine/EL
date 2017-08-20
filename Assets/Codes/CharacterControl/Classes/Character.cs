@@ -5,15 +5,14 @@ using UnityEngine;
 public class Character {
     enum HorizontalDirection { West, East}
 
-    private Vector3 direction = Vector3.zero;
-    private HorizontalDirection horizontalDir = HorizontalDirection.East;
-
     private CharacterProperties properties;
     private Dictionary<string, Actions.ICharacterAction> availableActions = new Dictionary<string, Actions.ICharacterAction> ();
 
-    private CharacterController controller;
+    private Vector3 direction = Vector3.zero;
+    private HorizontalDirection horizontalDir = HorizontalDirection.East;
+
     private Transform transform;
-    private Animator animator;
+
 
     public Vector3 Direction {
         get {
@@ -34,21 +33,9 @@ public class Character {
 
     }
 
-    public CharacterController Controller {
-        get {
-            return controller;
-        }
-    }
-
     public Transform Transform {
         get {
             return transform;
-        }
-    }
-
-    public Animator Animator {
-        get {
-            return animator;
         }
     }
 
@@ -72,10 +59,8 @@ public class Character {
         }
     }
 
-    public Character (CharacterController characterController, Transform characterTransform, Animator animatorIn){
-        this.controller = characterController;
+    public Character (Transform characterTransform){
         this.transform = characterTransform;
-        this.animator = animatorIn;
         this.properties = new CharacterProperties ();
     }
 

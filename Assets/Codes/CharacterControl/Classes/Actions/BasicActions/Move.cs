@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 namespace Actions {
-    class Move : ContinuousAction {
+    class Move : AnimatedAction {
         private float speed;
 
-        public Move (Character characterIn, float durationIn, float speedIn, string animatorParameterIn) : base (characterIn, durationIn, animatorParameterIn) {
+        public Move (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float speedIn) : base (characterIn, durationIn, animationIn) {
             this.speed = speedIn;
         }
         protected override void PerformAction () {
             Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);
             moveDirection *= this.speed;
-            this.User.Controller.Move (moveDirection * Time.deltaTime);
+            ((ControlledCharacter)this.User).Controller.Move (moveDirection * Time.deltaTime);
         }
     }
 }

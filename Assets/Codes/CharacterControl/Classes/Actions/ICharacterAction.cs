@@ -5,6 +5,7 @@
         Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction);
         void PreActions (ICharacterAction previousAction);
         void PostActions (ICharacterAction nextAction);
+        bool IsFinishing ();
     }
 }
 
