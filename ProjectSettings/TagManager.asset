@@ -8,6 +8,8 @@ TagManager:
   - Slot
   - Weapon
   - Character
+  - HealthBar
+  - Enemy
   layers:
   - Default
   - TransparentFX

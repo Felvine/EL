@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using Actions;
+using System;
 
-class GammaController : MonoBehaviour {
+class GammaController : CharacterBehaviour {
     public const float playerWalkSpeed = 6.0f;
     public const float playerRunSpeed = 10.0f;
-    public const float playerWalkStep = 0.001f;
-    public const float playerRollDuration = 1.40f;
+    public const float playerWalkStep = 0.01f;
+    public const float playerRollDuration = 1.667f;
     public const float playerRollLength = 10.0f;
+    public const float playerAttack1Duration = 1.7f;
 
     ControlledCharacter player;
     ICharacterAction previousAction;
@@ -32,10 +34,12 @@ class GammaController : MonoBehaviour {
         if (playerAnimation == null)
             throw new System.MissingFieldException ("Need Animation");
         player = new ControlledCharacter (transform, playerAnimation, GetComponent<CharacterController> ());
+        GetComponentInChildren<WeaponBehaviour> ().User = player;
         player.AddAction ("Walk", new Move (player, playerWalkStep, playerAnimation.GetClip("Player_Walk"), playerWalkSpeed));
         player.AddAction ("Run", new Move (player, playerWalkStep, playerAnimation.GetClip ("Player_Run"), playerRunSpeed));
         player.AddAction ("Roll", new Roll (player, playerRollDuration, playerAnimation.GetClip("Player_Roll"),playerRollLength, false));
         player.AddAction ("Idle", new Idle (player, playerWalkStep, playerAnimation.GetClip ("Player_Idle")));
+        player.AddAction ("Attack1", new Attack (player, playerAttack1Duration, playerAnimation.GetClip ("Player_Attack_1")));
     }
 
     void Update () {
@@ -64,8 +68,15 @@ class GammaController : MonoBehaviour {
                 return player.GetAction ("Run");
             else
                 return player.GetAction ("Walk");
+        } else {
+            if (Input.GetKeyDown (KeyCode.E))
+                return player.GetAction ("Attack1");
         }
         return player.GetAction ("Idle");
+    }
+
+    public override void ReceiveHit () {
+
     }
 }
 

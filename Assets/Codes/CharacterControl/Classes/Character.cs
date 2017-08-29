@@ -59,6 +59,12 @@ public class Character {
         }
     }
 
+    public CharacterProperties Properties {
+        get {
+            return properties;
+        }
+    }
+
     public Character (Transform characterTransform){
         this.transform = characterTransform;
         this.properties = new CharacterProperties ();
