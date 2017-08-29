@@ -11,8 +11,8 @@ public class TrainingDummyControl : CharacterBehaviour {
 
     public override void ReceiveHit () {
         this.user.Properties.Health.Decrease (10);
-        if (this.user.Properties.Health.Percentage < 0) {
-            Destroy (this.gameObject);
+        if (this.user.Properties.Health.Percentage <= 0) {
+            Destroy (this.transform.parent.gameObject);
         }
     }
 
