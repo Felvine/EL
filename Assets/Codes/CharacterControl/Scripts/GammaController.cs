@@ -6,8 +6,8 @@ class GammaController : CharacterBehaviour {
     public const float playerWalkSpeed = 6.0f;
     public const float playerRunSpeed = 10.0f;
     public const float playerWalkStep = 0.01f;
-    public const float playerRollDuration = 1.667f;
-    public const float playerRollLength = 10.0f;
+    public const float playerRollDuration = 1.4f;
+    public const float playerRollLength = 7.5f;
     public const float playerAttack1Duration = 1.7f;
 
     ControlledCharacter player;
