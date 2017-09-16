@@ -7,7 +7,7 @@ namespace Actions {
     class Idle : CharacterAction {
         private float speed;
 
-        public Idle (ControlledAnimatedCharacter characterIn, float durationIn, AnimationClip animationIn) : base (characterIn, durationIn, animationIn) {
+        public Idle (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn) : base (characterIn, durationIn, animationIn) {
 
         }
         protected override void PerformAction () {

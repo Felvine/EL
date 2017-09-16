@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class ControlledAnimatedCharacter : AnimatedCharacter {
+public class ControlledCharacter : Character {
     private CharacterController controller;
     public CharacterController Controller {
         get {
             return controller;
         }
     }
-    public ControlledAnimatedCharacter (Transform characterTransform, Animation animationIn, CharacterController controllerIn) : base (characterTransform, animationIn){
+    public ControlledCharacter (Transform characterTransform, Animation animationIn, CharacterController controllerIn) : base (characterTransform, animationIn){
         this.controller = controllerIn;
     }
 

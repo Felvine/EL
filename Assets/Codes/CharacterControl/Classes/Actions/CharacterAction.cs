@@ -2,22 +2,33 @@
 
 namespace Actions {
     public abstract class CharacterAction : ICharacterAction {
-        private const float finishingPercent = 0.9f;
-        protected int priority = 0;
-        private float startTime;
-        private Phase actionPhase;
-        private float duration;
-        private Character user;
-        AnimationClip animationClip;
-        protected float blendTime = 0.5f;
+        //Constants
+        public const float finishingPercent = 0.9f;
+        public const float blendTime = 0.5f;
 
-        public CharacterAction (AnimatedCharacter characterIn, float durationIn, AnimationClip animationClipIn) {
+
+        // User and Animation
+        private Character user;
+        private AnimationClip animationClip;
+        private bool disableAnimation = false;
+
+        //Time management
+        private float startTime;
+        private float duration;
+
+        protected int priority = 0;
+
+        private Phase actionPhase;
+
+        public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn) {
             this.actionPhase = Phase.NotActing;
             this.user = characterIn;
             this.duration = durationIn;
             this.animationClip = animationClipIn;
         }
 
+
+        #region Fields
         protected Phase ActionPhase {
             get {
                 return actionPhase;
@@ -48,12 +59,23 @@ namespace Actions {
             }
         }
 
+        public bool DisableAnimation {
+            get {
+                return disableAnimation;
+            }
+
+            set {
+                disableAnimation = value;
+            }
+        }
+        #endregion
+
+        #region ICharacterAction interface methods
         public virtual void PreActions (ICharacterAction previousAction) {
             if(previousAction != null)
                 startTime = Time.time;
-            if (animationClip != null) {
-                Debug.Log (animationClip.name);
-                ((AnimatedCharacter)User).Animaton.CrossFade (animationClip.name);
+            if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
+                User.Animaton.CrossFade (animationClip.name);
             }
         }
 
@@ -82,6 +104,14 @@ namespace Actions {
                 return true;
             else
                 return startTime + duration * finishingPercent > Time.time;
+        }
+#endregion
+        public bool HasAnimationClip () {
+            return this.animationClip != null;
+        }
+
+        public float GetDuration () {
+            return Duration;
         }
     }
 }   

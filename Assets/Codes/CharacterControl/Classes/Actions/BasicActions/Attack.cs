@@ -6,10 +6,11 @@ using UnityEngine;
 
 namespace Actions {
     class Attack : CharacterAction {
-        public Attack (AnimatedCharacter characterIn, float durationIn, AnimationClip animationClipIn) : base (characterIn, durationIn, animationClipIn) {
+        public Attack (Character characterIn, float durationIn, AnimationClip animationClipIn) : base (characterIn, durationIn, animationClipIn) {
         }
 
         public override void PreActions (ICharacterAction previousAction) {
+            this.priority = 1;
             base.PreActions (previousAction);
             this.User.Properties.IsAttacking = true;
         }

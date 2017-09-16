@@ -2,7 +2,7 @@
 using Actions;
 
 public abstract class ActionBasedController : ICharacterController {
-    private ControlledAnimatedCharacter user;
+    private ControlledCharacter user;
     private ICharacterAction previousAction;
     private ICharacterAction currentAction;
     private ICharacterAction nextAction;
@@ -16,7 +16,7 @@ public abstract class ActionBasedController : ICharacterController {
 
         set {
             if (value != null) {
-                if (nextAction == null || ((CharacterAction)nextAction).Priority <= ((CharacterAction)value).Priority) {
+                if (nextAction == null || (nextAction.Priority <= value.Priority)) {
                     nextAction = value;
                 }
             }
@@ -43,7 +43,7 @@ public abstract class ActionBasedController : ICharacterController {
         }
     }
 
-    protected ControlledAnimatedCharacter User {
+    protected ControlledCharacter User {
         get {
             return user;
         }
@@ -71,7 +71,7 @@ public abstract class ActionBasedController : ICharacterController {
         Animation playerAnimation = GetComponentInChildren<Animation> ();
         if (playerAnimation == null)
             throw new System.MissingFieldException ("Need Animation");
-        this.User = new ControlledAnimatedCharacter (transform, playerAnimation, GetComponent<CharacterController> ());
+        this.User = new ControlledCharacter (transform, playerAnimation, GetComponent<CharacterController> ());
     }
 
     protected virtual void Start () {

@@ -7,13 +7,13 @@ namespace Actions {
     class MoveWithSpeed : CharacterAction {
         private float speed;
 
-        public MoveWithSpeed (ControlledAnimatedCharacter characterIn, float durationIn, AnimationClip animationIn, float speedIn) : base (characterIn, durationIn, animationIn) {
+        public MoveWithSpeed (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float speedIn) : base (characterIn, durationIn, animationIn) {
             this.speed = speedIn;
         }
         protected override void PerformAction () {
             Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);
             moveDirection *= this.speed;
-            ((ControlledAnimatedCharacter)this.User).Controller.Move (moveDirection * Time.deltaTime);
+            ((ControlledCharacter)this.User).Controller.Move (moveDirection * Time.deltaTime);
         }
     }
 }
