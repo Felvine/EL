@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 namespace Actions {
-    class Attack : AnimatedAction {
+    class Attack : CharacterAction {
         public Attack (AnimatedCharacter characterIn, float durationIn, AnimationClip animationClipIn) : base (characterIn, durationIn, animationClipIn) {
         }
 

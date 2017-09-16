@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class AnimatedCharacter : Character {
+public class AnimatedCharacter : Character {
     private Animation animation;
 
     public Animation Animaton {

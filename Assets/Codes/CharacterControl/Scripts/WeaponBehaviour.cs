@@ -18,7 +18,7 @@ public class WeaponBehaviour : MonoBehaviour {
         if (user.Properties.IsAttacking) {
             if (other.tag != "Player") {
                 if (other.tag == "Enemy")
-                    other.GetComponentInChildren<CharacterBehaviour>().ReceiveHit ();
+                    other.GetComponentInChildren<ICharacterController>().ReceiveHit ();
             }
         }
     }

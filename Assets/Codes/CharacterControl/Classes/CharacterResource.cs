@@ -16,7 +16,6 @@ class CharacterResource {
 
     internal void Decrease (int v) {
         this.value = this.value - v;
-        Debug.Log (value);
     }
 
     public Color Color {
@@ -31,10 +30,7 @@ class CharacterResource {
 
     public float Percentage {
         get {
-            Debug.Log (value);
-            Debug.Log (maxValue);
             return (float)value / (float)maxValue;
-
         }
     }
 }

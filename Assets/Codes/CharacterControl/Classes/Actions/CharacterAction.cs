@@ -8,11 +8,14 @@ namespace Actions {
         private Phase actionPhase;
         private float duration;
         private Character user;
+        AnimationClip animationClip;
+        protected float blendTime = 0.5f;
 
-        public CharacterAction (Character characterIn, float durationIn) {
+        public CharacterAction (AnimatedCharacter characterIn, float durationIn, AnimationClip animationClipIn) {
             this.actionPhase = Phase.NotActing;
             this.user = characterIn;
             this.duration = durationIn;
+            this.animationClip = animationClipIn;
         }
 
         protected Phase ActionPhase {
@@ -47,7 +50,11 @@ namespace Actions {
 
         public virtual void PreActions (ICharacterAction previousAction) {
             if(previousAction != null)
-            startTime = Time.time;
+                startTime = Time.time;
+            if (animationClip != null) {
+                Debug.Log (animationClip.name);
+                ((AnimatedCharacter)User).Animaton.CrossFade (animationClip.name);
+            }
         }
 
         public virtual void PostActions (ICharacterAction nextAction) {

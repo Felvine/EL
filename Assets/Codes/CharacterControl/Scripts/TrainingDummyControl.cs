@@ -1,40 +1,30 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Actions;
 using UnityEngine;
 
-public class TrainingDummyControl : CharacterBehaviour {
+public class TrainingDummyControl : ActionBasedController {
 
-    private Character user;
-    private Transform healthBarObject;
-    private SpriteRenderer healthBar;
-
+    private bool gotHit;
+    
     public override void ReceiveHit () {
-        this.user.Properties.Health.Decrease (10);
-        if (this.user.Properties.Health.Percentage <= 0) {
-            Destroy (this.transform.parent.gameObject);
+        this.User.Properties.Health.Decrease (10);
+        if (this.User.Properties.Health.Percentage <= 0) {
+            Destroy (this.transform.gameObject);
         }
+        gotHit = true;
     }
 
     // Use this for initialization
-    void Start () {
-        this.user = new Character (transform);
-        foreach (Transform child in transform) {
-            if (child.CompareTag ("HealthBar")) {
-                healthBarObject = child;
-                healthBar = child.GetComponent<SpriteRenderer> ();
-            }
-        }
-        this.healthBar.color = user.Properties.Health.Color;
-
+    protected override void Start () {
+        base.Start ();
+        this.User.AddAction ("ReceiveHit", new Idle (this.User, 1f, this.User.Animaton.GetClip ("Dummy_Hit")));
     }
-	
-	// Update is called once per frame
-	void Update () {
-        UpdateResourceBars ();
-	}
 
-    private void UpdateResourceBars () {
-        this.healthBarObject.localScale = new Vector3 (user.Properties.Health.Percentage*10, 1, 1);
+    protected override ICharacterAction DetermineAction () {
+        if (gotHit) {
+            gotHit = false;
+            Debug.Log (this.User.GetAction ("ReceiveHit"));
+            return this.User.GetAction ("ReceiveHit");
+        }
+        return null;
     }
 }
