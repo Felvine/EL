@@ -103,7 +103,7 @@ namespace Actions {
             if (priority == 0)
                 return true;
             else
-                return startTime + duration * finishingPercent > Time.time;
+                return (startTime + (duration * finishingPercent)) < Time.time;
         }
 #endregion
         public bool HasAnimationClip () {
@@ -112,6 +112,9 @@ namespace Actions {
 
         public float GetDuration () {
             return Duration;
+        }
+        public override string ToString () {
+            return this.animationClip.name;
         }
     }
 }   

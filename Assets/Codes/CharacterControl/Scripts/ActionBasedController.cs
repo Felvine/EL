@@ -55,8 +55,10 @@ public abstract class ActionBasedController : ICharacterController {
 
     protected virtual void Update () {
         if (CurrentAction != null) {
-            if (CurrentAction.IsFinishing ())
+			Debug.Log (CurrentAction.ToString () + (NextAction == null ? "null" : NextAction.ToString ()));
+            if (CurrentAction.IsFinishing ()) {
                 NextAction = DetermineAction ();
+            }
             if (CurrentAction.Execute (PreviousAction, NextAction) == Phase.NotActing) {
                 PreviousAction = CurrentAction;
                 CurrentAction = NextAction;

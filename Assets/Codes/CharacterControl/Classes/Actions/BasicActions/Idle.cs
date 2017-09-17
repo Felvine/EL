@@ -8,7 +8,7 @@ namespace Actions {
         private float speed;
 
         public Idle (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn) : base (characterIn, durationIn, animationIn) {
-
+            this.priority = 0;
         }
         protected override void PerformAction () {
 

@@ -8,6 +8,7 @@ class GammaController : ActionBasedController {
     public const float playerRollDuration = 1.4f;
     public const float playerRollLength = 7.5f;
     public const float playerAttack1Duration = 1.7f;
+    public const float playerAttack2Duration = 1.7f;
     public const float playerAttack4Duration = 1f;
 
     protected override void Start () {
@@ -18,6 +19,7 @@ class GammaController : ActionBasedController {
         this.User.AddAction ("Roll", new MoveToDistance (this.User, playerRollDuration, this.User.Animaton.GetClip("Player_Roll"),playerRollLength, false));
         this.User.AddAction ("Idle", new Idle (this.User, actionMinimumStep, this.User.Animaton.GetClip ("Player_Idle")));
         this.User.AddAction ("Attack1", new Attack (this.User, playerAttack1Duration, this.User.Animaton.GetClip ("Player_Attack_1")));
+        this.User.AddAction ("Attack2", new Attack (this.User, playerAttack2Duration, this.User.Animaton.GetClip ("Player_Attack_2")));
         this.User.AddAction ("Attack4", new CharacterActionSequence (this.User, this.User.Animaton.GetClip ("Player_Attack_4"),
                                                         new Idle (this.User, playerAttack4Duration / 3, null),
                                                         new Attack (this.User, playerAttack4Duration / 3, null),
@@ -41,8 +43,13 @@ class GammaController : ActionBasedController {
             else
                 return this.User.GetAction ("Walk");
         } else {
-            if (Input.GetKeyDown (KeyCode.E))
-                return this.User.GetAction ("Attack1");
+            if (Input.GetKeyDown (KeyCode.E)) {
+                if (CurrentAction == this.User.GetAction ("Attack1")) {
+                    Debug.Log ("C-C-COMBO");
+                    return this.User.GetAction ("Attack2");
+                } else
+                    return this.User.GetAction ("Attack1");
+            }
             if (Input.GetKeyDown (KeyCode.R))
                 return this.User.GetAction ("Attack4");
         }
