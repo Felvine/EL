@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-class ControlledCharacter : AnimatedCharacter {
+public class ControlledCharacter : Character {
     private CharacterController controller;
     public CharacterController Controller {
         get {

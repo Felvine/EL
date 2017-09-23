@@ -2,19 +2,33 @@
 
 namespace Actions {
     public abstract class CharacterAction : ICharacterAction {
-        private const float finishingPercent = 0.9f;
-        protected int priority = 0;
-        private float startTime;
-        private Phase actionPhase;
-        private float duration;
-        private Character user;
+        //Constants
+        public const float finishingPercent = 0.9f;
+        public const float blendTime = 0.5f;
 
-        public CharacterAction (Character characterIn, float durationIn) {
+
+        // User and Animation
+        private Character user;
+        private AnimationClip animationClip;
+        private bool disableAnimation = false;
+
+        //Time management
+        private float startTime;
+        private float duration;
+
+        protected int priority = 0;
+
+        private Phase actionPhase;
+
+        public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn) {
             this.actionPhase = Phase.NotActing;
             this.user = characterIn;
             this.duration = durationIn;
+            this.animationClip = animationClipIn;
         }
 
+
+        #region Fields
         protected Phase ActionPhase {
             get {
                 return actionPhase;
@@ -45,9 +59,23 @@ namespace Actions {
             }
         }
 
+        public bool DisableAnimation {
+            get {
+                return disableAnimation;
+            }
+
+            set {
+                disableAnimation = value;
+            }
+        }
+        #endregion
+
+        #region ICharacterAction interface methods
         public virtual void PreActions (ICharacterAction previousAction) {
-            if(previousAction != null)
             startTime = Time.time;
+            if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
+                User.Animation.CrossFade (animationClip.name);
+            }
         }
 
         public virtual void PostActions (ICharacterAction nextAction) {
@@ -74,7 +102,18 @@ namespace Actions {
             if (priority == 0)
                 return true;
             else
-                return startTime + duration * finishingPercent > Time.time;
+                return (startTime + (duration * finishingPercent)) < Time.time;
+        }
+#endregion
+        public bool HasAnimationClip () {
+            return this.animationClip != null;
+        }
+
+        public float GetDuration () {
+            return Duration;
+        }
+        public override string ToString () {
+            return this.animationClip.name;
         }
     }
 }   

@@ -12,6 +12,13 @@ public class Character {
     private HorizontalDirection horizontalDir = HorizontalDirection.East;
 
     private Transform transform;
+    private Animation animation;
+
+    public Animation Animation {
+        get {
+            return animation;
+        }
+    }
 
 
     public Vector3 Direction {
@@ -65,9 +72,11 @@ public class Character {
         }
     }
 
-    public Character (Transform characterTransform){
+    
+    public Character (Transform characterTransform, Animation animationIn){
         this.transform = characterTransform;
         this.properties = new CharacterProperties ();
+        this.animation = animationIn;
     }
 
     public void AddAction (string actionNameIn, Actions.ICharacterAction actionIn) {
@@ -80,4 +89,7 @@ public class Character {
     public Actions.ICharacterAction GetAction (string actionNameIn) {
         return availableActions[actionNameIn];
     }    
+    public bool HasAnimation () {
+        return this.animation != null;
+    }
 }

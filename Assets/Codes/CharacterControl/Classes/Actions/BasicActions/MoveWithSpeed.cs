@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 namespace Actions {
-    class Move : AnimatedAction {
+    class MoveWithSpeed : CharacterAction {
         private float speed;
 
-        public Move (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float speedIn) : base (characterIn, durationIn, animationIn) {
+        public MoveWithSpeed (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float speedIn) : base (characterIn, durationIn, animationIn) {
             this.speed = speedIn;
+            this.priority = 0;
         }
         protected override void PerformAction () {
             Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 namespace Actions {
-    class Roll : AnimatedAction {
+    class MoveToDistance : CharacterAction {
         private bool invincibility;
         private float speed;
-        public Roll (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn, animationIn) {
+        public MoveToDistance (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn, animationIn) {
             this.invincibility = invicibilityIn;
             this.speed = distanceIn / durationIn;
             this.priority = 1;

@@ -5,8 +5,9 @@ using System.Text;
 using UnityEngine;
 
 namespace Actions {
-    class Attack : AnimatedAction {
-        public Attack (AnimatedCharacter characterIn, float durationIn, AnimationClip animationClipIn) : base (characterIn, durationIn, animationClipIn) {
+    class Attack : CharacterAction {
+        public Attack (Character characterIn, float durationIn, AnimationClip animationClipIn) : base (characterIn, durationIn, animationClipIn) {
+			this.priority = 1;
         }
 
         public override void PreActions (ICharacterAction previousAction) {

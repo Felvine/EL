@@ -2,81 +2,80 @@
 using Actions;
 using System;
 
-class GammaController : CharacterBehaviour {
+class GammaController : ActionBasedController {
     public const float playerWalkSpeed = 6.0f;
     public const float playerRunSpeed = 10.0f;
-    public const float playerWalkStep = 0.01f;
-    public const float playerRollDuration = 1.667f;
-    public const float playerRollLength = 10.0f;
+    public const float playerRollDuration = 1.4f;
+    public const float playerRollLength = 7.5f;
     public const float playerAttack1Duration = 1.7f;
+    public const float playerAttack2Duration = 1.7f;
+    public const float playerAttack4Duration = 1f;
 
-    ControlledCharacter player;
-    ICharacterAction previousAction;
-    ICharacterAction currentAction;
-    ICharacterAction nextAction;
+    protected override void Start () {
+        base.Start ();
+        GetComponentInChildren<WeaponBehaviour> ().User = this.User;
+        this.User.AddAction ("Walk", new MoveWithSpeed (this.User, actionMinimumStep, this.User.Animation.GetClip("Player_Walk"), playerWalkSpeed));
 
-    public ICharacterAction NextAction {
-        get {
-            return nextAction;
-        }
+        this.User.AddAction ("Run", new MoveWithSpeed (this.User, actionMinimumStep, this.User.Animation.GetClip ("Player_Run"), playerRunSpeed));
 
-        set {
-            if (value != null) {
-                if (nextAction == null || ((CharacterAction)nextAction).Priority <= ((CharacterAction)value).Priority) {
-                    nextAction = value;
-                }
-            }
-        }
+        this.User.AddAction ("Roll", new MoveToDistance (this.User, this.User.Animation.GetClip ("Player_Roll").length, this.User.Animation.GetClip("Player_Roll"),playerRollLength, false));
+
+        this.User.AddAction ("Idle", new Idle (this.User, actionMinimumStep, this.User.Animation.GetClip ("Player_Idle")));
+
+        ComboAction attack1ending = new ComboAction (new Idle (this.User, this.User.Animation.GetClip ("Player_Attack_Ender").length, this.User.Animation.GetClip ("Player_Attack_Ender")),
+                                                     new Attack (this.User, this.User.Animation.GetClip ("Player_Attack_3").length, this.User.Animation.GetClip ("Player_Attack_3")),
+                                                     new Attack (this.User, this.User.Animation.GetClip ("Player_Attack_2").length, this.User.Animation.GetClip ("Player_Attack_2")));
+                                                     
+        this.User.AddAction ("ComboAttack", new CharacterActionSequence (this.User, null,
+                                                        new Attack (this.User, this.User.Animation.GetClip ("Player_Attack_1").length, this.User.Animation.GetClip ("Player_Attack_1")),
+                                                        attack1ending));
+
+        float attack4duration = this.User.Animation.GetClip ("Player_Attack_4").length;
+        this.User.AddAction ("Attack4", new CharacterActionSequence (this.User, this.User.Animation.GetClip ("Player_Attack_4"),
+                                                        new Idle (this.User, attack4duration / 3, null),
+                                                        new Attack (this.User, attack4duration / 3, null),
+                                                        new Idle (this.User, attack4duration / 3, null)));
     }
 
-    void Start () {
-        Animation playerAnimation = GetComponentInChildren<Animation> ();
-        if (playerAnimation == null)
-            throw new System.MissingFieldException ("Need Animation");
-        player = new ControlledCharacter (transform, playerAnimation, GetComponent<CharacterController> ());
-        GetComponentInChildren<WeaponBehaviour> ().User = player;
-        player.AddAction ("Walk", new Move (player, playerWalkStep, playerAnimation.GetClip("Player_Walk"), playerWalkSpeed));
-        player.AddAction ("Run", new Move (player, playerWalkStep, playerAnimation.GetClip ("Player_Run"), playerRunSpeed));
-        player.AddAction ("Roll", new Roll (player, playerRollDuration, playerAnimation.GetClip("Player_Roll"),playerRollLength, false));
-        player.AddAction ("Idle", new Idle (player, playerWalkStep, playerAnimation.GetClip ("Player_Idle")));
-        player.AddAction ("Attack1", new Attack (player, playerAttack1Duration, playerAnimation.GetClip ("Player_Attack_1")));
-    }
-
-    void Update () {
-        if (currentAction != null) {
-            if (currentAction.IsFinishing ())
-                NextAction = DetermineActionFromInputs ();
-            if (currentAction.Execute (previousAction, NextAction) == Phase.NotActing) {
-                previousAction = currentAction;
-                currentAction = NextAction;
-                nextAction = null;
-            }
-        } else {
-            currentAction = DetermineActionFromInputs ();
-        }
+    protected override ICharacterAction DetermineAction () {
+        return DetermineActionFromInputs ();
     }
 
     private ICharacterAction DetermineActionFromInputs () {
         Vector3 moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
         moveDirection.Normalize ();
-        if (currentAction == null || ((CharacterAction)currentAction).Priority == 0)
-            player.Direction = moveDirection;
+        if (CurrentAction == null || CurrentAction.Priority == 0)
+            this.User.Direction = moveDirection;
         if (moveDirection != Vector3.zero) {
             if (Input.GetKeyDown (KeyCode.Space))
-                return player.GetAction ("Roll");
+                return this.User.GetAction ("Roll");
             else if (Input.GetKey (KeyCode.LeftShift))
-                return player.GetAction ("Run");
+                return this.User.GetAction ("Run");
             else
-                return player.GetAction ("Walk");
+                return this.User.GetAction ("Walk");
         } else {
-            if (Input.GetKeyDown (KeyCode.E))
-                return player.GetAction ("Attack1");
+            if (Input.GetKeyDown (KeyCode.E)) {
+                return this.User.GetAction ("ComboAttack");
+            }
+            if (Input.GetKeyDown (KeyCode.R))
+                return this.User.GetAction ("Attack4");
         }
-        return player.GetAction ("Idle");
+        return this.User.GetAction ("Idle");
     }
 
-    public override void ReceiveHit () {
-
+    protected override void BranchComboAttacks () {
+        CharacterActionSequence currentActionSequence = (CurrentAction as CharacterActionSequence);
+        if (currentActionSequence != null) {
+            if (currentActionSequence.Actions[currentActionSequence.Step].IsFinishing () && (currentActionSequence.Step + 1) < currentActionSequence.Actions.Count) {
+                ComboAction nextComboAction = (currentActionSequence.Actions[currentActionSequence.Step + 1] as ComboAction);
+                if (nextComboAction != null) {
+                    if (Input.GetKeyDown (KeyCode.E))
+                        nextComboAction.Selected = 1;
+                    else if (Input.GetKeyDown (KeyCode.R))
+                        nextComboAction.Selected = 2;
+                }
+            }
+        }
     }
 }
 
