@@ -55,7 +55,7 @@ public abstract class ActionBasedController : ICharacterController {
 
     protected virtual void Update () {
         if (CurrentAction != null) {
-			Debug.Log (CurrentAction.ToString () + (NextAction == null ? "null" : NextAction.ToString ()));
+            BranchComboAttacks ();
             if (CurrentAction.IsFinishing ()) {
                 NextAction = DetermineAction ();
             }
@@ -81,6 +81,8 @@ public abstract class ActionBasedController : ICharacterController {
     }
 
     protected abstract ICharacterAction DetermineAction ();
+
+    protected virtual void BranchComboAttacks () { }
 
     public override void ReceiveHit () {
 

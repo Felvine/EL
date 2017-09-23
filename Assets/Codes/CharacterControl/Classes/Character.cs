@@ -14,7 +14,7 @@ public class Character {
     private Transform transform;
     private Animation animation;
 
-    public Animation Animaton {
+    public Animation Animation {
         get {
             return animation;
         }

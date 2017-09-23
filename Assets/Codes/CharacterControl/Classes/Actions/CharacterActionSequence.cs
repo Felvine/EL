@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Actions {
@@ -7,7 +8,6 @@ namespace Actions {
         // Constants
         public const float finishingPercent = 0.9f;
         public const float blendTime = 0.5f;
-        private const bool uniformAnimation = true;
 
         // User and Animation
         private Character user;
@@ -18,7 +18,7 @@ namespace Actions {
         private float startTime;
         private float duration;
         
-        protected int priority = 0;
+      
 
         private Phase actionPhase;
 
@@ -48,7 +48,19 @@ namespace Actions {
 
         public int Priority {
             get {
-                return priority;
+                return actions.Max (r => r.Priority);
+            }
+        }
+
+        public int Step {
+            get {
+                return step;
+            }
+        }
+
+        public List<ICharacterAction> Actions {
+            get {
+                return actions;
             }
         }
 
@@ -56,7 +68,6 @@ namespace Actions {
             this.User = userIn;
             this.actionPhase = Phase.NotActing;
             this.animationClip = animationClipIn;
-            this.priority = 1;
             this.actions = new List<ICharacterAction> ();
             this.duration = 0;
             step = 0;
@@ -66,10 +77,9 @@ namespace Actions {
             }
         }
         public virtual void PreActions (ICharacterAction previousAction) {
-            if (previousAction != null)
-                startTime = Time.time;
+            startTime = Time.time;
             if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
-                User.Animaton.CrossFade (animationClip.name);
+                User.Animation.CrossFade (animationClip.name);
             }
         }
 
@@ -79,20 +89,20 @@ namespace Actions {
 
         public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction) {
             if (actionPhase == Phase.NotActing) {
-                PreActions (previousAction);
+                PreActions (GetPreviousAction (previousAction));
                 actionPhase = Phase.Acting;
             }
             if (actionPhase == Phase.Acting) {
                 if (step == (actions.Count - 1)) {
-                    if (actions[step].Execute (previousAction, nextAction) == Phase.NotActing) {
+                    if (actions[step].Execute (GetPreviousAction (previousAction), GetNextAction (nextAction)) == Phase.NotActing) {
                         step = 0;
-                        PostActions (nextAction);
+                        PostActions (GetNextAction (nextAction));
                         actionPhase = Phase.NotActing;
                     } else {
                         actionPhase = Phase.Acting;
                     }
                 } else {
-                    if (actions[step].Execute (previousAction, nextAction) == Phase.NotActing)
+                    if (actions[step].Execute (GetPreviousAction (previousAction), GetNextAction (nextAction)) == Phase.NotActing)
                         step++;
                     actionPhase = Phase.Acting;
                 }
@@ -101,10 +111,12 @@ namespace Actions {
         }
 
         public bool IsFinishing () {
-            if (priority == 0)
+            if (Priority == 0)
                 return true;
+            else if (step < actions.Count - 1)
+                return false;
             else
-                return startTime + duration * finishingPercent > Time.time;
+                return actions[step].IsFinishing ();
         }
 
         public bool HasAnimationClip () {
@@ -113,6 +125,29 @@ namespace Actions {
 
         public float GetDuration () {
             return duration;
+        }
+
+        public ICharacterAction GetAction (int stepIn) {
+            if (stepIn < actions.Count && stepIn >= 0)
+                return actions[stepIn];
+            else
+                return null;
+        }
+
+        private ICharacterAction GetPreviousAction (ICharacterAction beforeSequence) {
+            ICharacterAction previousAction = GetAction (step - 1);
+            if (previousAction == null)
+                return beforeSequence;
+            else
+                return previousAction;
+        }
+
+        private ICharacterAction GetNextAction (ICharacterAction afterSequence) {
+            ICharacterAction nextAction = GetAction (step + 1);
+            if (nextAction == null)
+                return afterSequence;
+            else
+                return nextAction;
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Text;
 using UnityEngine;
 namespace Actions {
     class Idle : CharacterAction {
-        private float speed;
 
         public Idle (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn) : base (characterIn, durationIn, animationIn) {
             this.priority = 0;

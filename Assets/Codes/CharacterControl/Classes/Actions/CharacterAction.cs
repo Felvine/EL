@@ -72,10 +72,9 @@ namespace Actions {
 
         #region ICharacterAction interface methods
         public virtual void PreActions (ICharacterAction previousAction) {
-            if(previousAction != null)
-                startTime = Time.time;
+            startTime = Time.time;
             if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
-                User.Animaton.CrossFade (animationClip.name);
+                User.Animation.CrossFade (animationClip.name);
             }
         }
 

@@ -3,6 +3,7 @@
 
     public interface ICharacterAction {
         int Priority { get; }
+        Character User { get; }
 
         Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction);
         void PreActions (ICharacterAction previousAction);

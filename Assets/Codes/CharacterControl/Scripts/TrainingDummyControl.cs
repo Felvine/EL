@@ -8,7 +8,7 @@ public class TrainingDummyControl : ActionBasedController {
     // Use this for initialization
     protected override void Start () {
         base.Start ();
-        this.User.AddAction ("ReceiveHit", new Idle (this.User, 1f, this.User.Animaton.GetClip ("Dummy_Hit")));
+        this.User.AddAction ("ReceiveHit", new Idle (this.User, 1f, this.User.Animation.GetClip ("Dummy_Hit")));
     }
 
 
