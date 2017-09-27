@@ -112,7 +112,7 @@ namespace Actions {
 
         public bool IsFinishing () {
             if (Priority == 0)
-                return true;
+                return true;    
             //else if (step < actions.Count - 1)
             //    return false;
             //else

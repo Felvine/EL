@@ -11,5 +11,9 @@
         bool IsFinishing ();
         float GetDuration ();
     }
+
+    public static class Constants {
+        public const float minimumStep = 0.01f;
+    }
 }
 

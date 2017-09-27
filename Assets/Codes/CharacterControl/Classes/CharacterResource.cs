@@ -1,13 +1,22 @@
 ﻿using System;
 using UnityEngine;
 
-class CharacterResource {
+public class CharacterResource {
+    public enum Type { Health, Mana, Stamina };
+
     private int value;
     private int maxValue;
     private UnityEngine.Color color;
     private float regenRate;
 
-    public CharacterResource (int maxValueIn, UnityEngine.Color colorIn) {
+    public CharacterResource () {
+        this.value = 0;
+        this.maxValue = 0;
+        this.color = Color.grey;
+        this.regenRate = 0.0f;
+    }
+
+    public CharacterResource (int maxValueIn, Color colorIn) {
         this.maxValue = maxValueIn;
         this.value = maxValueIn;
         this.color = colorIn;

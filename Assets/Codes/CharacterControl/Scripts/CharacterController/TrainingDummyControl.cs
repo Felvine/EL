@@ -4,11 +4,14 @@ using UnityEngine;
 public class TrainingDummyControl : ActionBasedController {
 
     private bool gotHit;
-    
+
+    protected override void Awake () {
+        this.User = Characters.TrainingDummy.Create (transform);
+    }   
+
     // Use this for initialization
     protected override void Start () {
         base.Start ();
-        this.User.AddAction ("ReceiveHit", new Idle (this.User, 1f, this.User.Animation.GetClip ("Dummy_Hit")));
     }
 
 
@@ -22,8 +25,8 @@ public class TrainingDummyControl : ActionBasedController {
 
 
     public override void ReceiveHit () {
-        this.User.Properties.Health.Decrease (10);
-        if (this.User.Properties.Health.Percentage <= 0) {
+        this.User.GetResource (CharacterResource.Type.Health).Decrease (10);
+        if (this.User.GetResource(CharacterResource.Type.Health).Percentage <= 0) {
             Destroy (this.transform.gameObject);
         }
         gotHit = true;

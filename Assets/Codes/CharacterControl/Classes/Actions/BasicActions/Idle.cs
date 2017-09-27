@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Actions {
     class Idle : CharacterAction {
 
-        public Idle (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn) : base (characterIn, durationIn, animationIn) {
+        public Idle (Character characterIn, float durationIn, AnimationClip animationIn) : base (characterIn, durationIn, animationIn) {
             this.priority = 0;
         }
         protected override void PerformAction () {

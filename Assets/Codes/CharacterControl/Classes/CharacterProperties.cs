@@ -1,15 +1,21 @@
-﻿public  class CharacterProperties {
-    private bool invincible = false;
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public  class CharacterProperties {
     private bool isAttacking = false;
-    private CharacterResource health;
-    private CharacterResource stamina;
-    private CharacterResource mana;
+    private Dictionary<CharacterResource.Type, CharacterResource> resources;
+    private Dictionary<CharacterAttribute.Type, CharacterAttribute> attributes;
+    //private float walkSpeed;
+    //private float runSpeed;
+    //private bool invincible = false;
 
     public CharacterProperties () {
-        this.health = new CharacterResource (100, UnityEngine.Color.red);
-        this.stamina = new CharacterResource (100, UnityEngine.Color.yellow);
-        this.mana = new CharacterResource (100, UnityEngine.Color.blue);
-    }
+        this.resources = new Dictionary<CharacterResource.Type, CharacterResource> ();
+        this.resources.Add (CharacterResource.Type.Health, new CharacterResource (100, Color.red));
+
+        this.attributes = new Dictionary<CharacterAttribute.Type, CharacterAttribute> ();
+        this.attributes.Add (CharacterAttribute.Type.Attack, new CharacterAttribute (10));
+}
 
     public bool IsAttacking {
         get {
@@ -21,9 +27,7 @@
         }
     }
 
-    internal CharacterResource Health {
-        get {
-            return health;
-        }
+    public CharacterResource GetResource (CharacterResource.Type type) {
+        return resources[type];
     }
 }

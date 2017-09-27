@@ -13,6 +13,7 @@ public class Character {
 
     private Transform transform;
     private Animation animation;
+    private CharacterController controller;
 
     public Animation Animation {
         get {
@@ -71,12 +72,26 @@ public class Character {
             return properties;
         }
     }
+    public CharacterController Controller {
+        get {
+            return controller;
+        }
+    }
 
-    
-    public Character (Transform characterTransform, Animation animationIn){
+
+    public Character (Transform characterTransform) {
+        this.transform = characterTransform;
+        this.animation = characterTransform.GetComponentInChildren<Animation> ();
+        this.controller = characterTransform.GetComponent<CharacterController> ();
+        this.properties = new CharacterProperties ();
+    }
+
+
+    public Character (Transform characterTransform, Animation animationIn, CharacterController controllerIn) {
         this.transform = characterTransform;
         this.properties = new CharacterProperties ();
         this.animation = animationIn;
+        this.controller = controllerIn;
     }
 
     public void AddAction (string actionNameIn, Actions.ICharacterAction actionIn) {
@@ -91,5 +106,11 @@ public class Character {
     }    
     public bool HasAnimation () {
         return this.animation != null;
+    }
+    public CharacterResource GetResource (CharacterResource.Type type) {
+        return properties.GetResource (type);
+    }
+    public float GetDistance (Character other) {
+        return Vector3.Distance (this.transform.position, other.transform.position);
     }
 }

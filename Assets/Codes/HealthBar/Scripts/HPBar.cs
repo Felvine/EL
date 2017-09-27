@@ -19,7 +19,7 @@ using UnityEngine;
                 healthBar = child.GetComponent<SpriteRenderer> ();
             }
         }
-        this.healthBar.color = this.user.Properties.Health.Color;
+        this.healthBar.color = this.user.GetResource (CharacterResource.Type.Health).Color;
     }
 	
 	// Update is called once per frame
@@ -28,6 +28,6 @@ using UnityEngine;
     }
 
     private void UpdateResourceBars () {
-        this.healthBarObject.localScale = new Vector3 (this.user.Properties.Health.Percentage * 10, 1, 1);
+        this.healthBarObject.localScale = new Vector3 (this.user.GetResource (CharacterResource.Type.Health).Percentage * 10, 1, 1);
     }
 }
