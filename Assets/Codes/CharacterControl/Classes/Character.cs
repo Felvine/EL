@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character {
-    enum HorizontalDirection { West, East}
+    private enum HorizontalDirection { West, East}
+    public enum Factions { Player, Enemy, Neutral}
 
     private CharacterProperties properties;
     private Dictionary<string, Actions.ICharacterAction> availableActions = new Dictionary<string, Actions.ICharacterAction> ();
@@ -14,6 +15,8 @@ public class Character {
     private Transform transform;
     private Animation animation;
     private CharacterController controller;
+
+    private Factions faction;
 
     public Animation Animation {
         get {
@@ -78,12 +81,22 @@ public class Character {
         }
     }
 
+    public Factions Faction {
+        get {
+            return faction;
+        }
+
+        set {
+            faction = value;
+        }
+    }
 
     public Character (Transform characterTransform) {
         this.transform = characterTransform;
         this.animation = characterTransform.GetComponentInChildren<Animation> ();
         this.controller = characterTransform.GetComponent<CharacterController> ();
         this.properties = new CharacterProperties ();
+        this.faction = Factions.Neutral;
     }
 
 
@@ -92,6 +105,7 @@ public class Character {
         this.properties = new CharacterProperties ();
         this.animation = animationIn;
         this.controller = controllerIn;
+        this.faction = Factions.Neutral;
     }
 
     public void AddAction (string actionNameIn, Actions.ICharacterAction actionIn) {

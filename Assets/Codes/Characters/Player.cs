@@ -17,6 +17,7 @@ namespace Characters {
 
         public static void Create (Transform transformIn) {
             player = new Character (transformIn);
+            player.Faction = Character.Factions.Player;
             SetupActions (ref player);
         }
 
