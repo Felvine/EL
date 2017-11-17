@@ -15,7 +15,7 @@ public  class CharacterProperties {
 
         this.attributes = new Dictionary<CharacterAttribute.Type, CharacterAttribute> ();
         this.attributes.Add (CharacterAttribute.Type.Attack, new CharacterAttribute (10));
-}
+    }
 
     public bool IsAttacking {
         get {
@@ -29,5 +29,10 @@ public  class CharacterProperties {
 
     public CharacterResource GetResource (CharacterResource.Type type) {
         return resources[type];
+    }
+
+    public void SetResource (CharacterResource.Type type, CharacterResource resourceIn)
+    {
+        resources[type] = resourceIn;
     }
 }

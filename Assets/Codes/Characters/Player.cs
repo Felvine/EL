@@ -18,6 +18,7 @@ namespace Characters {
         public static void Create (Transform transformIn) {
             player = new Character (transformIn);
             player.Faction = Character.Factions.Player;
+            player.Properties.SetResource(CharacterResource.Type.Health, new CharacterResource(100, Color.green));
             SetupActions (ref player);
         }
 
