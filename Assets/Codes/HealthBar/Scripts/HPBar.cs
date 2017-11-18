@@ -28,6 +28,18 @@ using UnityEngine;
     }
 
     private void UpdateResourceBars () {
-        this.healthBarObject.localScale = new Vector3 (this.user.GetResource (CharacterResource.Type.Health).Percentage * 10, 1, 1);
+        this.healthBarObject.localScale = new Vector3 (this.user.GetResource (CharacterResource.Type.Health).Percentage * GetMaxScale(), 1, 1);
+    }
+
+    private int GetMaxScale()
+    {
+        switch (this.user.Race)
+        {
+            case Character.Races.Humanoid:
+                return 10;
+            case Character.Races.Giant:
+                return 70;
+        }
+        return 10;
     }
 }

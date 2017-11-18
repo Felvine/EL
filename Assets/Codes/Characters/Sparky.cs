@@ -7,6 +7,7 @@ namespace Characters {
         public static Character Create (Transform transformIn) {
             Character sparky = new Character (transformIn);
             sparky.Faction = Character.Factions.Enemy;
+            sparky.Race = Character.Races.Giant;
             SetupActions (ref sparky);
 
             return sparky;

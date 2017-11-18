@@ -41,12 +41,14 @@ public class SparkyController : ActionBasedController {
     }
 
 
-    public override void ReceiveHit () {
-        //this.User.GetResource (CharacterResource.Type.Health).Decrease (10);
-        //if (this.User.GetResource (CharacterResource.Type.Health).Percentage <= 0) {
-        //    Destroy (this.transform.gameObject);
-        //}
-        //gotHit = true;
+    public override void ReceiveHit()
+    {
+        this.User.GetResource(CharacterResource.Type.Health).Decrease(10);
+        if (this.User.GetResource(CharacterResource.Type.Health).Percentage <= 0)
+        {
+            Destroy(this.transform.gameObject);
+        }
+        gotHit = true;
     }
 
 }

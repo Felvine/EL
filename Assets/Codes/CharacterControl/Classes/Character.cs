@@ -5,6 +5,7 @@ using UnityEngine;
 public class Character {
     private enum HorizontalDirection { West, East}
     public enum Factions { Player, Enemy, Neutral}
+    public enum Races { Humanoid, Giant}
 
     private CharacterProperties properties;
     private Dictionary<string, Actions.ICharacterAction> availableActions = new Dictionary<string, Actions.ICharacterAction> ();
@@ -16,7 +17,10 @@ public class Character {
     private Animation animation;
     private CharacterController controller;
 
-    private Factions faction;
+    private Factions faction = Factions.Neutral;
+    private Races race = Races.Humanoid;
+
+#region Properties
 
     public Animation Animation {
         get {
@@ -91,12 +95,23 @@ public class Character {
         }
     }
 
+    public Races Race {
+        get {
+            return race;
+        }
+
+        set {
+            race = value;
+        }
+    }
+    #endregion
+
+#region Constructors
     public Character (Transform characterTransform) {
         this.transform = characterTransform;
         this.animation = characterTransform.GetComponentInChildren<Animation> ();
         this.controller = characterTransform.GetComponent<CharacterController> ();
         this.properties = new CharacterProperties ();
-        this.faction = Factions.Neutral;
     }
 
 
@@ -105,8 +120,9 @@ public class Character {
         this.properties = new CharacterProperties ();
         this.animation = animationIn;
         this.controller = controllerIn;
-        this.faction = Factions.Neutral;
     }
+
+#endregion
 
     public void AddAction (string actionNameIn, Actions.ICharacterAction actionIn) {
         if (!availableActions.ContainsKey (actionNameIn))
@@ -127,4 +143,5 @@ public class Character {
     public float GetDistance (Character other) {
         return Vector3.Distance (this.transform.position, other.transform.position);
     }
+
 }
