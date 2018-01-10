@@ -4,8 +4,8 @@ using Actions;
 namespace Characters {
     static class Player {
         private const float playerWalkSpeed = 4.30f;
-        private const float playerRunSpeed = 7.30f;
-        private const float playerRollLength = 5.20f;
+        private const float playerRunSpeed = 7.00f;
+        private const float playerRollLength = 5.05f;
 
         private static Character player;
 

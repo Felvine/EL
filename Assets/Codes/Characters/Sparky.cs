@@ -2,7 +2,7 @@
 using Actions;
 namespace Characters {
     class Sparky {
-        private const int walkSpeed = 6;
+        private const float walkSpeed = 5.9f;
         private const int walkBackwardSpeed = 5;
         private const int MonsterRunSpeed = 10;
         private const int MonsterJumpLength = 10;
