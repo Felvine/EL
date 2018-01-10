@@ -23,6 +23,8 @@ public class SparkyController : ActionBasedController {
         this.attacks.Add (this.User.GetAction ("Bite"));
         this.attacks.Add (this.User.GetAction ("TailSwipe"));
         this.attacks.Add (this.User.GetAction ("Headbutt"));
+        this.attacks.Add (this.User.GetAction ("RushHeadbutt"));
+        this.attacks.Add (this.User.GetAction ("JumpAttack"));
     }
 
 

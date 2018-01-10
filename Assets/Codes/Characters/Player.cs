@@ -5,7 +5,7 @@ namespace Characters {
     static class Player {
         private const float playerWalkSpeed = 4.30f;
         private const float playerRunSpeed = 7.30f;
-        private const float playerRollLength = 5.25f;
+        private const float playerRollLength = 5.20f;
 
         private static Character player;
 
