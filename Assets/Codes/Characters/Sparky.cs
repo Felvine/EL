@@ -29,7 +29,7 @@ namespace Characters {
             sparky.AddAction ("Bite", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Simple_Attack"),
                                                             new Idle (sparky, attackDuration / 3, null),
                                                             new Attack (sparky, attackDuration / 3, null),
-                                                            new Idle (sparky, attackDuration / 3, null)));
+                                                            new Attack (sparky, attackDuration / 3, null)));
             attackDuration = sparky.Animation.GetClip ("Monster_Bodycheck").length;
             /*
             sparky.AddAction ("Headbutt", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Bodycheck"),
@@ -46,13 +46,13 @@ namespace Characters {
             attackDuration = sparky.Animation.GetClip ("Monster_Rush_Bodycheck").length;
             sparky.AddAction ("RushHeadbutt", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Rush_Bodycheck"),
                                                             new Idle (sparky, attackDuration / 3, null),
-                                                            new Idle (sparky, attackDuration / 3, null),
+                                                            new Attack (sparky, attackDuration / 3, null),
                                                             new Attack (sparky, attackDuration / 3, null)));
             attackDuration = sparky.Animation.GetClip ("Monster_Jump_Attack").length;
             sparky.AddAction ("JumpAttack", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Jump_Attack"),
                                                             new Idle (sparky, attackDuration / 3, null),
                                                             new Attack (sparky, attackDuration / 3, null),
-                                                            new Idle (sparky, attackDuration / 3, null)));
+                                                            new Attack (sparky, attackDuration / 3, null)));
         }
     }
 }
