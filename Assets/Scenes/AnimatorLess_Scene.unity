@@ -1784,12 +1784,12 @@ Prefab:
     - target: {fileID: 143682618145750330, guid: 026f426f3abe0c04ab637a0fe42b23ec,
         type: 2}
       propertyPath: m_Radius
-      value: 0.17
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 143682618145750330, guid: 026f426f3abe0c04ab637a0fe42b23ec,
         type: 2}
       propertyPath: m_Height
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 026f426f3abe0c04ab637a0fe42b23ec, type: 2}
@@ -1863,10 +1863,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1
-  m_Height: 3
-  m_Direction: 0
-  m_Center: {x: 0.35, y: -0.75, z: 0}
+  m_Radius: 1.35
+  m_Height: 4
+  m_Direction: 2
+  m_Center: {x: 0.28, y: -0.58, z: 0}
 --- !u!114 &2040637649
 MonoBehaviour:
   m_ObjectHideFlags: 0
