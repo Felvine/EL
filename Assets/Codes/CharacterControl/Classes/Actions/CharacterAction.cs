@@ -71,27 +71,27 @@ namespace Actions {
         #endregion
 
         #region ICharacterAction interface methods
-        public virtual void PreActions (ICharacterAction previousAction) {
+        public virtual void PreActions (ICharacterAction previousAction, ICharacterController controller) {
             startTime = Time.time;
             if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
                 User.Animation.CrossFade (animationClip.name);
             }
         }
 
-        public virtual void PostActions (ICharacterAction nextAction) {
+        public virtual void PostActions (ICharacterAction nextAction, ICharacterController controller) {
         }
 
         protected abstract void PerformAction ();
 
-        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction) {    //Returns whether or not the action finished    
+        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction, ICharacterController controller) {    //Returns whether or not the action finished    
             if (actionPhase == Phase.NotActing) {
-                PreActions (previousAction);
+                PreActions (previousAction, controller);
                 actionPhase = Phase.Acting;
             }
             if (actionPhase == Phase.Acting) {
                 PerformAction ();
                 if (startTime + duration < Time.time) {
-                    PostActions (nextAction);
+                    PostActions (nextAction, controller);
                     actionPhase = Phase.NotActing;
                 }
             }
@@ -114,6 +114,11 @@ namespace Actions {
         }
         public override string ToString () {
             return this.animationClip.name;
+        }
+
+        public virtual bool CanInterrupt(ICharacterAction currentAction)
+        {
+            return false;
         }
     }
 }   

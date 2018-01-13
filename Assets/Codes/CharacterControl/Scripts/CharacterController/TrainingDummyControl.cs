@@ -16,20 +16,6 @@ public class TrainingDummyControl : ActionBasedController {
 
 
     protected override ICharacterAction DetermineAction () {
-        if (gotHit) {
-            gotHit = false;
-            return this.User.GetAction ("ReceiveHit");
-        }
-        return null;
+        return ProcessEventQueue();
     }
-
-
-    public override void ReceiveHit () {
-        this.User.GetResource (CharacterResource.Type.Health).Decrease (10);
-        if (this.User.GetResource(CharacterResource.Type.Health).Percentage <= 0) {
-            Destroy (this.transform.gameObject);
-        }
-        gotHit = true;
-    }
-
 }

@@ -11,8 +11,8 @@ namespace Actions {
             this.priority = 1;
         }
 
-        public override void PreActions (ICharacterAction previousAction) {
-            base.PreActions (previousAction);
+        public override void PreActions (ICharacterAction previousAction, ICharacterController controller) {
+            base.PreActions (previousAction, controller);
             if (invincibility) {
                 SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
                 foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
@@ -21,8 +21,8 @@ namespace Actions {
             }
         }
 
-        public override void PostActions (ICharacterAction nextAction) {
-            base.PostActions (nextAction);
+        public override void PostActions (ICharacterAction nextAction, ICharacterController controller) {
+            base.PostActions (nextAction, controller);
             if (invincibility) {
                 SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
                 foreach (SpriteRenderer spriteRenderer in spriteRenderers) {

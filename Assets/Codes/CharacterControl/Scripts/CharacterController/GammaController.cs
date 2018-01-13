@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Actions;
 using System;
+using Assets.Codes.CharacterControl.Classes.Events;
 
 class GammaController : ActionBasedController {
 
@@ -14,8 +15,18 @@ class GammaController : ActionBasedController {
     }
 
     protected override ICharacterAction DetermineAction () {
-        return DetermineActionFromInputs ();
+        ICharacterAction eventAction = ProcessEventQueue();
+        ICharacterAction inputAction = DetermineActionFromInputs();
+        if (eventAction == null)
+            return inputAction;
+        else if (inputAction == null)
+            return eventAction;
+        if (eventAction.Priority > inputAction.Priority)
+            return eventAction;
+        else
+            return inputAction;
     }
+
 
     private ICharacterAction DetermineActionFromInputs () {
         Vector3 moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
@@ -53,14 +64,7 @@ class GammaController : ActionBasedController {
         }
     }
 
-    public override void ReceiveHit()
-    {
-        this.User.GetResource(CharacterResource.Type.Health).Decrease(10);
-        if (this.User.GetResource(CharacterResource.Type.Health).Percentage <= 0)
-        {
-            Destroy(this.transform.gameObject);
-        }
-    }
+
 
 }
 

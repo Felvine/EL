@@ -76,33 +76,33 @@ namespace Actions {
                 this.actions.Add (actionsIn[i]);
             }
         }
-        public virtual void PreActions (ICharacterAction previousAction) {
+        public virtual void PreActions (ICharacterAction previousAction, ICharacterController controller) {
             startTime = Time.time;
             if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
                 User.Animation.CrossFade (animationClip.name);
             }
         }
 
-        public virtual void PostActions (ICharacterAction nextAction) {
+        public virtual void PostActions (ICharacterAction nextAction, ICharacterController controller) {
         }
 
 
-        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction) {
+        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction, ICharacterController controller) {
             if (actionPhase == Phase.NotActing) {
-                PreActions (GetPreviousAction (previousAction));
+                PreActions (GetPreviousAction (previousAction), controller);
                 actionPhase = Phase.Acting;
             }
             if (actionPhase == Phase.Acting) {
                 if (step == (actions.Count - 1)) {
-                    if (actions[step].Execute (GetPreviousAction (previousAction), GetNextAction (nextAction)) == Phase.NotActing) {
+                    if (actions[step].Execute (GetPreviousAction (previousAction), GetNextAction (nextAction), controller) == Phase.NotActing) {
                         step = 0;
-                        PostActions (GetNextAction (nextAction));
+                        PostActions (GetNextAction (nextAction), controller);
                         actionPhase = Phase.NotActing;
                     } else {
                         actionPhase = Phase.Acting;
                     }
                 } else {
-                    if (actions[step].Execute (GetPreviousAction (previousAction), GetNextAction (nextAction)) == Phase.NotActing)
+                    if (actions[step].Execute (GetPreviousAction (previousAction), GetNextAction (nextAction), controller) == Phase.NotActing)
                         step++;
                     actionPhase = Phase.Acting;
                 }
@@ -150,6 +150,11 @@ namespace Actions {
                 return afterSequence;
             else
                 return nextAction;
+        }
+
+        public bool CanInterrupt(ICharacterAction currentAction)
+        {
+            return false;
         }
     }
 }

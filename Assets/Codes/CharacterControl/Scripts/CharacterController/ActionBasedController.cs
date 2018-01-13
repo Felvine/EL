@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using Actions;
+using Assets.Codes.CharacterControl.Classes.Events;
+using System.Collections.Generic;
 
 public abstract class ActionBasedController : ICharacterController {
     private Character user;
@@ -53,20 +55,54 @@ public abstract class ActionBasedController : ICharacterController {
         }
     }
 
+    protected List<ICharacterEvent> Events {
+        get {
+            return this.User.Events;
+        }
+
+        set {
+            this.User.Events = value;
+        }
+    }
+
     protected virtual void Update () {
-        if (CurrentAction != null) {
+        ICharacterAction highestPriorityAction = DetermineAction();
+        if (highestPriorityAction.CanInterrupt(currentAction))
+        {
+            currentAction.PostActions(PreviousAction, this);
+            CurrentAction = highestPriorityAction;
+        }
+        else if (CurrentAction != null) {
             BranchComboAttacks ();
             if (CurrentAction.IsFinishing ()) {
-                NextAction = DetermineAction ();
+                NextAction = highestPriorityAction;
             }
-            if (CurrentAction.Execute (PreviousAction, NextAction) == Phase.NotActing) {
+            if (CurrentAction.Execute (PreviousAction, NextAction, this) == Phase.NotActing) {
                 PreviousAction = CurrentAction;
                 CurrentAction = NextAction;
                 nextAction = null;
             }
         } else {
-            CurrentAction = DetermineAction();
+            CurrentAction = highestPriorityAction;
         }
+    }
+
+    protected ICharacterAction ProcessEventQueue()
+    {
+        ICharacterAction result = null;
+        ICharacterAction temp = null;
+        foreach (ICharacterEvent ce in this.Events)
+        {
+            ce.Do();
+            if (ce is AddActionEvent)
+            {
+                temp = ((AddActionEvent)ce).GetAction();
+                if (temp != null && (result == null || result.Priority < temp.Priority))
+                    result = temp;
+            }
+        }
+        this.Events.Clear();
+        return result;
     }
 
     protected virtual void Awake () {
@@ -84,11 +120,13 @@ public abstract class ActionBasedController : ICharacterController {
 
     protected virtual void BranchComboAttacks () { }
 
-    public override void ReceiveHit () {
-
-    }
-
     public override Character GetUser () {
         return this.User;
+    }
+
+    public override void AddEvent(ICharacterEvent eventIn)
+    {
+        eventIn.SetUser(this.User);
+        this.Events.Add(eventIn);
     }
 }

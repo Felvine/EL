@@ -6,12 +6,26 @@ using UnityEngine;
 
 namespace Actions {
     class Attack : CharacterAction {
-        public Attack (Character characterIn, float durationIn, AnimationClip animationClipIn) : base (characterIn, durationIn, animationClipIn) {
-			this.priority = 1;
+
+        private bool isHeavy;
+
+        public bool IsHeavy {
+            get {
+                return isHeavy;
+            }
+
+            set {
+                isHeavy = value;
+            }
         }
 
-        public override void PreActions (ICharacterAction previousAction) {
-            base.PreActions (previousAction);
+        public Attack (Character characterIn, float durationIn, AnimationClip animationClipIn) : base (characterIn, durationIn, animationClipIn) {
+			this.priority = 1;
+            this.isHeavy = false;
+        }
+
+        public override void PreActions (ICharacterAction previousAction, ICharacterController controller) {
+            base.PreActions (previousAction, controller);
             this.User.Properties.IsAttacking = true;
         }
 
@@ -19,8 +33,8 @@ namespace Actions {
 
         }
 
-        public override void PostActions (ICharacterAction nextAction) {
-            base.PostActions (nextAction);
+        public override void PostActions (ICharacterAction nextAction, ICharacterController controller) {
+            base.PostActions (nextAction, controller);
             this.User.Properties.IsAttacking = false;
         }
     }

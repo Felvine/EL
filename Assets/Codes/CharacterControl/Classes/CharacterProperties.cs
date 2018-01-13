@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Codes.CharacterControl.Classes;
+using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public  class CharacterProperties {
     private bool isAttacking = false;
     private Dictionary<CharacterResource.Type, CharacterResource> resources;
     private Dictionary<CharacterAttribute.Type, CharacterAttribute> attributes;
+    private List<CharacterCollider> zColliders;
     //private float walkSpeed;
     //private float runSpeed;
     //private bool invincible = false;
@@ -15,6 +18,20 @@ public  class CharacterProperties {
 
         this.attributes = new Dictionary<CharacterAttribute.Type, CharacterAttribute> ();
         this.attributes.Add (CharacterAttribute.Type.Attack, new CharacterAttribute (10));
+
+        this.zColliders = new List<CharacterCollider>();
+    }
+
+    internal void SetCollidersToAttack(List<string> attackingTypes, bool v)
+    {
+        foreach (string at in attackingTypes)
+        {
+            foreach (CharacterCollider zc in this.zColliders)
+            {
+                if (zc.IsType (at))
+                    zc.IsAttacking = v;
+            }
+        }
     }
 
     public bool IsAttacking {
@@ -34,5 +51,10 @@ public  class CharacterProperties {
     public void SetResource (CharacterResource.Type type, CharacterResource resourceIn)
     {
         resources[type] = resourceIn;
+    }
+    
+    public void AddCollider(CharacterCollider zColliderIn)
+    {
+        this.zColliders.Add(zColliderIn);
     }
 }

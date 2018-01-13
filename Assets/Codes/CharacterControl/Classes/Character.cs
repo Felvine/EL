@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Codes.CharacterControl.Classes.Events;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +21,10 @@ public class Character {
     private Factions faction = Factions.Neutral;
     private Races race = Races.Humanoid;
 
-#region Properties
+    private List<ICharacterEvent> events = new List<ICharacterEvent>();
+
+
+    #region Properties
 
     public Animation Animation {
         get {
@@ -104,9 +108,19 @@ public class Character {
             race = value;
         }
     }
+
+    public List<ICharacterEvent> Events {
+        get {
+            return events;
+        }
+
+        set {
+            events = value;
+        }
+    }
     #endregion
 
-#region Constructors
+    #region Constructors
     public Character (Transform characterTransform) {
         this.transform = characterTransform;
         this.animation = characterTransform.GetComponentInChildren<Animation> ();

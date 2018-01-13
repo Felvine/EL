@@ -31,10 +31,13 @@ namespace Characters {
                                                             new Attack (sparky, attackDuration / 3, null),
                                                             new Idle (sparky, attackDuration / 3, null)));
             attackDuration = sparky.Animation.GetClip ("Monster_Bodycheck").length;
+            /*
             sparky.AddAction ("Headbutt", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Bodycheck"),
                                                             new Idle (sparky, attackDuration / 3, null),
                                                             new Attack (sparky, attackDuration / 3, null),
-                                                            new Idle (sparky, attackDuration / 3, null)));
+                                                            new Idle (sparky, attackDuration / 3, null)));*/
+
+            sparky.AddAction ("Headbutt", new Attack (sparky, attackDuration, null));
             attackDuration = sparky.Animation.GetClip ("Monster_Tail_Swipe").length;
             sparky.AddAction ("TailSwipe", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Tail_Swipe"),
                                                             new Idle (sparky, attackDuration / 3, null),
@@ -50,7 +53,6 @@ namespace Characters {
                                                             new Idle (sparky, attackDuration / 3, null),
                                                             new Attack (sparky, attackDuration / 3, null),
                                                             new Idle (sparky, attackDuration / 3, null)));
-
         }
     }
 }

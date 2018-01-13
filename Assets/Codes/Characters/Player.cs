@@ -44,6 +44,11 @@ namespace Characters {
                                                             new Idle (player, attack4duration / 3, null),
                                                             new Attack (player, attack4duration / 3, null),
                                                             new Idle (player, attack4duration / 3, null)));
+            float staggerduration = player.Animation.GetClip("Player_Stagger").length;
+            player.AddAction("Stagger", new Stagger(player, staggerduration, player.Animation.GetClip("Player_Stagger"), 9));
+
+            staggerduration = player.Animation.GetClip("Player_Fall").length;
+            player.AddAction("Fall", new Stagger(player, staggerduration, player.Animation.GetClip("Player_Fall"), 10));
         }
     }
 }

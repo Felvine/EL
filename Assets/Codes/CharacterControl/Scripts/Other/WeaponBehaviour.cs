@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Codes.CharacterControl.Classes.Events;
+using UnityEngine;
 
 public class WeaponBehaviour : MonoBehaviour {
 
@@ -15,15 +16,19 @@ public class WeaponBehaviour : MonoBehaviour {
     }
 
     void OnTriggerEnter (Collider other) {
+        ICharacterController targetController = other.GetComponentInChildren<ICharacterController>();
         if (user.Properties.IsAttacking) {
             if (user.Faction == Character.Factions.Player) {
                 if (other.tag != "Player") {
                     if (other.tag == "Enemy")
-                        other.GetComponentInChildren<ICharacterController> ().ReceiveHit ();
+                    {
+                        targetController.AddEvent(new ReceiveDamageEvent(10));
+                    }
                 }
             } else if (user.Faction == Character.Factions.Enemy) {
                 if (other.tag == "Player") {
-                    other.GetComponentInChildren<ICharacterController> ().ReceiveHit ();
+                    targetController.AddEvent(new ReceiveDamageEvent(10));
+                    targetController.AddEvent(new AddActionEvent(targetController.GetUser().GetAction("Fall")));
                 }
             }
         }
