@@ -70,7 +70,7 @@ class GammaController : ActionBasedController {
 
     private void PrintDebugCanvas()
     {
-        GameObject.Find("Text").GetComponent<Text>().text = "User Action Queue: \n" + CurrentAction +"\n" + NextAction;
+        GameObject.Find("Text").GetComponent<Text>().text = "FPS: " + (1 / Time.deltaTime) +  "\nUser Action Queue: \n" + CurrentAction +"\n" + NextAction;
     }
 
 }

@@ -72,7 +72,7 @@ public abstract class ActionBasedController : ICharacterController {
             currentAction.PostActions(PreviousAction, this);
             CurrentAction = highestPriorityAction;
         }
-        if (CurrentAction != null) {
+        else if (CurrentAction != null) {
             BranchComboAttacks ();
             if (CurrentAction.IsFinishing ()) {
                 NextAction = highestPriorityAction;
