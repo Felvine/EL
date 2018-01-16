@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Codes.CharacterControl.Classes.Events
+namespace Znko.Events
 {
     class ReceiveDamageEvent : CharacterEvent
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets.Codes.CharacterControl.Classes.Events
+﻿namespace Znko.Events
 {
     class DieEvent
     {

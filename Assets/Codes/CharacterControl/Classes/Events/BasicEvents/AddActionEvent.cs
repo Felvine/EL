@@ -1,10 +1,6 @@
-﻿using Actions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Znko.Actions;
 
-namespace Assets.Codes.CharacterControl.Classes.Events
+namespace Znko.Events
 {
     class AddActionEvent : CharacterEvent
     {

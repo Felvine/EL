@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Actions;
-using System;
-using Assets.Codes.CharacterControl.Classes.Events;
+using UnityEngine.UI;
+using Znko.Actions;
+using Znko.Events;
 
 class GammaController : ActionBasedController {
 
@@ -30,8 +30,12 @@ class GammaController : ActionBasedController {
 
     private ICharacterAction DetermineActionFromInputs () {
         Vector3 moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
-        if (CurrentAction == null || CurrentAction.Priority == 0)
+        if (CurrentAction == null || CurrentAction is MoveWithSpeed)
             this.User.Direction = moveDirection;
+        if (Input.GetKeyDown(KeyCode.E))
+            return this.User.GetAction("ComboAttack");
+        else if (Input.GetKeyDown(KeyCode.R))
+            return this.User.GetAction("Attack4");
         if (moveDirection != Vector3.zero) {
             if (Input.GetKeyDown (KeyCode.Space))
                 return this.User.GetAction ("Roll");
@@ -39,12 +43,6 @@ class GammaController : ActionBasedController {
                 return this.User.GetAction ("Run");
             else
                 return this.User.GetAction ("Walk");
-        } else {
-            if (Input.GetKeyDown (KeyCode.E)) {
-                return this.User.GetAction ("ComboAttack");
-            }
-            if (Input.GetKeyDown (KeyCode.R))
-                return this.User.GetAction ("Attack4");
         }
         return this.User.GetAction ("Idle");
     }
@@ -64,7 +62,16 @@ class GammaController : ActionBasedController {
         }
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        PrintDebugCanvas();
+    }
 
+    private void PrintDebugCanvas()
+    {
+        GameObject.Find("Text").GetComponent<Text>().text = "User Action Queue: \n" + CurrentAction +"\n" + NextAction;
+    }
 
 }
 

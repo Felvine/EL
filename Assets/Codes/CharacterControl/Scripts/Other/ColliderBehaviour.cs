@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using Assets.Codes.CharacterControl.Classes;
-using Assets.Codes.CharacterControl.Classes.Events;
+using Znko.Events;
 
 public class ColliderBehaviour : MonoBehaviour
 {

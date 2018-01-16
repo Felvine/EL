@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Actions;
-using Assets.Codes.CharacterControl.Classes.Events;
+using Znko.Actions;
+using Znko.Events;
 using System.Collections.Generic;
 
 public abstract class ActionBasedController : ICharacterController {
@@ -67,12 +67,12 @@ public abstract class ActionBasedController : ICharacterController {
 
     protected virtual void Update () {
         ICharacterAction highestPriorityAction = DetermineAction();
-        if (highestPriorityAction.CanInterrupt(currentAction))
+        if (CharacterAction.CanInterrupt(currentAction, highestPriorityAction))
         {
             currentAction.PostActions(PreviousAction, this);
             CurrentAction = highestPriorityAction;
         }
-        else if (CurrentAction != null) {
+        if (CurrentAction != null) {
             BranchComboAttacks ();
             if (CurrentAction.IsFinishing ()) {
                 NextAction = highestPriorityAction;

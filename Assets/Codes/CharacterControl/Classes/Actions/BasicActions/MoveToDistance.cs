@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-namespace Actions {
+﻿using UnityEngine;
+namespace Znko.Actions {
     class MoveToDistance : CharacterAction {
         private bool invincibility;
         private float speed;
         public MoveToDistance (Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn, animationIn) {
             this.invincibility = invicibilityIn;
             this.speed = distanceIn / durationIn;
-            this.priority = 1;
+            this.priority = 2;
         }
 
         public override void PreActions (ICharacterAction previousAction, ICharacterController controller) {

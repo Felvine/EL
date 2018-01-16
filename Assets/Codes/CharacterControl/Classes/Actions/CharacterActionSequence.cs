@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Actions {
+namespace Znko.Actions {
     public class CharacterActionSequence : ICharacterAction {
         // Constants
         public const float finishingPercent = 0.9f;

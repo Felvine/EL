@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using Znko.Events;
 
-namespace Actions {
+namespace Znko.Actions {
     public abstract class CharacterAction : ICharacterAction {
         //Constants
         public const float finishingPercent = 0.9f;
@@ -11,6 +12,7 @@ namespace Actions {
         private Character user;
         private AnimationClip animationClip;
         private bool disableAnimation = false;
+        private ActionEvent[] events;
 
         //Time management
         private float startTime;
@@ -20,11 +22,12 @@ namespace Actions {
 
         private Phase actionPhase;
 
-        public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn) {
+        public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn, params ActionEvent[] eventsIn) {
             this.actionPhase = Phase.NotActing;
             this.user = characterIn;
             this.duration = durationIn;
             this.animationClip = animationClipIn;
+            this.events = eventsIn;
         }
 
 
@@ -76,6 +79,11 @@ namespace Actions {
             if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
                 User.Animation.CrossFade (animationClip.name);
             }
+            foreach (ActionEvent ae in events)
+            {
+                if (ae.GetPhase() == ActionEvent.Phase.PreAction)
+                    controller.AddEvent(ae.Value);
+            }
         }
 
         public virtual void PostActions (ICharacterAction nextAction, ICharacterController controller) {
@@ -116,9 +124,12 @@ namespace Actions {
             return this.animationClip.name;
         }
 
-        public virtual bool CanInterrupt(ICharacterAction currentAction)
+
+        public static bool CanInterrupt (ICharacterAction currentAction, ICharacterAction nextAction)
         {
-            return false;
+            if (currentAction == null || nextAction == null)
+                return false;
+            return (currentAction.Priority == 0 || nextAction.Priority > currentAction.Priority);
         }
     }
 }   

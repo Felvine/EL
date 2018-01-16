@@ -1,4 +1,4 @@
-﻿using Actions;
+﻿using Znko.Actions;
 using UnityEngine;
 
 public class TrainingDummyControl : ActionBasedController {

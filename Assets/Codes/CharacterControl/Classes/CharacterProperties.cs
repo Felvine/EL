@@ -1,7 +1,5 @@
-﻿using Assets.Codes.CharacterControl.Classes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public  class CharacterProperties {
     private bool isAttacking = false;

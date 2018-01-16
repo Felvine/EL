@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Actions {
+
+namespace Znko.Actions {
     class ComboAction : ICharacterAction {
         private List<ICharacterAction> actions;
         private int selected = 0;

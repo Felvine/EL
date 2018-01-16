@@ -1,4 +1,4 @@
-﻿using Assets.Codes.CharacterControl.Classes.Events;
+﻿using Znko.Events;
 using UnityEngine;
 
 public class WeaponBehaviour : MonoBehaviour {

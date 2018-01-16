@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using Actions;
+using Znko.Actions;
+using Znko.Events;
 
 namespace Characters {
     static class Player {
@@ -29,26 +30,30 @@ namespace Characters {
 
             player.AddAction ("Roll", new MoveToDistance (player, player.Animation.GetClip ("Player_Roll").length, player.Animation.GetClip ("Player_Roll"), playerRollLength, false));
 
-            player.AddAction ("Idle", new Idle (player, Constants.minimumStep, player.Animation.GetClip ("Player_Idle")));
+            player.AddAction ("Idle", new Idle (player, Constants.minimumStep, player.Animation.GetClip ("Player_Idle"), 0));
 
-            ComboAction attack1ending = new ComboAction (new Idle (player, player.Animation.GetClip ("Player_Attack_Ender").length, player.Animation.GetClip ("Player_Attack_Ender")),
-                                                         new Attack (player, player.Animation.GetClip ("Player_Attack_3").length, player.Animation.GetClip ("Player_Attack_3")),
-                                                         new Attack (player, player.Animation.GetClip ("Player_Attack_2").length, player.Animation.GetClip ("Player_Attack_2")));
+            ActionEvent[] attackEvents = {  new ActionEvent(ActionEvent.Phase.PreAction, new SetAttackEvent(true)),
+                                            new ActionEvent(ActionEvent.Phase.PostAction, new SetAttackEvent(false)) };
+
+            ComboAction attack1ending = new ComboAction (new Idle (player, player.Animation.GetClip ("Player_Attack_Ender").length, player.Animation.GetClip ("Player_Attack_Ender"), 1),
+                                                         new Idle (player, player.Animation.GetClip ("Player_Attack_3").length, player.Animation.GetClip ("Player_Attack_3"), 1, attackEvents),
+                                                         new Idle (player, player.Animation.GetClip ("Player_Attack_2").length, player.Animation.GetClip ("Player_Attack_2"), 1));
 
             player.AddAction ("ComboAttack", new CharacterActionSequence (player, null,
-                                                            new Attack (player, player.Animation.GetClip ("Player_Attack_1").length, player.Animation.GetClip ("Player_Attack_1")),
+                                                            new Idle (player, player.Animation.GetClip ("Player_Attack_1").length, player.Animation.GetClip ("Player_Attack_1"), 1, attackEvents),
                                                             attack1ending));
 
-            float attack4duration = player.Animation.GetClip ("Player_Attack_4").length;
-            player.AddAction ("Attack4", new CharacterActionSequence (player, player.Animation.GetClip ("Player_Attack_4"),
-                                                            new Idle (player, attack4duration / 3, null),
-                                                            new Attack (player, attack4duration / 3, null),
-                                                            new Idle (player, attack4duration / 3, null)));
+            float attack4duration = player.Animation.GetClip("Player_Attack_4").length;
+            player.AddAction("Attack4", new CharacterActionSequence(player, player.Animation.GetClip("Player_Attack_4"),
+                                                            new Idle(player, attack4duration / 3, null, 1),
+                                                            new Idle(player, attack4duration / 3, null, 1, attackEvents),
+                                                            new Idle(player, attack4duration / 3, null, 1)));
+
             float staggerduration = player.Animation.GetClip("Player_Stagger").length;
-            player.AddAction("Stagger", new Stagger(player, staggerduration, player.Animation.GetClip("Player_Stagger"), 9));
+            player.AddAction("Stagger", new Idle(player, staggerduration, player.Animation.GetClip("Player_Stagger"), 1));
 
             staggerduration = player.Animation.GetClip("Player_Fall").length;
-            player.AddAction("Fall", new Stagger(player, staggerduration, player.Animation.GetClip("Player_Fall"), 10));
+            player.AddAction("Fall", new Idle(player, staggerduration, player.Animation.GetClip("Player_Fall"), 3));
         }
     }
 }

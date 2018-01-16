@@ -1,7 +1,8 @@
-﻿using Assets.Codes.CharacterControl.Classes.Events;
+﻿using Znko.Events;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Znko.Actions;
 
 public class Character {
     private enum HorizontalDirection { West, East}
@@ -9,7 +10,7 @@ public class Character {
     public enum Races { Humanoid, Giant}
 
     private CharacterProperties properties;
-    private Dictionary<string, Actions.ICharacterAction> availableActions = new Dictionary<string, Actions.ICharacterAction> ();
+    private Dictionary<string, ICharacterAction> availableActions = new Dictionary<string, ICharacterAction> ();
 
     private Vector3 direction = Vector3.zero;
     private HorizontalDirection horizontalDir = HorizontalDirection.East;
@@ -138,14 +139,14 @@ public class Character {
 
 #endregion
 
-    public void AddAction (string actionNameIn, Actions.ICharacterAction actionIn) {
+    public void AddAction (string actionNameIn, ICharacterAction actionIn) {
         if (!availableActions.ContainsKey (actionNameIn))
             availableActions.Add (actionNameIn, actionIn);
         else
             throw new Exception ("Action has already been registered to character");
     }
 
-    public Actions.ICharacterAction GetAction (string actionNameIn) {
+    public ICharacterAction GetAction (string actionNameIn) {
         return availableActions[actionNameIn];
     }    
     public bool HasAnimation () {

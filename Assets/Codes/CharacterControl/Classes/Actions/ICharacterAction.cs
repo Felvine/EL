@@ -1,4 +1,4 @@
-﻿namespace Actions {
+﻿namespace Znko.Actions {
     public enum Phase { NotActing, Acting };
 
     public interface ICharacterAction {
@@ -9,7 +9,6 @@
         void PreActions (ICharacterAction previousAction, ICharacterController controller);
         void PostActions (ICharacterAction nextAction, ICharacterController controller);
         bool IsFinishing ();
-        bool CanInterrupt(ICharacterAction currentAction);
         float GetDuration ();
     }
 
