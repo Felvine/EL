@@ -21,5 +21,10 @@ namespace Znko.Events
                     throw new System.ArgumentOutOfRangeException ();
             }
         }
+
+        public override string ToString()
+        {
+            return "Attack Event Set to " + (value ? "true" : "false");
+        }
     }
 }

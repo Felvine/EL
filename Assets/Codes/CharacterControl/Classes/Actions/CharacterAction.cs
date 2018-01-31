@@ -87,6 +87,11 @@ namespace Znko.Actions {
         }
 
         public virtual void PostActions (ICharacterAction nextAction, ICharacterController controller) {
+            foreach (ActionEvent ae in events)
+            {
+                if (ae.GetPhase() == ActionEvent.Phase.PostAction)
+                    controller.AddEvent(ae.Value);
+            }
         }
 
         protected abstract void PerformAction ();

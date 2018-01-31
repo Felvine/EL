@@ -126,6 +126,9 @@ public abstract class ActionBasedController : ICharacterController {
 
     public override void AddEvent(ICharacterEvent eventIn)
     {
+
+        Debug.Log(eventIn.ToString() + Time.time);
+
         eventIn.SetUser(this.User);
         this.Events.Add(eventIn);
     }
