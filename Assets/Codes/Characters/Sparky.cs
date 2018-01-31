@@ -31,26 +31,26 @@ namespace Characters {
                                             new ActionEvent(ActionEvent.Phase.PostAction, new SetAttackEvent(false)) };
 
             sparky.AddAction ("Bite", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Simple_Attack"),
-                                                            new Idle (sparky, attackDuration / 3*40/100, null, 1),
-                                                            new Idle (sparky, attackDuration / 3*20/100, null, 1, attackEvents),
-                                                            new Idle (sparky, attackDuration / 3*40/100, null, 1)));
+                                                            new Idle (sparky, attackDuration*70 / 160, null, 1),
+                                                            new Idle (sparky, attackDuration*15 / 160/100, null, 1, attackEvents),
+                                                            new Idle (sparky, attackDuration*75 / 160/100, null, 1)));
             attackDuration = sparky.Animation.GetClip ("Monster_Bodycheck").length;
             sparky.AddAction ("Headbutt", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Bodycheck"),
-                                                            new Idle(sparky, attackDuration / 3, null, 1),
-                                                            new Idle(sparky, attackDuration / 3, null, 1, attackEvents),
-                                                            new Idle(sparky, attackDuration / 3, null, 1)));
+                                                            new Idle(sparky, attackDuration*35 / 118, null, 1),
+                                                            new Idle(sparky, attackDuration*8 / 118, null, 1, attackEvents),
+                                                            new Idle(sparky, attackDuration*75 / 118, null, 1)));
 
             attackDuration = sparky.Animation.GetClip ("Monster_Tail_Swipe").length;
             sparky.AddAction ("TailSwipe", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Tail_Swipe"),
-                                                            new Idle(sparky, attackDuration / 3, null, 1),
-                                                            new Idle(sparky, attackDuration / 3, null, 1, attackEvents),
-                                                            new Idle(sparky, attackDuration / 3, null, 1)));
+                                                            new Idle(sparky, attackDuration*50 / 195, null, 1),
+                                                            new Idle(sparky, attackDuration*8 / 195, null, 1, attackEvents),
+                                                            new Idle(sparky, attackDuration*137 / 195, null, 1)));
 
             attackDuration = sparky.Animation.GetClip ("Monster_Rush_Bodycheck").length;
             sparky.AddAction ("RushHeadbutt", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Rush_Bodycheck"),
-                                                            new Idle(sparky, attackDuration / 3, null, 1),
-                                                            new Idle(sparky, attackDuration / 3, null, 1, attackEvents),
-                                                            new Idle(sparky, attackDuration / 3, null, 1, attackEvents)));
+                                                            new Idle(sparky, attackDuration*70 / 253, null, 1),
+                                                            new Idle(sparky, attackDuration*100 / 235, null, 1, attackEvents),
+                                                            new Idle(sparky, attackDuration*83 / 253, null, 1, attackEvents)));
 
             attackDuration = sparky.Animation.GetClip ("Monster_Jump_Attack").length;
             sparky.AddAction ("JumpAttack", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Jump_Attack"),
