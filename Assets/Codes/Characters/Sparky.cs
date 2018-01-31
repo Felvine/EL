@@ -54,9 +54,9 @@ namespace Characters {
 
             attackDuration = sparky.Animation.GetClip ("Monster_Jump_Attack").length;
             sparky.AddAction ("JumpAttack", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Jump_Attack"),
-                                                            new Idle(sparky, attackDuration / 3, null, 1),
-                                                            new Idle(sparky, attackDuration / 3, null, 1, attackEvents),
-                                                            new Idle(sparky, attackDuration / 3, null, 1)));
+                                                            new Idle(sparky, attackDuration*85 / 116, null, 1),
+                                                            new Idle(sparky, attackDuration*10 / 116, null, 1, attackEvents),
+                                                            new Idle(sparky, attackDuration*21 / 116, null, 1)));
         }
     }
 }
