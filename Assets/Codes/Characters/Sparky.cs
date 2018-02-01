@@ -32,8 +32,8 @@ namespace Characters {
 
             sparky.AddAction ("Bite", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Simple_Attack"),
                                                             new Idle (sparky, attackDuration*70 / 160, null, 1),
-                                                            new Idle (sparky, attackDuration*15 / 160/100, null, 1, attackEvents),
-                                                            new Idle (sparky, attackDuration*75 / 160/100, null, 1)));
+                                                            new Idle (sparky, attackDuration*15 / 160, null, 1, attackEvents),
+                                                            new Idle (sparky, attackDuration*75 / 160, null, 1)));
             attackDuration = sparky.Animation.GetClip ("Monster_Bodycheck").length;
             sparky.AddAction ("Headbutt", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Bodycheck"),
                                                             new Idle(sparky, attackDuration*35 / 118, null, 1),
