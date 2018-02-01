@@ -51,8 +51,8 @@ namespace Characters {
 
             player.AddAction ("ComboAttack", new CharacterActionSequence (player, player.Animation.GetClip("Player_Attack_1"),
                                                             new Idle(player, attack1duration*24 / 40, null, 1),
-                                                            new Idle(player, attack1duration*10 / 40, null, 1, attackEvents),
-                                                            new Idle(player, attack1duration*14 / 40, null, 1),
+                                                            new Idle(player, attack1duration*6 / 40, null, 1, attackEvents),
+                                                            new Idle(player, attack1duration*10 / 40, null, 1),
                                                             attack1ending));
 
             float attack4duration = player.Animation.GetClip("Player_Attack_4").length;
