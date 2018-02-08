@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿namespace Znko.Characters
+{
+    class CharacterAttribute
+    {
+        public enum Type { Attack, Defense }
 
-class CharacterAttribute {
-    public enum Type { Attack, Defense}
+        private int value;
 
-    private int value;
+        public int Value {
+            get {
+                return value;
+            }
 
-    public int Value {
-        get {
-            return value;
+            set {
+                this.value = value;
+            }
         }
 
-        set {
-            this.value = value;
+        public CharacterAttribute(int valueIn)
+        {
+            this.value = valueIn;
         }
-    }
-
-    public CharacterAttribute (int valueIn) {
-        this.value = valueIn;
     }
 }

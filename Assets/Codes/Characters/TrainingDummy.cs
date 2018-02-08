@@ -1,4 +1,5 @@
 ﻿using Znko.Actions;
+using Znko.Characters;
 using UnityEngine;
 
 namespace Characters {
@@ -11,7 +12,7 @@ namespace Characters {
         }
 
         private static void SetupActions (ref Character dummy) {
-            dummy.AddAction ("ReceiveHit", new Idle (dummy, dummy.Animation.GetClip ("Dummy_Hit").length, dummy.Animation.GetClip ("Dummy_Hit"), 0));
+            dummy.AddAction ("ReceiveHit", new Idle (dummy, dummy.Animation.GetClip ("Dummy_Hit").length, dummy.Animation.GetClip ("Dummy_Hit"), 1));
         }
     }
 }

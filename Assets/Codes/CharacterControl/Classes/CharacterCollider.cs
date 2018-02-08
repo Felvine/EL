@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-public class CharacterCollider
+﻿namespace Znko.Characters
 {
-    private string tagType;
+    public class CharacterCollider
+    {
+        private string tagType;
 
-    private bool isAttacking;
+        private bool isAttacking;
 
-    public bool IsAttacking {
-        get {
-            return isAttacking;
+        public bool IsAttacking {
+            get {
+                return isAttacking;
+            }
+
+            set {
+                isAttacking = value;
+            }
         }
 
-        set {
-            isAttacking = value;
+        public CharacterCollider(string typeIn)
+        {
+            this.tagType = typeIn;
         }
-    }
 
-    public CharacterCollider(string typeIn)
-    {
-        this.tagType = typeIn;
-    }
-
-    public bool IsType (string typeIn)
-    {
-        return tagType == typeIn;
+        public bool IsType(string typeIn)
+        {
+            return tagType == typeIn;
+        }
     }
 }

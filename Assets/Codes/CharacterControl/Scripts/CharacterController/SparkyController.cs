@@ -1,5 +1,6 @@
 ﻿using Znko.Actions;
 using UnityEngine;
+using Znko.Characters;
 
 public class SparkyController : ActionBasedController {
     private const int followDistance = 15;
@@ -19,11 +20,11 @@ public class SparkyController : ActionBasedController {
         foreach (WeaponBehaviour wp in GetComponentsInChildren<WeaponBehaviour> ())
             wp.User = this.User;
         this.target = Characters.Player.Instance ();
-        this.attacks.Add (this.User.GetAction ("Bite"));
-        this.attacks.Add (this.User.GetAction ("TailSwipe"));
-        this.attacks.Add (this.User.GetAction ("Headbutt"));
-        this.attacks.Add (this.User.GetAction ("RushHeadbutt"));
-        this.attacks.Add (this.User.GetAction ("JumpAttack"));
+        this.attacks.Add(this.User.GetAction("Bite"));
+        this.attacks.Add(this.User.GetAction("TailSwipe"));
+        this.attacks.Add(this.User.GetAction("Headbutt"));
+        this.attacks.Add(this.User.GetAction("RushHeadbutt"));
+        this.attacks.Add(this.User.GetAction("JumpAttack"));
     }
 
 
@@ -45,15 +46,15 @@ public class SparkyController : ActionBasedController {
     {
         Vector3 diff = this.target.Transform.position - this.User.Transform.position;
         diff.y = 0;
-        if (diff.magnitude < followDistance)
-        {
-            this.User.Direction = diff;
-            if (diff.magnitude < attackDistance)
-            {
-                return this.attacks[rnd.Next(attacks.Count)];
-            }
-            return this.User.GetAction("Walk");
-        }
+        //if (diff.magnitude < followDistance)
+        //{
+        //    this.User.Direction = diff;
+        //    if (diff.magnitude < attackDistance)
+        //    {
+        //        return this.attacks[rnd.Next(attacks.Count)];
+        //    }
+        //    return this.User.GetAction("Walk");
+        //}
         return this.User.GetAction("Idle");
     }
 }

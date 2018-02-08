@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using Znko.Events;
+using Znko.Characters;
+
 
 public class ColliderBehaviour : MonoBehaviour
 {

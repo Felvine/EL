@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Znko.Actions;
 using Znko.Events;
+using Znko.Characters;
 
 namespace Characters {
     static class Player {
@@ -24,16 +25,20 @@ namespace Characters {
         }
 
         private static void SetupActions (ref Character player) {
+            ActionEvent[] attackEvents = {  new ActionEvent(ActionEvent.Phase.PreAction, new SetAttackEvent(true)),
+                                            new ActionEvent(ActionEvent.Phase.PostAction, new SetAttackEvent(false)) };
+
+            ActionEvent[] invulnerabilityEvents = {  new ActionEvent(ActionEvent.Phase.PreAction, new SetInvulnerabilityEvent(true)),
+                                                     new ActionEvent(ActionEvent.Phase.PostAction, new SetInvulnerabilityEvent(false)) };
+
+
             player.AddAction ("Walk", new MoveWithSpeed (player, Constants.minimumStep, player.Animation.GetClip ("Player_Walk"), playerWalkSpeed));
 
             player.AddAction ("Run", new MoveWithSpeed (player, Constants.minimumStep, player.Animation.GetClip ("Player_Run"), playerRunSpeed));
 
-            player.AddAction ("Roll", new MoveToDistance (player, player.Animation.GetClip ("Player_Roll").length, player.Animation.GetClip ("Player_Roll"), playerRollLength, false));
+            player.AddAction ("Roll", new MoveToDistance (player, player.Animation.GetClip ("Player_Roll").length, player.Animation.GetClip ("Player_Roll"), playerRollLength, invulnerabilityEvents));
 
             player.AddAction ("Idle", new Idle (player, Constants.minimumStep, player.Animation.GetClip ("Player_Idle"), 0));
-
-            ActionEvent[] attackEvents = {  new ActionEvent(ActionEvent.Phase.PreAction, new SetAttackEvent(true)),
-                                            new ActionEvent(ActionEvent.Phase.PostAction, new SetAttackEvent(false)) };
 
             float attack1duration = player.Animation.GetClip("Player_Attack_1").length; 
             float attack2duration = player.Animation.GetClip("Player_Attack_2").length;

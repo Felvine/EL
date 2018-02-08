@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Znko.Characters;
 
 
 namespace Znko.Actions {

@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Znko.Characters;
 
- class HPBar : MonoBehaviour {
+class HPBar : MonoBehaviour {
 
     private Character user;
     private Transform healthBarObject;

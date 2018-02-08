@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using Znko.Events;
+using Znko.Characters;
+
 namespace Znko.Actions {
     class MoveWithSpeed : CharacterAction {
         private float speed;
 
-        public MoveWithSpeed (Character characterIn, float durationIn, AnimationClip animationIn, float speedIn) : base (characterIn, durationIn, animationIn) {
+        public MoveWithSpeed (Character characterIn, float durationIn, AnimationClip animationIn, float speedIn, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
             this.speed = speedIn;
             this.priority = 1;
         }

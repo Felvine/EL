@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Znko.Actions;
 using Znko.Events;
+using Znko.Characters;
 using System.Collections.Generic;
 
 public abstract class ActionBasedController : ICharacterController {

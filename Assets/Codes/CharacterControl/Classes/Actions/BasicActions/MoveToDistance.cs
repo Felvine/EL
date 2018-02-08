@@ -1,32 +1,21 @@
 ﻿using UnityEngine;
+using Znko.Events;
+using Znko.Characters;
+
 namespace Znko.Actions {
     class MoveToDistance : CharacterAction {
-        private bool invincibility;
         private float speed;
-        public MoveToDistance (Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn, animationIn) {
-            this.invincibility = invicibilityIn;
+        public MoveToDistance (Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
             this.speed = distanceIn / durationIn;
             this.priority = 2;
         }
 
         public override void PreActions (ICharacterAction previousAction, ICharacterController controller) {
             base.PreActions (previousAction, controller);
-            if (invincibility) {
-                SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
-                foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-                    spriteRenderer.color = Color.red;
-                }
-            }
         }
 
         public override void PostActions (ICharacterAction nextAction, ICharacterController controller) {
             base.PostActions (nextAction, controller);
-            if (invincibility) {
-                SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
-                foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-                    spriteRenderer.color = Color.white;
-                }
-            }
         }
 
         protected override void PerformAction () {

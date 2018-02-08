@@ -1,4 +1,5 @@
-﻿
+﻿using Znko.Characters;
+
 namespace Znko.Events
 {
     public interface ICharacterEvent

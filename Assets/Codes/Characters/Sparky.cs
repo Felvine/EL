@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using Znko.Actions;
 using Znko.Events;
+using Znko.AI;
+using Znko.Characters;
+
 namespace Characters {
     class Sparky {
         private const float walkSpeed = 5.9f;
         private const int walkBackwardSpeed = 5;
-        private const int MonsterRunSpeed = 10;
-        private const int MonsterJumpLength = 10;
+        private const int monsterRunSpeed = 10;
+        private const int monsterJumpLength = 10;
+
+        private const float tooCloseRadius = 1.5f;
+        private const float closeRadius = 5;
 
         public static Character Create (Transform transformIn) {
             Character sparky = new Character (transformIn);
@@ -21,8 +27,8 @@ namespace Characters {
             sparky.AddAction ("Idle", new Idle (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Idle"), 0));
             sparky.AddAction ("Walk", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Walk"), walkSpeed));
             sparky.AddAction ("WalkBackwards", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Walk_Backward"), walkBackwardSpeed));
-            sparky.AddAction ("Run", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Run"), MonsterRunSpeed));
-            sparky.AddAction ("Jump", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Jump"), MonsterJumpLength));
+            sparky.AddAction ("Run", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Run"), monsterRunSpeed));
+            sparky.AddAction ("Jump", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Jump"), monsterJumpLength));
 
 
 
@@ -57,6 +63,15 @@ namespace Characters {
                                                             new Idle(sparky, attackDuration*85 / 116, null, 1),
                                                             new Idle(sparky, attackDuration*10 / 116, null, 1, attackEvents),
                                                             new Idle(sparky, attackDuration*21 / 116, null, 1)));
+        }
+
+        private static void SetupZones (ref Character sparky)
+        {
+            PolarZone underZone = new PolarZone(sparky, tooCloseRadius, 0, 360);
+            PolarZone frontZone = new PolarZone(sparky, closeRadius, 45, 135);
+            PolarZone bottomZone = new PolarZone(sparky, closeRadius, 135, 225);
+            PolarZone backZone = new PolarZone(sparky, closeRadius, 225, 315);
+            PolarZone topZone = new PolarZone(sparky, closeRadius, 315, 45);
         }
     }
 }

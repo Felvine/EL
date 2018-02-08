@@ -1,4 +1,6 @@
-﻿namespace Znko.Actions {
+﻿using Znko.Characters;
+
+namespace Znko.Actions {
     public enum Phase { NotActing, Acting };
 
     public interface ICharacterAction {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Znko.Events;
+using Znko.Characters;
 
 namespace Znko.Actions {
     public abstract class CharacterAction : ICharacterAction {

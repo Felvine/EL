@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class TrainingDummyControl : ActionBasedController {
 
-    private bool gotHit;
-
     protected override void Awake () {
         this.User = Characters.TrainingDummy.Create (transform);
     }   
