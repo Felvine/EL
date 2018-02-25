@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: baa9afdb26aab684fb17185e2f162b74
-timeCreated: 1518988219
+guid: 54e45cbef2230924f850d6b8f12c22f3
+timeCreated: 1519581866
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: CINEMA_4D_Editor
-    100002: Cube
-    100004: //RootNode
-    400000: CINEMA_4D_Editor
-    400002: Cube
-    400004: //RootNode
+    100000: //RootNode
+    100002: CINEMA_4D_Editor
+    100004: Cube_1
+    400000: //RootNode
+    400002: CINEMA_4D_Editor
+    400004: Cube_1
     2000000: CINEMA_4D_Editor
-    2100000: Mat
-    2300000: Cube
-    3300000: Cube
-    4300000: Cube
+    2100000: Mat.1
+    2300000: Cube_1
+    3300000: Cube_1
+    4300000: Cube_1
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Mat
-    second: {fileID: 2100000, guid: ef1a7fcb584d163448bdcb7761b473e9, type: 2}
+      name: Mat.1
+    second: {fileID: 2100000, guid: cb61e3cf32d968944bf514fa87ceb432, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
