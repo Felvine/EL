@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Znko.Characters;
 
-namespace Actions {
+
+namespace Znko.Actions {
     class ComboAction : ICharacterAction {
         private List<ICharacterAction> actions;
         private int selected = 0;
@@ -43,8 +43,8 @@ namespace Actions {
             Selected = 0;
         }
 
-        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction) {
-            Phase result = actions[Selected].Execute (previousAction, nextAction);
+        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction, ICharacterController controller) {
+            Phase result = actions[Selected].Execute (previousAction, nextAction, controller);
             if (result == Phase.NotActing)
                 Selected = 0;
             return result;
@@ -58,13 +58,18 @@ namespace Actions {
             return actions[Selected].IsFinishing ();
         }
 
-        public void PostActions (ICharacterAction nextAction) {
+        public void PostActions (ICharacterAction nextAction, ICharacterController controller) {
             //actions[Selected].PostActions (nextAction);
             Selected = 0;
         }
 
-        public void PreActions (ICharacterAction previousAction) {
+        public void PreActions (ICharacterAction previousAction, ICharacterController controller) {
             //actions[Selected].PreActions (previousAction);
+        }
+
+        public bool CanInterrupt(ICharacterAction currentAction)
+        {
+            return false;
         }
     }
 }

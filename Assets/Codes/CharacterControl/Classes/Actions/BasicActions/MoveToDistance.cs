@@ -1,40 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-namespace Actions {
+﻿using UnityEngine;
+using Znko.Events;
+using Znko.Characters;
+
+namespace Znko.Actions {
     class MoveToDistance : CharacterAction {
-        private bool invincibility;
         private float speed;
-        public MoveToDistance (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float distanceIn, bool invicibilityIn) : base (characterIn, durationIn, animationIn) {
-            this.invincibility = invicibilityIn;
+        public MoveToDistance (Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
             this.speed = distanceIn / durationIn;
-            this.priority = 1;
+            this.priority = 2;
         }
 
-        public override void PreActions (ICharacterAction previousAction) {
-            base.PreActions (previousAction);
-            if (invincibility) {
-                SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
-                foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-                    spriteRenderer.color = Color.red;
-                }
-            }
+        public override void PreActions (ICharacterAction previousAction, ICharacterController controller) {
+            base.PreActions (previousAction, controller);
         }
 
-        public override void PostActions (ICharacterAction nextAction) {
-            base.PostActions (nextAction);
-            if (invincibility) {
-                SpriteRenderer[] spriteRenderers = User.Transform.GetComponentsInChildren<SpriteRenderer> ();
-                foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-                    spriteRenderer.color = Color.white;
-                }
-            }
+        public override void PostActions (ICharacterAction nextAction, ICharacterController controller) {
+            base.PostActions (nextAction, controller);
         }
 
         protected override void PerformAction () {
             Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);
             moveDirection *= this.speed;
-            ((ControlledCharacter)this.User).Controller.Move (moveDirection * Time.deltaTime);
+            this.User.Controller.Move (moveDirection * Time.deltaTime);
         }
     }
 }

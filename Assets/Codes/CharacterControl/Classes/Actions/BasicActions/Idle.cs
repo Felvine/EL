@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-namespace Actions {
+﻿using UnityEngine;
+using Znko.Events;
+using Znko.Characters;
+
+namespace Znko.Actions {
     class Idle : CharacterAction {
 
-        public Idle (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn) : base (characterIn, durationIn, animationIn) {
-            this.priority = 0;
+        public Idle (Character characterIn, float durationIn, AnimationClip animationIn, int priorityIn, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
+            this.priority = priorityIn;
         }
         protected override void PerformAction () {
 

@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-namespace Actions {
+﻿using UnityEngine;
+using Znko.Events;
+using Znko.Characters;
+
+namespace Znko.Actions {
     class MoveWithSpeed : CharacterAction {
         private float speed;
 
-        public MoveWithSpeed (ControlledCharacter characterIn, float durationIn, AnimationClip animationIn, float speedIn) : base (characterIn, durationIn, animationIn) {
+        public MoveWithSpeed (Character characterIn, float durationIn, AnimationClip animationIn, float speedIn, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
             this.speed = speedIn;
-            this.priority = 0;
+            this.priority = 1;
         }
         protected override void PerformAction () {
             Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);
+            moveDirection = moveDirection.normalized;
             moveDirection *= this.speed;
-            ((ControlledCharacter)this.User).Controller.Move (moveDirection * Time.deltaTime);
+            this.User.Controller.Move (moveDirection * Time.deltaTime);
         }
     }
 }

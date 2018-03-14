@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using Znko.Events;
+using Znko.Characters;
 
-namespace Actions {
+namespace Znko.Actions {
     public abstract class CharacterAction : ICharacterAction {
         //Constants
         public const float finishingPercent = 0.9f;
@@ -11,6 +13,7 @@ namespace Actions {
         private Character user;
         private AnimationClip animationClip;
         private bool disableAnimation = false;
+        private ActionEvent[] events;
 
         //Time management
         private float startTime;
@@ -20,11 +23,12 @@ namespace Actions {
 
         private Phase actionPhase;
 
-        public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn) {
+        public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn, params ActionEvent[] eventsIn) {
             this.actionPhase = Phase.NotActing;
             this.user = characterIn;
             this.duration = durationIn;
             this.animationClip = animationClipIn;
+            this.events = eventsIn;
         }
 
 
@@ -71,27 +75,37 @@ namespace Actions {
         #endregion
 
         #region ICharacterAction interface methods
-        public virtual void PreActions (ICharacterAction previousAction) {
+        public virtual void PreActions (ICharacterAction previousAction, ICharacterController controller) {
             startTime = Time.time;
             if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
                 User.Animation.CrossFade (animationClip.name);
             }
+            foreach (ActionEvent ae in events)
+            {
+                if (ae.GetPhase() == ActionEvent.Phase.PreAction)
+                    controller.AddEvent(ae.Value);
+            }
         }
 
-        public virtual void PostActions (ICharacterAction nextAction) {
+        public virtual void PostActions (ICharacterAction nextAction, ICharacterController controller) {
+            foreach (ActionEvent ae in events)
+            {
+                if (ae.GetPhase() == ActionEvent.Phase.PostAction)
+                    controller.AddEvent(ae.Value);
+            }
         }
 
         protected abstract void PerformAction ();
 
-        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction) {    //Returns whether or not the action finished    
+        public Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction, ICharacterController controller) {    //Returns whether or not the action finished    
             if (actionPhase == Phase.NotActing) {
-                PreActions (previousAction);
+                PreActions (previousAction, controller);
                 actionPhase = Phase.Acting;
             }
             if (actionPhase == Phase.Acting) {
                 PerformAction ();
                 if (startTime + duration < Time.time) {
-                    PostActions (nextAction);
+                    PostActions (nextAction, controller);
                     actionPhase = Phase.NotActing;
                 }
             }
@@ -114,6 +128,14 @@ namespace Actions {
         }
         public override string ToString () {
             return this.animationClip.name;
+        }
+
+
+        public static bool CanInterrupt (ICharacterAction currentAction, ICharacterAction nextAction)
+        {
+            if (currentAction == null || nextAction == null)
+                return false;
+            return (currentAction.Priority == 0 || nextAction.Priority > currentAction.Priority);
         }
     }
 }   
