@@ -135,7 +135,7 @@ namespace Znko.Actions {
         {
             if (currentAction == null || nextAction == null)
                 return false;
-            return (currentAction.Priority == 0 || nextAction.Priority > currentAction.Priority);
+            return (/*currentAction.Priority == 0 ||*/ nextAction.Priority > currentAction.Priority);
         }
     }
 }   

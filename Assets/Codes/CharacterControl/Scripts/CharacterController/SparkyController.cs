@@ -46,15 +46,15 @@ public class SparkyController : ActionBasedController {
     {
         Vector3 diff = this.target.Transform.position - this.User.Transform.position;
         diff.y = 0;
-        //if (diff.magnitude < followDistance)
-        //{
-        //    this.User.Direction = diff;
-        //    if (diff.magnitude < attackDistance)
-        //    {
-        //        return this.attacks[rnd.Next(attacks.Count)];
-        //    }
-        //    return this.User.GetAction("Walk");
-        //}
+        if (diff.magnitude < followDistance)
+        {
+            this.User.Direction = diff;
+            if (diff.magnitude < attackDistance)
+            {
+                return this.attacks[rnd.Next(attacks.Count)];
+            }
+            return this.User.GetAction("Walk");
+        }
         return this.User.GetAction("Idle");
     }
 }
