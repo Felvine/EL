@@ -7968,7 +7968,7 @@ Prefab:
     - target: {fileID: 111996215109601080, guid: 892df7592b79c3d4c861d47b047c339c,
         type: 2}
       propertyPath: m_Animations.Array.size
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4989962337198962, guid: 892df7592b79c3d4c861d47b047c339c, type: 2}
       propertyPath: m_LocalPosition.x
@@ -8180,15 +8180,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4350192638249902, guid: 892df7592b79c3d4c861d47b047c339c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.031000001
+      value: 1.7270001
       objectReference: {fileID: 0}
     - target: {fileID: 4350192638249902, guid: 892df7592b79c3d4c861d47b047c339c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.78000003
+      value: -4.6410003
       objectReference: {fileID: 0}
     - target: {fileID: 4350192638249902, guid: 892df7592b79c3d4c861d47b047c339c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 4.899
+      value: 46.405003
       objectReference: {fileID: 0}
     - target: {fileID: 4915558071689532, guid: 892df7592b79c3d4c861d47b047c339c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8322,7 +8322,7 @@ Prefab:
         type: 2}
       propertyPath: m_Animations.Array.data[13]
       value: 
-      objectReference: {fileID: 7400000, guid: 161e307d38870e6429e9961c8e4b87c6, type: 2}
+      objectReference: {fileID: 7400000, guid: 4eee694bf7a6e4d43aa3e0544b66aa7d, type: 2}
     - target: {fileID: 111996215109601080, guid: 892df7592b79c3d4c861d47b047c339c,
         type: 2}
       propertyPath: m_Animations.Array.data[14]
