@@ -24,11 +24,10 @@ public class SparkyController : ActionBasedController {
             wp.User = this.User;
         this.target = Characters.Player.Instance ();
         this.attacks.Add(this.User.GetAction("Bite"));
-        this.attacks.Add(this.User.GetAction("LongSilence"));
-        //this.attacks.Add(this.User.GetAction("TailSwipe"));
-        //this.attacks.Add(this.User.GetAction("Headbutt"));
-        //this.attacks.Add(this.User.GetAction("RushHeadbutt"));
-        //this.attacks.Add(this.User.GetAction("JumpAttack"));
+        this.attacks.Add(this.User.GetAction("TailSwipe"));
+        this.attacks.Add(this.User.GetAction("Headbutt"));
+        this.attacks.Add(this.User.GetAction("RushHeadbutt"));
+        this.attacks.Add(this.User.GetAction("JumpAttack"));
     }
 
 
@@ -55,7 +54,16 @@ public class SparkyController : ActionBasedController {
             //this.User.Direction = diff;
             if (diff.magnitude < attackDistance)
             {
-                return this.attacks[rnd.Next(attacks.Count)];
+                if (User.Zones["underZone"].IsIn(target.GetCoord()))
+                    return this.User.GetAction("Idle");
+                if (User.Zones["frontZone"].IsIn(target.GetCoord()))
+                {
+                    return this.User.GetAction("Bite");
+                } else if (User.Zones["backZone"].IsIn(target.GetCoord()))
+                {
+                    return this.User.GetAction("TailSwipe");
+                }
+
             }
             return this.User.GetAction("Walk");
         }
@@ -92,5 +100,13 @@ public class SparkyController : ActionBasedController {
             this.User.SetHorizontalDirectionDebug(Character.HorizontalDirection.West);
         else
             this.User.SetHorizontalDirectionDebug(Character.HorizontalDirection.East);
+    }
+
+    public override void ActionFinished()
+    {
+        base.ActionFinished();
+        Vector3 diff = this.target.Transform.position - this.User.Transform.position;
+        diff.y = 0;
+        //this.User.Direction = diff;
     }
 }
