@@ -31,10 +31,26 @@ namespace Znko.Root
             this.y = y;
         }
 
+        public static Coord operator -(Coord left, Coord right)
+        {
+            return new Coord(left.x - right.x, left.y - right.y);
+        }
+
+        public static Coord operator +(Coord left, Coord right)
+        {
+            return new Coord(left.x + right.x, left.y + right.y);
+        }
+
         public static implicit operator Coord (Vector3 vector)
         {
             return new Coord(vector.x, vector.z);
         }
+
+        public static explicit operator Vector3(Coord coord)
+        {
+            return new Vector3(coord.x, 0, coord.y);
+        }
+
 
         public static float Distance (Coord p1, Coord p2)
         {

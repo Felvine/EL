@@ -4,11 +4,12 @@ using Znko.Characters;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using Znko.AI;
+using System;
 
-public class SparkyController : ActionBasedController {
+public class SparkyController : AIController {
     private const int followDistance = 15;
     private const int attackDistance = 10;
-    private Character target;
+    private bool clickedButton = false;
 
     static System.Random rnd = new System.Random ();
     private System.Collections.Generic.List<ICharacterAction> attacks = new System.Collections.Generic.List<ICharacterAction> ();
@@ -33,6 +34,9 @@ public class SparkyController : ActionBasedController {
 
     protected override ICharacterAction DetermineAction ()
     {
+        ICharacterAction buttonAction = DetermineActionFromUIForDebug();
+        if (buttonAction != null)
+            return buttonAction;
         ICharacterAction eventAction = ProcessEventQueue();
         ICharacterAction aiAction = DetermineActionFromAI();
         if (eventAction == null)
@@ -45,27 +49,47 @@ public class SparkyController : ActionBasedController {
             return aiAction;
     }
 
+    private ICharacterAction DetermineActionFromUIForDebug()
+    {
+        if (clickedButton)
+        {
+            this.clickedButton = false;
+            return this.User.GetAction("Jump");
+        }
+        else
+            return null;
+    }
+
     private ICharacterAction DetermineActionFromAI()
     {
         Vector3 diff = this.target.Transform.position - this.User.Transform.position;
         diff.y = 0;
-        if (diff.magnitude < followDistance)
+        if (User.Zones["farZone"].IsIn(target.GetCoord()))
         {
-            //this.User.Direction = diff;
-            if (diff.magnitude < attackDistance)
+            if (User.Zones["closeZone"].IsIn(target.GetCoord()))
             {
                 if (User.Zones["underZone"].IsIn(target.GetCoord()))
-                    return this.User.GetAction("Idle");
+                {
+                    if (UnityEngine.Random.value < 0.5)
+                    {
+                        return this.User.GetAction("JumpAttack");
+                    }
+                    else
+                    {
+                        return this.User.GetAction("Jump");
+                    }
+
+                }
                 if (User.Zones["frontZone"].IsIn(target.GetCoord()))
                 {
                     return this.User.GetAction("Bite");
-                } else if (User.Zones["backZone"].IsIn(target.GetCoord()))
-                {
-                    return this.User.GetAction("TailSwipe");
                 }
 
             }
-            return this.User.GetAction("Walk");
+            else
+            {
+                return this.User.GetAction("Walk");
+            }
         }
         return this.User.GetAction("Idle");
     }
@@ -96,10 +120,7 @@ public class SparkyController : ActionBasedController {
 
     public void FlipForDebug()
     {
-        if (this.User.GetHorizontalDirection () == Character.HorizontalDirection.East)
-            this.User.SetHorizontalDirectionDebug(Character.HorizontalDirection.West);
-        else
-            this.User.SetHorizontalDirectionDebug(Character.HorizontalDirection.East);
+        this.clickedButton = true;
     }
 
     public override void ActionFinished()
@@ -107,6 +128,6 @@ public class SparkyController : ActionBasedController {
         base.ActionFinished();
         Vector3 diff = this.target.Transform.position - this.User.Transform.position;
         diff.y = 0;
-        //this.User.Direction = diff;
+        this.User.Direction = diff;
     }
 }

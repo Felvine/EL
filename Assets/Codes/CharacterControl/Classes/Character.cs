@@ -54,6 +54,14 @@ namespace Znko.Characters
             return horizontalDir;
         }
 
+        public int GetDirectionSign()
+        {
+            if (horizontalDir == HorizontalDirection.East)
+                return -1;
+            else
+                return 1;
+        }
+
         private void SetHorizontalDirection()
         {
             if (horizontalDir == HorizontalDirection.East && direction.x < 0)
@@ -76,23 +84,30 @@ namespace Znko.Characters
         private HorizontalDirection HorizontalDir {
             set {
                 horizontalDir = value;
-                foreach (Transform child in transform)
+                switch (horizontalDir)
                 {
-                    if (child.tag == "Character")
-                    {
-                        switch (horizontalDir)
-                        {
-                            case HorizontalDirection.East:
-                                child.rotation = Quaternion.Euler(45, 0, 0);
-                                child.localScale = new Vector3(1, 1, 1);
-                                break;
-                            case HorizontalDirection.West:
-                                child.rotation = Quaternion.Euler(-45, 180, 0);
-                                child.localScale = new Vector3(1, 1, -1);
-                                break;
-                        }
-                    }
+                    case HorizontalDirection.East:
+                        transform.localScale = new Vector3(1, 1, 1);
+                        break;
+                    case HorizontalDirection.West:
+                        transform.localScale = new Vector3(-1, 1, 1);
+                        break;
                 }
+                //foreach (Transform child in transform)
+                //{
+                //    if (child.tag == "MainCamera")
+                //    {
+                //        switch (horizontalDir)
+                //        {
+                //            case HorizontalDirection.East:
+                //                child.localScale = new Vector3(1, 1, 1);
+                //                break;
+                //            case HorizontalDirection.West:
+                //                child.localScale = new Vector3(1, 1, -1);
+                //                break;
+                //        }
+                //    }
+                //}
             }
         }
 
