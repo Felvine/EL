@@ -127,7 +127,10 @@ namespace Znko.Actions {
             return Duration;
         }
         public override string ToString () {
-            return this.animationClip.name;
+            if (animationClip != null)
+                return this.animationClip.name;
+            else
+                return " - ";
         }
 
 

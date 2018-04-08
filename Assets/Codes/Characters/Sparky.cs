@@ -69,14 +69,14 @@ namespace Characters {
             sparky.AddAction("JumpAttack", new CharacterActionSequence(sparky, sparky.Animation.GetClip("Monster_Jump_Attack"),
                                                             new Idle(sparky, attackDuration * 56 / 116, null, 1),
                                                             new MoveToTarget(sparky, attackDuration * 29 / 116, null, frontOffSet),
-                                                            new Idle(sparky, attackDuration * 0 / 116, null, 1, attackEvents),
+                                                            new Idle(sparky, attackDuration * 10 / 116, null, 1, attackEvents),
                                                             new Idle(sparky, attackDuration * 21 / 116, null, 1)));
 
             attackDuration = sparky.Animation.GetClip("Monster_Jump_Attack").length;
             sparky.AddAction("Jump", new CharacterActionSequence(sparky, sparky.Animation.GetClip("Monster_Jump_Attack"),
                                                             new Idle(sparky, attackDuration * 56 / 116, null, 1),
                                                             new FleeToDistance(sparky, attackDuration * 29 / 116, null, fleeDistance),
-                                                            new Idle(sparky, attackDuration * 21 / 116, null, 1)));
+                                                            new Idle(sparky, attackDuration * 31 / 116, null, 1)));
 
             sparky.AddAction("LongSilence", new Idle(sparky, 20, sparky.Animation.GetClip("Monster_Idle"), 1));
         }

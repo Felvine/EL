@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Znko.AI;
 using Znko.Actions;
+using System.Linq;
+
 namespace Znko.Characters
 {
     public class Character
@@ -198,6 +200,14 @@ namespace Znko.Characters
             else
                 return null;
         }
+        public string GetActionName(ICharacterAction action)
+        {
+            if (availableActions.ContainsValue(action))
+                return availableActions.FirstOrDefault(x => x.Value == action).Key;
+            else
+                return "???";
+        }
+
         public bool HasAnimation()
         {
             return this.animation != null;

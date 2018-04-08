@@ -64,13 +64,14 @@ public class SparkyController : AIController {
     {
         Vector3 diff = this.target.Transform.position - this.User.Transform.position;
         diff.y = 0;
+        float rnd = UnityEngine.Random.value;
         if (User.Zones["farZone"].IsIn(target.GetCoord()))
         {
             if (User.Zones["closeZone"].IsIn(target.GetCoord()))
             {
                 if (User.Zones["underZone"].IsIn(target.GetCoord()))
                 {
-                    if (UnityEngine.Random.value < 0.5)
+                    if (rnd < 0.8)
                     {
                         return this.User.GetAction("JumpAttack");
                     }
@@ -82,8 +83,54 @@ public class SparkyController : AIController {
                 }
                 if (User.Zones["frontZone"].IsIn(target.GetCoord()))
                 {
-                    return this.User.GetAction("Bite");
+                    if (rnd < 0.45)
+                    {
+                        return this.User.GetAction("Bite");
+                    }
+                    else
+                    {
+                        return this.User.GetAction("Headbutt");
+                    }
+
                 }
+                if (User.Zones["topZone"].IsIn(target.GetCoord()))
+                {
+                    if (rnd < 0.8)
+                    {
+                        return this.User.GetAction("JumpAttack");
+                    }
+                    else
+                    {
+                        return this.User.GetAction("Jump");
+                    }
+                }
+                if (User.Zones["bottomZone"].IsIn(target.GetCoord()))
+                {
+                    if (rnd < 0.8)
+                    {
+                        return this.User.GetAction("JumpAttack");
+                    }
+                    else
+                    {
+                        return this.User.GetAction("Jump");
+                    }
+                }
+                if (User.Zones["backZone"].IsIn(target.GetCoord()))
+                {
+                    if (rnd < 0.5)
+                    {
+                        return this.User.GetAction("TailSwipe");
+                    }
+                    else if (rnd < 0.75)
+                    {
+                        return this.User.GetAction("JumpAttack");
+                    }
+                    else
+                    {
+                        return this.User.GetAction("Jump");
+                    }
+                }
+
 
             }
             else
@@ -112,9 +159,12 @@ public class SparkyController : AIController {
         {
             if (entry.Value.IsIn(target.GetCoord()))
             {
-                mytext = mytext + entry.Key;
+                mytext = mytext + "," + entry.Key;
             }
         }
+        mytext = mytext + " Current: " + this.User.GetActionName(CurrentAction);
+        mytext = mytext + ", Next: " + this.User.GetActionName(NextAction);
+
         GameObject.Find("SparkyText").GetComponent<Text>().text = angle + "° " + distance + mytext;
    }
 

@@ -57,7 +57,7 @@ public class WeaponBehaviour : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         ICharacterController targetController = other.GetComponentInChildren<ICharacterController>();
-        if (user.Properties.IsAttacking)
+        if (user.Properties.IsAttacking && !targetController.GetUser().Properties.IsInvulnerable)
         {
             if (user.Faction == Character.Factions.Player)
             {
