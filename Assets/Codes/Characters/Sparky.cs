@@ -32,9 +32,9 @@ namespace Characters {
 
         private static void SetupActions (ref Character sparky) {
             sparky.AddAction ("Idle", new Idle (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Idle"), 0));
-            sparky.AddAction ("Walk", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Walk"), walkSpeed));
-            sparky.AddAction ("WalkBackwards", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Walk_Backward"), walkBackwardSpeed));
-            sparky.AddAction ("Run", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Run"), monsterRunSpeed));
+            sparky.AddAction ("Walk", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Walk"), walkSpeed, 1));
+            sparky.AddAction ("WalkBackwards", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Walk_Backward"), walkBackwardSpeed, 1));
+            sparky.AddAction ("Run", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Run"), monsterRunSpeed, 1));
             //sparky.AddAction ("Jump", new MoveWithSpeed (sparky, Constants.minimumStep, sparky.Animation.GetClip ("Monster_Jump"), monsterJumpLength));
 
 

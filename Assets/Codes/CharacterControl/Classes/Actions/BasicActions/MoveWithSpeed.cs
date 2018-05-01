@@ -6,9 +6,9 @@ namespace Znko.Actions {
     class MoveWithSpeed : CharacterAction {
         private float speed;
 
-        public MoveWithSpeed (Character characterIn, float durationIn, AnimationClip animationIn, float speedIn, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
+        public MoveWithSpeed (Character characterIn, float durationIn, AnimationClip animationIn, float speedIn, int prioIn , params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
             this.speed = speedIn;
-            this.priority = 1;
+            this.priority = prioIn;
         }
         protected override void PerformAction () {
             Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);

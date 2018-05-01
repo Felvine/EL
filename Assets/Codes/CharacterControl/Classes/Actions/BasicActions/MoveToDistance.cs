@@ -7,7 +7,7 @@ namespace Znko.Actions {
         private float speed;
         public MoveToDistance (Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
             this.speed = distanceIn / durationIn;
-            this.priority = 2;
+            this.priority = 1;
         }
 
         public override void PreActions (ICharacterAction previousAction, ICharacterController controller) {
@@ -20,6 +20,7 @@ namespace Znko.Actions {
 
         protected override void PerformAction () {
             Vector3 moveDirection = this.User.Transform.TransformDirection (this.User.Direction);
+            moveDirection = Vector3.Normalize(moveDirection);
             moveDirection *= this.speed;
             this.User.Controller.Move (moveDirection * Time.deltaTime);
         }
