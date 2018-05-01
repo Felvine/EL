@@ -2,7 +2,7 @@
 
 namespace Znko.AI
 {
-    public class Zone
+    public abstract class Zone
     {
         private Character user;
         private Root.Coord offset;
@@ -12,5 +12,17 @@ namespace Znko.AI
             this.user = userIn;
             this.offset = new Root.Coord();
         }
+
+        protected Character User {
+            get {
+                return user;
+            }
+
+            set {
+                user = value;
+            }
+        }
+
+        public abstract bool IsIn(Root.Coord coord);
     }
 }

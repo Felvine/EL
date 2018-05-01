@@ -82,6 +82,7 @@ public abstract class ActionBasedController : ICharacterController {
                 PreviousAction = CurrentAction;
                 CurrentAction = NextAction;
                 nextAction = null;
+                ActionFinished();
             }
         } else {
             CurrentAction = highestPriorityAction;
@@ -132,5 +133,10 @@ public abstract class ActionBasedController : ICharacterController {
 
         eventIn.SetUser(this.User);
         this.Events.Add(eventIn);
+    }
+
+    public virtual void ActionFinished()
+    {
+
     }
 }

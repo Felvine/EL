@@ -157,5 +157,15 @@ namespace Znko.Actions {
         {
             return false;
         }
+
+        public override string ToString()
+        {
+            string result = "Action Sequence ";
+            foreach (ICharacterAction action in this.actions)
+            {
+                result = result + action.ToString();
+            }
+            return result;
+        }
     }
 }

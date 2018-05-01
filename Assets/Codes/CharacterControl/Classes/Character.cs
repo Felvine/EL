@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Znko.AI;
 using Znko.Actions;
+using System.Linq;
+
 namespace Znko.Characters
 {
     public class Character
     {
-        private enum HorizontalDirection { West, East }
+        public enum HorizontalDirection { West, East }
         public enum Factions { Player, Enemy, Neutral }
         public enum Races { Humanoid, Giant }
 
@@ -23,6 +26,8 @@ namespace Znko.Characters
 
         private Factions faction = Factions.Neutral;
         private Races race = Races.Humanoid;
+
+        private Dictionary<string, Zone> zones = new Dictionary<string, Zone> ();
 
         private List<ICharacterEvent> events = new List<ICharacterEvent>();
 
@@ -44,6 +49,19 @@ namespace Znko.Characters
                 direction = value;
                 SetHorizontalDirection();
             }
+        }
+
+        public HorizontalDirection GetHorizontalDirection()
+        {
+            return horizontalDir;
+        }
+
+        public int GetDirectionSign()
+        {
+            if (horizontalDir == HorizontalDirection.East)
+                return -1;
+            else
+                return 1;
         }
 
         private void SetHorizontalDirection()
@@ -68,23 +86,30 @@ namespace Znko.Characters
         private HorizontalDirection HorizontalDir {
             set {
                 horizontalDir = value;
-                foreach (Transform child in transform)
+                switch (horizontalDir)
                 {
-                    if (child.tag == "Character")
-                    {
-                        switch (horizontalDir)
-                        {
-                            case HorizontalDirection.East:
-                                child.rotation = Quaternion.Euler(45, 0, 0);
-                                child.localScale = new Vector3(1, 1, 1);
-                                break;
-                            case HorizontalDirection.West:
-                                child.rotation = Quaternion.Euler(-45, 180, 0);
-                                child.localScale = new Vector3(1, 1, -1);
-                                break;
-                        }
-                    }
+                    case HorizontalDirection.East:
+                        transform.localScale = new Vector3(1, 1, 1);
+                        break;
+                    case HorizontalDirection.West:
+                        transform.localScale = new Vector3(-1, 1, 1);
+                        break;
                 }
+                //foreach (Transform child in transform)
+                //{
+                //    if (child.tag == "MainCamera")
+                //    {
+                //        switch (horizontalDir)
+                //        {
+                //            case HorizontalDirection.East:
+                //                child.localScale = new Vector3(1, 1, 1);
+                //                break;
+                //            case HorizontalDirection.West:
+                //                child.localScale = new Vector3(1, 1, -1);
+                //                break;
+                //        }
+                //    }
+                //}
             }
         }
 
@@ -128,6 +153,12 @@ namespace Znko.Characters
                 events = value;
             }
         }
+
+        public Dictionary<string, Zone> Zones {
+            get {
+                return zones;
+            }
+        }
         #endregion
 
         #region Constructors
@@ -158,6 +189,10 @@ namespace Znko.Characters
                 throw new Exception("Action has already been registered to character");
         }
 
+        public void AddZones (Zone zone, string zoneName)
+        {
+            this.zones.Add(zoneName, zone);
+        }
         public ICharacterAction GetAction(string actionNameIn)
         {
             if (availableActions.ContainsKey(actionNameIn))
@@ -165,6 +200,14 @@ namespace Znko.Characters
             else
                 return null;
         }
+        public string GetActionName(ICharacterAction action)
+        {
+            if (availableActions.ContainsValue(action))
+                return availableActions.FirstOrDefault(x => x.Value == action).Key;
+            else
+                return "???";
+        }
+
         public bool HasAnimation()
         {
             return this.animation != null;
@@ -177,6 +220,14 @@ namespace Znko.Characters
         {
             return Vector3.Distance(this.transform.position, other.transform.position);
         }
+        public Root.Coord GetCoord()
+        {
+            return this.transform.position;
+        }
 
+        public void SetHorizontalDirectionDebug(Character.HorizontalDirection ind)
+        {
+            this.horizontalDir = ind;
+        }
     }
 }

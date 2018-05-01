@@ -127,7 +127,10 @@ namespace Znko.Actions {
             return Duration;
         }
         public override string ToString () {
-            return this.animationClip.name;
+            if (animationClip != null)
+                return this.animationClip.name;
+            else
+                return " - ";
         }
 
 
@@ -135,7 +138,7 @@ namespace Znko.Actions {
         {
             if (currentAction == null || nextAction == null)
                 return false;
-            return (currentAction.Priority == 0 || nextAction.Priority > currentAction.Priority);
+            return (/*currentAction.Priority == 0 ||*/ nextAction.Priority > currentAction.Priority);
         }
     }
 }   
