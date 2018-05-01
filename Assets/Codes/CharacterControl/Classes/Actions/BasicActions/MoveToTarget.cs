@@ -12,7 +12,7 @@ namespace Znko.Actions
         private Coord offSet;
         public MoveToTarget(Character characterIn, float durationIn, AnimationClip animationIn, Coord offset, params ActionEvent[] events) : base(characterIn, durationIn, animationIn, events)
         {
-            this.priority = 2;
+            this.priority = 1;
             this.offSet = offset;
         }
 
