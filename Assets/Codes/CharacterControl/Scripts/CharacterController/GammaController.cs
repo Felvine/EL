@@ -32,7 +32,7 @@ class GammaController : ActionBasedController {
         Vector3 moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
         if (CurrentAction == null || CurrentAction is MoveWithSpeed)
             this.User.Direction = moveDirection;
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButton("Fire1"))
             return this.User.GetAction("ComboAttack");
         else if (Input.GetKeyDown(KeyCode.R))
             return this.User.GetAction("Attack4");
