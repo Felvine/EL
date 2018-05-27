@@ -29,23 +29,33 @@ public class ColliderBehaviour : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (ZCollider.IsAttacking)
+        ICharacterController targetController = other.GetComponentInChildren<ICharacterController>();
+        if (targetController == null)
+            targetController = other.GetComponentInParent<ICharacterController>();
+        ICharacterController userController = GetComponentInParent<ICharacterController>();
+        if (user.Properties.IsAttacking && !targetController.GetUser().Properties.IsInvulnerable)
         {
             if (user.Faction == Character.Factions.Player)
             {
                 if (other.tag != "Player")
                 {
                     if (other.tag == "Enemy")
-                        other.GetComponentInChildren<ICharacterController>().AddEvent(new ReceiveDamageEvent(10));
+                    {
+                        userController.AddEvent(new SetAttackEvent(false));
+                        targetController.AddEvent(new ReceiveDamageEvent(10));
+                        targetController.AddEvent(new AddActionEvent(targetController.GetUser().GetAction("ReceiveHit")));
+                    }
                 }
             }
             else if (user.Faction == Character.Factions.Enemy)
             {
                 if (other.tag == "Player")
                 {
-                    other.GetComponentInChildren<ICharacterController>().AddEvent(new ReceiveDamageEvent(10));
+                    userController.AddEvent(new SetAttackEvent(false));
+                    targetController.AddEvent(new ReceiveDamageEvent(10));
+                    targetController.AddEvent(new AddActionEvent(targetController.GetUser().GetAction("Fall")));
                 }
             }
         }
