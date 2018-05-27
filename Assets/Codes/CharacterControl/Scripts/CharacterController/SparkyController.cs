@@ -117,6 +117,7 @@ public class SparkyController : AIController {
                 }
                 if (User.Zones["backZone"].IsIn(target.GetCoord()))
                 {
+                    return this.User.GetAction("TailSwipe");
                     if (rnd < 0.5)
                     {
                         return this.User.GetAction("TailSwipe");
@@ -178,6 +179,7 @@ public class SparkyController : AIController {
         base.ActionFinished();
         Vector3 diff = this.target.Transform.position - this.User.Transform.position;
         diff.y = 0;
-        this.User.Direction = diff;
+        if ((CurrentAction is MoveWithSpeed || NextAction is MoveWithSpeed))
+            this.User.Direction = diff;
     }
 }

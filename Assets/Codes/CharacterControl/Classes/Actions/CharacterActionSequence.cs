@@ -113,13 +113,12 @@ namespace Znko.Actions {
 
         public bool IsFinishing () {
             if (Priority == 0)
-                return true;    
-            //else if (step < actions.Count - 1)
-            //    return false;
-            //else
-            //    return actions[step].IsFinishing ();
-            else
+                return true;
+            if (step < actions.Count - 1)
                 return false;
+            else
+                return actions[step].IsFinishing();
+
         }
 
         public bool HasAnimationClip () {
