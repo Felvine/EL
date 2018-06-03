@@ -41,9 +41,6 @@ namespace Znko.Characters
 
         private Dictionary<string, Zone> zones = new Dictionary<string, Zone> ();
 
-        private List<ICharacterEvent> events = new List<ICharacterEvent>();
-
-
         #region Properties
 
         public Animation Animation {
@@ -161,16 +158,6 @@ namespace Znko.Characters
 
             set {
                 race = value;
-            }
-        }
-
-        public List<ICharacterEvent> Events {
-            get {
-                return events;
-            }
-
-            set {
-                events = value;
             }
         }
 

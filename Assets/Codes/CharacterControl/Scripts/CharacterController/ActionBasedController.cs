@@ -61,16 +61,6 @@ public abstract class ActionBasedController : ICharacterController {
         }
     }
 
-    protected List<ICharacterEvent> Events {
-        get {
-            return this.User.Events;
-        }
-
-        set {
-            this.User.Events = value;
-        }
-    }
-
     protected virtual void Update () {
         this.User.Properties.RegenareResources(Time.deltaTime);
         ICharacterAction highestPriorityAction = DetermineAction();
@@ -95,24 +85,6 @@ public abstract class ActionBasedController : ICharacterController {
         }
     }
 
-    protected ICharacterAction ProcessEventQueue()
-    {
-        ICharacterAction result = null;
-        ICharacterAction temp = null;
-        foreach (ICharacterEvent ce in this.Events)
-        {
-            ce.Do();
-            if (ce is AddActionEvent)
-            {
-                temp = ((AddActionEvent)ce).GetAction();
-                if (temp != null && (result == null || result.Priority < temp.Priority))
-                    result = temp;
-            }
-        }
-        this.Events.Clear();
-        return result;
-    }
-
     protected virtual void Awake () {
         Animation playerAnimation = GetComponentInChildren<Animation> ();
         if (playerAnimation == null)
@@ -132,15 +104,6 @@ public abstract class ActionBasedController : ICharacterController {
         return this.User;
     }
 
-    public override void AddEvent(ICharacterEvent eventIn)
-    {
-
-        Debug.Log(eventIn.ToString() + Time.time);
-
-        eventIn.SetUser(this.User);
-        this.Events.Add(eventIn);
-    }
-
     public virtual void ActionFinished()
     {
 
@@ -152,11 +115,19 @@ public abstract class ActionBasedController : ICharacterController {
             AttackReceivedEventHandler(other, attackCause);
     }
 
-
     public override void CauseDamage(ICharacterController other, ICharacterAction attackCause)
     {
         this.User.Properties.IsAttacking = false;
         if (this.AttackCausedEventHandler != null)
             AttackCausedEventHandler(other, attackCause);
+    }
+
+    public override void InterruptWithAction(ICharacterAction interruption)
+    {
+        if (CharacterAction.CanInterrupt(currentAction, interruption))
+        {
+            currentAction.PostActions(interruption, this);
+            CurrentAction = interruption;
+        }
     }
 }

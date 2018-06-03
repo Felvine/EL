@@ -16,16 +16,7 @@ class GammaController : ActionBasedController {
     }
 
     protected override ICharacterAction DetermineAction () {
-        ICharacterAction eventAction = ProcessEventQueue();
-        ICharacterAction inputAction = DetermineActionFromInputs();
-        if (eventAction == null)
-            return inputAction;
-        else if (inputAction == null)
-            return eventAction;
-        if (eventAction.Priority > inputAction.Priority)
-            return eventAction;
-        else
-            return inputAction;
+        return DetermineActionFromInputs();
     }
 
 
@@ -78,6 +69,13 @@ class GammaController : ActionBasedController {
     {
         base.ReceiveDamage(other, attackCause);
         this.User.GetResource(Znko.Characters.CharacterResource.Type.Health).Decrease(10);
+        if (!this.User.HasEnoughResource(new Znko.Characters.ResourceCost(Znko.Characters.CharacterResource.Type.Stamina, 50))){
+            InterruptWithAction(User.GetAction("Fall"));
+        }
+        else
+        {
+            InterruptWithAction(User.GetAction("Stagger"));
+        }
     }
 
 }

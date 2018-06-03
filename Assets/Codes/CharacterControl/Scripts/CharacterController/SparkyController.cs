@@ -33,20 +33,9 @@ public class SparkyController : AIController {
 
 
     protected override ICharacterAction DetermineAction ()
-    {
-        ICharacterAction buttonAction = DetermineActionFromUIForDebug();
-        if (buttonAction != null)
-            return buttonAction;
-        ICharacterAction eventAction = ProcessEventQueue();
-        ICharacterAction aiAction = DetermineActionFromAI();
-        if (eventAction == null)
-            return aiAction;
-        else if (aiAction == null)
-            return eventAction;
-        if (eventAction.Priority > aiAction.Priority)
-            return eventAction;
-        else
-            return aiAction;
+    { 
+        return DetermineActionFromAI();
+
     }
 
     private ICharacterAction DetermineActionFromUIForDebug()

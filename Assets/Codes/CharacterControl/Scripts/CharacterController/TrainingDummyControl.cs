@@ -14,6 +14,6 @@ public class TrainingDummyControl : ActionBasedController {
 
 
     protected override ICharacterAction DetermineAction () {
-        return ProcessEventQueue();
+        return null;
     }
 }

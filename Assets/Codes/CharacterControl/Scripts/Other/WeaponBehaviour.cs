@@ -32,13 +32,10 @@ public class WeaponBehaviour : MonoBehaviour {
         {
             if (user.Faction == Character.Factions.Player)
             {
-                if (other.tag != "Player")
+                if (other.tag == "Enemy")
                 {
-                    if (other.tag == "Enemy")
-                    {
-                        targetController.ReceiveDamage(userController, null);
-                        userController.CauseDamage(targetController, null);
-                    }
+                    targetController.ReceiveDamage(userController, null);
+                    userController.CauseDamage(targetController, null);
                 }
             }
             else if (user.Faction == Character.Factions.Enemy)
@@ -47,7 +44,6 @@ public class WeaponBehaviour : MonoBehaviour {
                 {
                     targetController.ReceiveDamage(userController, null);
                     userController.CauseDamage(targetController, null);
-                    targetController.AddEvent(new AddActionEvent(targetController.GetUser().GetAction("Fall")));
                 }
             }
         }
