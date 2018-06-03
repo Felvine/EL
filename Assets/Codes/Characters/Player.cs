@@ -35,19 +35,23 @@ namespace Characters {
                                                      new ActionEvent(ActionEvent.ActionPhase.PostAction, StaticEvents.EnableInvulnerability) };
 
 
-            player.AddAction ("Walk", new MoveWithSpeed (player, Constants.minimumStep, player.Animation.GetClip ("Player_Walk"), playerWalkSpeed, 0));
+            MoveWithSpeed walkAction = new MoveWithSpeed(player, Constants.minimumStep, player.Animation.GetClip("Player_Walk"), playerWalkSpeed, 0);
+            player.AddAction ("Walk", walkAction);
 
-            player.AddAction ("Run", new MoveWithSpeed (player, Constants.minimumStep, player.Animation.GetClip ("Player_Run"), playerRunSpeed, 0));
+            MoveWithSpeed runAction = new MoveWithSpeed(player, Constants.minimumStep, player.Animation.GetClip("Player_Run"), playerRunSpeed, 0);
+            player.AddAction ("Run", runAction);
 
-            player.AddAction ("Roll", new MoveToDistance (player, player.Animation.GetClip ("Player_Roll").length, player.Animation.GetClip ("Player_Roll"), playerRollLength, null, invulnerabilityEvents));
+            MoveToDistance rollAction = new MoveToDistance(player, player.Animation.GetClip("Player_Roll").length, player.Animation.GetClip("Player_Roll"), playerRollLength, null, invulnerabilityEvents);
+            player.AddAction ("Roll", rollAction);
 
-            player.AddAction ("Idle", new Idle (player, Constants.minimumStep, player.Animation.GetClip ("Player_Idle"), 0));
+            Idle idleAction = new Idle(player, Constants.minimumStep, player.Animation.GetClip("Player_Idle"), 0);
+            player.AddAction ("Idle", idleAction);
 
             float attack1duration = player.Animation.GetClip("Player_Attack_1").length; 
             float attack2duration = player.Animation.GetClip("Player_Attack_2").length;
             float attack3duration = player.Animation.GetClip("Player_Attack_3").length;  
 
-            ComboAction attack1ending = new ComboAction (new Idle (player, player.Animation.GetClip ("Player_Attack_Ender").length, player.Animation.GetClip ("Player_Attack_Ender"), 1),
+            ComboAction comboAttackEnding = new ComboAction (new Idle (player, player.Animation.GetClip ("Player_Attack_Ender").length, player.Animation.GetClip ("Player_Attack_Ender"), 1),
                                                          new CharacterActionSequence(player, player.Animation.GetClip("Player_Attack_3"), null,
                                                             new Idle(player, attack3duration*48 / 139, null, 1),
                                                             new Idle(player, attack3duration*10 / 139, null, 1, null, attackEvents),
@@ -58,17 +62,19 @@ namespace Characters {
                                                             new Idle(player, attack2duration*125 / 161, null, 1, null , invulnerabilityEvents[1])));
 
 
-            player.AddAction ("ComboAttack", new CharacterActionSequence (player, player.Animation.GetClip("Player_Attack_1"), null,
-                                                            new Idle(player, attack1duration*24 / 40, null, 1),
-                                                            new Idle(player, attack1duration*6 / 40, null, 1, null, attackEvents),
-                                                            new Idle(player, attack1duration*10 / 40, null, 1),
-                                                            attack1ending));
+            CharacterActionSequence comboAttack = new CharacterActionSequence(player, player.Animation.GetClip("Player_Attack_1"), new ResourceCost(CharacterResource.Type.Stamina, 20),
+                                                            new Idle(player, attack1duration * 24 / 40, null, 1),
+                                                            new Idle(player, attack1duration * 6 / 40, null, 1, null, attackEvents),
+                                                            new Idle(player, attack1duration * 10 / 40, null, 1),
+                                                            comboAttackEnding);
+            player.AddAction ("ComboAttack", comboAttack);
 
-            float attack4duration = player.Animation.GetClip("Player_Attack_4").length;
-            player.AddAction("Attack4", new CharacterActionSequence(player, player.Animation.GetClip("Player_Attack_4"), new ResourceCost(CharacterResource.Type.Stamina, 23),
-                                                            new Idle(player, attack4duration*24 / 57, null, 1),
-                                                            new Idle(player, attack4duration*10 / 57, null, 1, null, attackEvents),
-                                                            new Idle(player, attack4duration*23 / 57, null, 1)));
+            float stabActionLength = player.Animation.GetClip("Player_Attack_4").length;
+            CharacterActionSequence stabAction = new CharacterActionSequence(player, player.Animation.GetClip("Player_Attack_4"), new ResourceCost(CharacterResource.Type.Stamina, 20),
+                                                            new Idle(player, stabActionLength * 24 / 57, null, 1),
+                                                            new Idle(player, stabActionLength * 10 / 57, null, 1, null, attackEvents),
+                                                            new Idle(player, stabActionLength * 23 / 57, null, 1));
+            player.AddAction("Attack4", stabAction);
 
             float staggerduration = player.Animation.GetClip("Player_Stagger").length;
             player.AddAction("Stagger", new Idle(player, staggerduration, player.Animation.GetClip("Player_Stagger"), 1));
