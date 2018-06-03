@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 namespace Znko.Characters
 {
@@ -53,6 +54,12 @@ namespace Znko.Characters
 
             set {
                 isInvulnerable = value;
+            }
+        }
+
+        public Dictionary<CharacterResource.Type, CharacterResource> Resources {
+            get {
+                return resources;
             }
         }
 

@@ -216,6 +216,14 @@ namespace Znko.Characters
         {
             return properties.GetResource(type);
         }
+
+
+        public Dictionary<CharacterResource.Type, CharacterResource> GetResources()
+        {
+            return properties.Resources;
+        }
+
+
         public float GetDistance(Character other)
         {
             return Vector3.Distance(this.transform.position, other.transform.position);

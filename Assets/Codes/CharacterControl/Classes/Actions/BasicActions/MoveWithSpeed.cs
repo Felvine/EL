@@ -6,7 +6,7 @@ namespace Znko.Actions {
     class MoveWithSpeed : CharacterAction {
         private float speed;
 
-        public MoveWithSpeed (Character characterIn, float durationIn, AnimationClip animationIn, float speedIn, int prioIn , params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
+        public MoveWithSpeed (Character characterIn, float durationIn, AnimationClip animationIn, float speedIn, int prioIn, ResourceCost cost = null, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, cost, events) {
             this.speed = speedIn;
             this.priority = prioIn;
         }

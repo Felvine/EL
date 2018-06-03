@@ -5,7 +5,7 @@ using Znko.Characters;
 namespace Znko.Actions {
     class MoveToDistance : CharacterAction {
         private float speed;
-        public MoveToDistance (Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, events) {
+        public MoveToDistance (Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, ResourceCost cost = null, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, cost, events) {
             this.speed = distanceIn / durationIn;
             this.priority = 1;
         }

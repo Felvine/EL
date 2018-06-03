@@ -169,11 +169,6 @@ public class SparkyController : AIController {
         GameObject.Find("SparkyText").GetComponent<Text>().text = angle + "° " + distance + mytext;
    }
 
-    public void FlipForDebug()
-    {
-        this.clickedButton = true;
-    }
-
     public override void ActionFinished()
     {
         base.ActionFinished();

@@ -23,7 +23,7 @@ namespace Znko.Actions {
 
         private Phase actionPhase;
 
-        public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn, params ActionEvent[] eventsIn) {
+        public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn, ResourceCost cost = null, params ActionEvent[] eventsIn) {
             this.actionPhase = Phase.NotActing;
             this.user = characterIn;
             this.duration = durationIn;

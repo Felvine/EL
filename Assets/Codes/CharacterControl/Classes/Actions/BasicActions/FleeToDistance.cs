@@ -9,7 +9,7 @@ namespace Znko.Actions
     {
         private Vector3 moveDirection;
         private float distance;
-        public FleeToDistance(Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, params ActionEvent[] events) : base(characterIn, durationIn, animationIn, events)
+        public FleeToDistance(Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, ResourceCost cost = null, params ActionEvent[] events) : base(characterIn, durationIn, animationIn, cost, events)
         {
             this.distance = distanceIn;
             this.priority = 1;

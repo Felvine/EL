@@ -65,7 +65,7 @@ namespace Znko.Actions {
             }
         }
 
-        public CharacterActionSequence (Character userIn, AnimationClip animationClipIn, params ICharacterAction[] actionsIn) {
+        public CharacterActionSequence (Character userIn, AnimationClip animationClipIn, ResourceCost cost = null, params ICharacterAction[] actionsIn) {
             this.User = userIn;
             this.actionPhase = Phase.NotActing;
             this.animationClip = animationClipIn;
