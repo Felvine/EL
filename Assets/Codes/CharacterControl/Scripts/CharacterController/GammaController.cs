@@ -34,7 +34,7 @@ class GammaController : ActionBasedController {
             this.User.Direction = moveDirection;
         if (Input.GetButton("Fire1"))
             return this.User.GetAction("ComboAttack");
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetButton("Fire2"))
             return this.User.GetAction("Attack4");
         if (moveDirection != Vector3.zero) {
             if (Input.GetKeyDown (KeyCode.Space))
@@ -53,9 +53,9 @@ class GammaController : ActionBasedController {
             if (currentActionSequence.Actions[currentActionSequence.Step].IsFinishing () && (currentActionSequence.Step + 1) < currentActionSequence.Actions.Count) {
                 ComboAction nextComboAction = (currentActionSequence.Actions[currentActionSequence.Step + 1] as ComboAction);
                 if (nextComboAction != null) {
-                    if (Input.GetKeyDown (KeyCode.E))
+                    if (Input.GetButton("Fire1"))
                         nextComboAction.Selected = 1;
-                    else if (Input.GetKeyDown (KeyCode.R))
+                    else if (Input.GetButton("Fire2"))
                         nextComboAction.Selected = 2;
                 }
             }
