@@ -8,8 +8,10 @@ using System.Linq;
 
 namespace Znko.Characters
 {
+    public delegate void CharacterFlippedEventHandler (object sender, Character.HorizontalDirection direction);
     public class Character
     {
+        public event CharacterFlippedEventHandler CharacterFlippedEvent;
         public enum HorizontalDirection { West, East }
         public enum Factions { Player, Enemy, Neutral }
         public enum Races { Humanoid, Giant }
@@ -84,6 +86,8 @@ namespace Znko.Characters
             {
                 HorizontalDir = HorizontalDirection.East;
             }
+            if (CharacterFlippedEvent != null)
+                CharacterFlippedEvent(this, horizontalDir);
 
         }
 

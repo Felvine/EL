@@ -12,6 +12,18 @@ public class ResourceDisplay : MonoBehaviour {
         this.user = GetComponentInParent<ActionBasedController>().GetUser();
         if (this.user == null)
             throw new MissingComponentException("Need user");
+        this.user.CharacterFlippedEvent += (object sender, Character.HorizontalDirection direction) =>
+        {
+            switch (direction)
+            {
+                case Character.HorizontalDirection.East:
+                    transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    break;
+                case Character.HorizontalDirection.West:
+                    transform.localScale = new Vector3(-0.1f, 0.1f, 0.1f);
+                    break;
+            }
+        };
         textMesh = gameObject.GetComponent<TextMesh>();
         textMesh.fontSize = 100;
         textMesh.richText = true;

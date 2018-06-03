@@ -22,6 +22,7 @@ namespace Characters {
             player.Faction = Character.Factions.Player;
             player.Properties.SetResource(CharacterResource.Type.Health, new CharacterResource(100, Color.green));
             player.Properties.SetResource(CharacterResource.Type.Stamina, new CharacterResource(100, Color.yellow, 0.1f));
+            player.Properties.SetResource(CharacterResource.Type.Mana, new CharacterResource(100, Color.blue, 0.1f));
             SetupActions (ref player);
         }
 
