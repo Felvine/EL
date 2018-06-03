@@ -5,8 +5,12 @@ using Znko.Characters;
 
 namespace Znko.Actions {
     class ComboAction : ICharacterAction {
+
         private List<ICharacterAction> actions;
         private int selected = 0;
+
+        public event ActionEventHandler PreActionEvent;
+        public event ActionEventHandler PostActionEvent;
 
         public int Priority {
             get {
@@ -16,7 +20,7 @@ namespace Znko.Actions {
 
         public ResourceCost Cost {
             get {
-                return actions[Selected].Cost;
+                return null;
             }
         }
 
@@ -65,12 +69,14 @@ namespace Znko.Actions {
         }
 
         public void PostActions (ICharacterAction nextAction, ICharacterController controller) {
-            //actions[Selected].PostActions (nextAction);
+            if (PostActionEvent != null)
+                PostActionEvent(User, nextAction, this, null);
             Selected = 0;
         }
 
         public void PreActions (ICharacterAction previousAction, ICharacterController controller) {
-            //actions[Selected].PreActions (previousAction);
+            if (PreActionEvent != null)
+                PreActionEvent(User, previousAction, this, null);
         }
 
         public bool CanInterrupt(ICharacterAction currentAction)

@@ -695,7 +695,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1546931983516020}
-  m_Text: '<color=green>Health:  100%</color>
+  m_Text: '<color=green>Health:  40%</color>
 
     <color=yellow>Stamina:  100%</color>'
   m_OffsetZ: 0

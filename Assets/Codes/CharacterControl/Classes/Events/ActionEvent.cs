@@ -1,20 +1,27 @@
 ﻿
+using Znko.Actions;
+
 namespace Znko.Events
 {
    public  class ActionEvent
     {
-        public enum Phase { PreAction, PostAction }
-        private Phase phase;
-        private ICharacterEvent characterEvent;
-        public ActionEvent(ActionEvent.Phase phaseIn, ICharacterEvent eventIn)
+        public enum ActionPhase { PreAction, PostAction }
+        private ActionPhase _phase;
+        private ActionEventHandler _eventHandler;
+        public ActionEvent(ActionEvent.ActionPhase phaseIn, ActionEventHandler eventIn)
         {
-            this.phase = phaseIn;
-            this.characterEvent = eventIn;
+            this._phase = phaseIn;
+            this._eventHandler = eventIn;
         }
-        public Phase GetPhase() { return this.phase; }
-        public ICharacterEvent Value{
+        public ActionEventHandler Value {
             get {
-                return this.characterEvent;
+                return this._eventHandler;
+            }
+        }
+
+        public ActionPhase Phase {
+            get {
+                return _phase;
             }
         }
     }

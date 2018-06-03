@@ -41,8 +41,8 @@ namespace Characters {
 
 
             float attackDuration = sparky.Animation.GetClip ("Monster_Simple_Attack").length;
-            ActionEvent[] attackEvents = {  new ActionEvent(ActionEvent.Phase.PreAction, new SetAttackEvent(true)),
-                                            new ActionEvent(ActionEvent.Phase.PostAction, new SetAttackEvent(false)) };
+            ActionEvent[] attackEvents = {  new ActionEvent(ActionEvent.ActionPhase.PreAction, StaticEvents.EnableAttack),
+                                            new ActionEvent(ActionEvent.ActionPhase.PostAction, StaticEvents.DisableAttack) };
 
             sparky.AddAction ("Bite", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Simple_Attack"), new ResourceCost(CharacterResource.Type.Stamina, 20),
                                                             new Idle (sparky, attackDuration*70 / 160, null, 1),

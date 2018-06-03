@@ -1,30 +1,32 @@
 ﻿
+using System;
+using Znko.Actions;
+using Znko.Characters;
+
 namespace Znko.Events
 {
-    class SetAttackEvent : CharacterEvent
+    static class StaticEvents
     {
-        public enum Type { All};
-        private bool value;
-        private Type type;
-        public SetAttackEvent (bool valueIn) : base()
+
+        public static void EnableAttack(Character user, ICharacterAction previousOrNextAction, ICharacterAction currentAction, EventArgs e = null)
         {
-            this.type = Type.All;
-            this.value = valueIn;
-        }
-        public override void Do()
-        {
-            switch (type) {
-                case Type.All:
-                    this.User.Properties.IsAttacking = value;
-                    break;
-                default:
-                    throw new System.ArgumentOutOfRangeException ();
-            }
+            user.Properties.IsAttacking = true;
         }
 
-        public override string ToString()
+        public static void DisableAttack(Character user, ICharacterAction previousOrNextAction, ICharacterAction currentAction, EventArgs e = null)
         {
-            return "Attack Event Set to " + (value ? "true" : "false");
+            user.Properties.IsAttacking = false;
         }
+
+        public static void EnableInvulnerability(Character user, ICharacterAction previousOrNextAction, ICharacterAction currentAction, EventArgs e = null)
+        {
+            user.Properties.IsInvulnerable = true;
+        }
+
+        public static void DisableInvulnerability(Character user, ICharacterAction previousOrNextAction, ICharacterAction currentAction, EventArgs e = null)
+        {
+            user.Properties.IsInvulnerable = false;
+        }
+
     }
 }

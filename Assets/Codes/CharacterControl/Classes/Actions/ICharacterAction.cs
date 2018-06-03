@@ -1,9 +1,14 @@
-﻿using Znko.Characters;
+﻿using System;
+using Znko.Characters;
 
 namespace Znko.Actions {
     public enum Phase { NotActing, Acting };
 
+    public delegate void ActionEventHandler (Character user, ICharacterAction previousOrNextAction, ICharacterAction currentAction, EventArgs e = null);
+
     public interface ICharacterAction {
+        event ActionEventHandler PreActionEvent;
+        event ActionEventHandler PostActionEvent;
         int Priority { get; }
         Character User { get; }
         ResourceCost Cost { get; }

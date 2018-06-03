@@ -28,6 +28,9 @@ namespace Znko.Actions {
         private List<ICharacterAction> actions;
         private int step = 0;
 
+        public event ActionEventHandler PreActionEvent;
+        public event ActionEventHandler PostActionEvent;
+
         public bool DisableAnimation {
             get {
                 return disableAnimation;
@@ -86,6 +89,8 @@ namespace Znko.Actions {
             _cost = cost;
         }
         public virtual void PreActions (ICharacterAction previousAction, ICharacterController controller) {
+            if (PreActionEvent != null)
+                PreActionEvent(User, previousAction, this, null);
             if (controller.GetUser().HasEnoughResource(Cost))
             {
                 controller.GetUser().ReduceResource(Cost);
@@ -97,6 +102,8 @@ namespace Znko.Actions {
         }
 
         public virtual void PostActions (ICharacterAction nextAction, ICharacterController controller) {
+            if (PostActionEvent != null)
+                PostActionEvent(User, nextAction, this, null);
         }
 
 

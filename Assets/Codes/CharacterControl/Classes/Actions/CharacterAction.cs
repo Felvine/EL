@@ -25,6 +25,9 @@ namespace Znko.Actions {
 
         private Phase _actionPhase;
 
+        public event ActionEventHandler PreActionEvent;
+        public event ActionEventHandler PostActionEvent;
+
         public CharacterAction (Character characterIn, float durationIn, AnimationClip animationClipIn, ResourceCost cost = null, params ActionEvent[] eventsIn) {
             this._actionPhase = Phase.NotActing;
             this._user = characterIn;
@@ -85,6 +88,8 @@ namespace Znko.Actions {
 
         #region ICharacterAction interface methods
         public virtual void PreActions (ICharacterAction previousAction, ICharacterController controller) {
+            if (PreActionEvent != null)
+                PreActionEvent(User, previousAction, this, null);
             _startTime = Time.time;
             if (controller.GetUser().HasEnoughResource(Cost))
             {
@@ -97,19 +102,11 @@ namespace Znko.Actions {
             if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
                 User.Animation.CrossFade (_animationClip.name);
             }
-            foreach (ActionEvent ae in _events)
-            {
-                if (ae.GetPhase() == ActionEvent.Phase.PreAction)
-                    controller.AddEvent(ae.Value);
-            }
         }
 
         public virtual void PostActions (ICharacterAction nextAction, ICharacterController controller) {
-            foreach (ActionEvent ae in _events)
-            {
-                if (ae.GetPhase() == ActionEvent.Phase.PostAction)
-                    controller.AddEvent(ae.Value);
-            }
+            if (PostActionEvent != null)
+                PostActionEvent(User, nextAction, this, null);
         }
 
         protected abstract void PerformAction ();

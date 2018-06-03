@@ -11,7 +11,8 @@ class GammaController : ActionBasedController {
     }
     protected override void Start () {
         base.Start ();
-        GetComponentInChildren<WeaponBehaviour> ().User = this.User;
+        WeaponBehaviour wb = GetComponentInChildren<WeaponBehaviour>();
+        wb.User = this.User;
     }
 
     protected override ICharacterAction DetermineAction () {
