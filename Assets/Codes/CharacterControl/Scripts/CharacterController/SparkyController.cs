@@ -177,4 +177,10 @@ public class SparkyController : AIController {
         if ((CurrentAction is MoveWithSpeed || NextAction is MoveWithSpeed))
             this.User.Direction = diff;
     }
+
+    public override void ReceiveDamage(ICharacterController other, ICharacterAction attackCause)
+    {
+        base.ReceiveDamage(other, attackCause);
+        this.User.GetResource(Znko.Characters.CharacterResource.Type.Health).Decrease(10);
+    }
 }

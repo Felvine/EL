@@ -74,5 +74,11 @@ class GammaController : ActionBasedController {
         GameObject.Find("Text").GetComponent<Text>().text = "FPS: " + (1 / Time.deltaTime) +  "\nUser Action Queue: \n" + CurrentAction +"\n" + NextAction;
     }
 
+    public override void ReceiveDamage(ICharacterController other, ICharacterAction attackCause)
+    {
+        base.ReceiveDamage(other, attackCause);
+        this.User.GetResource(Znko.Characters.CharacterResource.Type.Health).Decrease(10);
+    }
+
 }
 

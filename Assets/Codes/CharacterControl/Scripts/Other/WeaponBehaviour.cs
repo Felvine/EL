@@ -4,11 +4,9 @@ using Znko.Characters;
 using System;
 using Znko.Actions;
 
-public delegate void AttackRegisteredEventHandler(ICharacterController attacker, ICharacterController receiver, EventArgs e = null);
 
 public class WeaponBehaviour : MonoBehaviour {
 
-    public event AttackRegisteredEventHandler AttackRegistered;
     private Character user;
 
     public Character User {
@@ -38,10 +36,8 @@ public class WeaponBehaviour : MonoBehaviour {
                 {
                     if (other.tag == "Enemy")
                     {
-                        if (AttackRegistered != null)
-                            AttackRegistered(userController, targetController);
-                        targetController.AddEvent(new ReceiveDamageEvent(10));
-                        targetController.AddEvent(new AddActionEvent(targetController.GetUser().GetAction("ReceiveHit")));
+                        targetController.ReceiveDamage(userController, null);
+                        userController.CauseDamage(targetController, null);
                     }
                 }
             }
@@ -49,9 +45,8 @@ public class WeaponBehaviour : MonoBehaviour {
             {
                 if (other.tag == "Player")
                 {
-                    if (AttackRegistered != null)
-                        AttackRegistered(userController, targetController);
-                    targetController.AddEvent(new ReceiveDamageEvent(10));
+                    targetController.ReceiveDamage(userController, null);
+                    userController.CauseDamage(targetController, null);
                     targetController.AddEvent(new AddActionEvent(targetController.GetUser().GetAction("Fall")));
                 }
             }

@@ -11,6 +11,8 @@ public abstract class ActionBasedController : ICharacterController {
     private ICharacterAction nextAction;
     public const float actionMinimumStep = 0.01f;
 
+    public event AttackEventHandler AttackReceivedEventHandler;
+    public event AttackEventHandler AttackCausedEventHandler;
 
     protected ICharacterAction NextAction {
         get {
@@ -142,5 +144,19 @@ public abstract class ActionBasedController : ICharacterController {
     public virtual void ActionFinished()
     {
 
+    }
+
+    public override void ReceiveDamage(ICharacterController other, ICharacterAction attackCause)
+    {
+        if (this.AttackReceivedEventHandler != null)
+            AttackReceivedEventHandler(other, attackCause);
+    }
+
+
+    public override void CauseDamage(ICharacterController other, ICharacterAction attackCause)
+    {
+        this.User.Properties.IsAttacking = false;
+        if (this.AttackCausedEventHandler != null)
+            AttackCausedEventHandler(other, attackCause);
     }
 }
