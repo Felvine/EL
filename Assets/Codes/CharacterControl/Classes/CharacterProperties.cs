@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 namespace Znko.Characters
@@ -44,6 +45,15 @@ namespace Znko.Characters
 
             set {
                 isAttacking = value;
+            }
+        }
+
+        internal void RegenareResources(float deltaTime)
+        {
+            foreach (KeyValuePair<CharacterResource.Type, CharacterResource> resource in resources)
+            {
+                if (resource.Value.Value < resource.Value.MaxValue)
+                 resource.Value.Value += resource.Value.RegenRate * deltaTime;
             }
         }
 

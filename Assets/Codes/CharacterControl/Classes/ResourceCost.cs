@@ -8,7 +8,7 @@ namespace Znko.Characters
     public class ResourceCost
     {
         private CharacterResource.Type _type;
-        private float _amount;
+        private int _amount;
         private static ResourceCost _zero = new ResourceCost(CharacterResource.Type.Mana, 0);
 
         public CharacterResource.Type Type {
@@ -21,7 +21,7 @@ namespace Znko.Characters
             }
         }
 
-        public float Amount {
+        public int Amount {
             get {
                 return _amount;
             }
@@ -37,7 +37,7 @@ namespace Znko.Characters
             }
         }
 
-        public ResourceCost(CharacterResource.Type type, float amount)
+        public ResourceCost(CharacterResource.Type type, int amount)
         {
             Type = type;
             Amount = amount;

@@ -7,7 +7,7 @@ namespace Znko.Actions {
         private float speed;
         public MoveToDistance (Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, ResourceCost cost = null, params ActionEvent[] events) : base (characterIn, durationIn, animationIn, cost, events) {
             this.speed = distanceIn / durationIn;
-            this.priority = 1;
+            this._priority = 1;
         }
 
         public override void PreActions (ICharacterAction previousAction, ICharacterController controller) {

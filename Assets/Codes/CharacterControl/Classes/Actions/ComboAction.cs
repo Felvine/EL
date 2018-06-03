@@ -14,6 +14,12 @@ namespace Znko.Actions {
             }
         }
 
+        public ResourceCost Cost {
+            get {
+                return actions[Selected].Cost;
+            }
+        }
+
         public Character User {
             get {
                 return actions[Selected].User;

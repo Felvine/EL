@@ -6,6 +6,7 @@ namespace Znko.Actions {
     public interface ICharacterAction {
         int Priority { get; }
         Character User { get; }
+        ResourceCost Cost { get; }
 
         Phase Execute (ICharacterAction previousAction, ICharacterAction nextAction, ICharacterController controller);
         void PreActions (ICharacterAction previousAction, ICharacterController controller);

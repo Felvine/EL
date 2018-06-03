@@ -18,7 +18,7 @@ public abstract class ActionBasedController : ICharacterController {
         }
 
         set {
-            if (value != null) {
+            if (value != null && user.HasEnoughResource (value.Cost)) {
                 if (nextAction == null || (nextAction.Priority <= value.Priority)) {
                     nextAction = value;
                 }
@@ -32,7 +32,10 @@ public abstract class ActionBasedController : ICharacterController {
         }
 
         set {
-            currentAction = value;
+            if (value != null && user.HasEnoughResource(value.Cost))
+            {
+                currentAction = value;
+            }
         }
     }
 
@@ -67,6 +70,7 @@ public abstract class ActionBasedController : ICharacterController {
     }
 
     protected virtual void Update () {
+        this.User.Properties.RegenareResources(Time.deltaTime);
         ICharacterAction highestPriorityAction = DetermineAction();
         if (CharacterAction.CanInterrupt(currentAction, highestPriorityAction))
         {

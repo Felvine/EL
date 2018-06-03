@@ -12,7 +12,7 @@ namespace Znko.Actions
         public FleeToDistance(Character characterIn, float durationIn, AnimationClip animationIn, float distanceIn, ResourceCost cost = null, params ActionEvent[] events) : base(characterIn, durationIn, animationIn, cost, events)
         {
             this.distance = distanceIn;
-            this.priority = 1;
+            this._priority = 1;
         }
 
         public override void PreActions(ICharacterAction previousAction, ICharacterController controller)

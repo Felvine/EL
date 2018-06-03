@@ -18,6 +18,16 @@ namespace Znko.Characters
         private Dictionary<string, ICharacterAction> availableActions = new Dictionary<string, ICharacterAction>();
 
         private Vector3 direction = Vector3.zero;
+
+        public bool HasEnoughResource(ResourceCost cost)
+        {
+            if (cost == null)
+                return true;
+            if (GetResource(cost.Type) == null)
+                return false;
+            return GetResource(cost.Type).Value >= cost.Amount;
+        }
+
         private HorizontalDirection horizontalDir = HorizontalDirection.East;
 
         private Transform transform;
@@ -75,6 +85,12 @@ namespace Znko.Characters
                 HorizontalDir = HorizontalDirection.East;
             }
 
+        }
+
+        internal void ReduceResource(ResourceCost cost)
+        {
+            if (cost != null)
+                GetResource(cost.Type).Value -= cost.Amount;
         }
 
         public Transform Transform {

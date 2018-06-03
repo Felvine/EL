@@ -18,7 +18,8 @@ namespace Znko.Actions {
         // Time management
         private float startTime;
         private float duration;
-        
+
+        private ResourceCost _cost;
       
 
         private Phase actionPhase;
@@ -65,6 +66,12 @@ namespace Znko.Actions {
             }
         }
 
+        public ResourceCost Cost {
+            get {
+                return _cost;
+            }
+        }
+
         public CharacterActionSequence (Character userIn, AnimationClip animationClipIn, ResourceCost cost = null, params ICharacterAction[] actionsIn) {
             this.User = userIn;
             this.actionPhase = Phase.NotActing;
@@ -76,8 +83,13 @@ namespace Znko.Actions {
                 this.duration =+ actionsIn[i].GetDuration ();
                 this.actions.Add (actionsIn[i]);
             }
+            _cost = cost;
         }
         public virtual void PreActions (ICharacterAction previousAction, ICharacterController controller) {
+            if (controller.GetUser().HasEnoughResource(Cost))
+            {
+                controller.GetUser().ReduceResource(Cost);
+            }
             startTime = Time.time;
             if (!DisableAnimation && HasAnimationClip () && User.HasAnimation ()) {
                 User.Animation.CrossFade (animationClip.name);

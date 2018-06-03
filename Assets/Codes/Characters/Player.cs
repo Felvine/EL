@@ -21,7 +21,7 @@ namespace Characters {
             player = new Character (transformIn);
             player.Faction = Character.Factions.Player;
             player.Properties.SetResource(CharacterResource.Type.Health, new CharacterResource(100, Color.green));
-            player.Properties.SetResource(CharacterResource.Type.Stamina, new CharacterResource(100, Color.yellow));
+            player.Properties.SetResource(CharacterResource.Type.Stamina, new CharacterResource(100, Color.yellow, 0.1f));
             SetupActions (ref player);
         }
 
@@ -62,7 +62,7 @@ namespace Characters {
                                                             attack1ending));
 
             float attack4duration = player.Animation.GetClip("Player_Attack_4").length;
-            player.AddAction("Attack4", new CharacterActionSequence(player, player.Animation.GetClip("Player_Attack_4"), null,
+            player.AddAction("Attack4", new CharacterActionSequence(player, player.Animation.GetClip("Player_Attack_4"), new ResourceCost(CharacterResource.Type.Stamina, 38),
                                                             new Idle(player, attack4duration*24 / 57, null, 1),
                                                             new Idle(player, attack4duration*10 / 57, null, 1, null, attackEvents),
                                                             new Idle(player, attack4duration*23 / 57, null, 1)));

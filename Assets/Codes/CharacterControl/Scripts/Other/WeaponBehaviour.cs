@@ -25,6 +25,8 @@ public class WeaponBehaviour : MonoBehaviour {
         ICharacterController targetController = other.GetComponentInChildren<ICharacterController>();
         if (targetController == null)
             targetController = other.GetComponentInParent<ICharacterController>();
+        if (targetController == null)
+            return;
         ICharacterController userController = GetComponentInParent<ICharacterController>();
         if (user.Properties.IsAttacking && !targetController.GetUser().Properties.IsInvulnerable)
         {

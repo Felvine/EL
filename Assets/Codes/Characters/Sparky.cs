@@ -23,6 +23,7 @@ namespace Characters {
 
         public static Character Create (Transform transformIn) {
             Character sparky = new Character (transformIn);
+            sparky.Properties.SetResource(CharacterResource.Type.Stamina, new CharacterResource(100, Color.yellow, 1f));
             sparky.Faction = Character.Factions.Enemy;
             sparky.Race = Character.Races.Giant;
             SetupActions (ref sparky);
@@ -43,7 +44,7 @@ namespace Characters {
             ActionEvent[] attackEvents = {  new ActionEvent(ActionEvent.Phase.PreAction, new SetAttackEvent(true)),
                                             new ActionEvent(ActionEvent.Phase.PostAction, new SetAttackEvent(false)) };
 
-            sparky.AddAction ("Bite", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Simple_Attack"), null,
+            sparky.AddAction ("Bite", new CharacterActionSequence (sparky, sparky.Animation.GetClip ("Monster_Simple_Attack"), new ResourceCost(CharacterResource.Type.Stamina, 20),
                                                             new Idle (sparky, attackDuration*70 / 160, null, 1),
                                                             new Idle (sparky, attackDuration*15 / 160, null, 1, null, attackEvents),
                                                             new Idle (sparky, attackDuration*75 / 160, null, 1)));
